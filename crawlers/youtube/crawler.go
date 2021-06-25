@@ -41,20 +41,22 @@ func NewCrawler(v *VisitList) *Crawler {
 					info.Cid = channelID
 				}
 			}
+			info.Method = "youtube"
+			info.UpdateTime = GetNextUpdateTime()
 
 			// 打印出獲取到的頻道資訊
-			log.Println("========================================")
-			log.Printf("Cid:>>> 		%s", info.Cid)
-			log.Printf("Status:>>> 		%s", info.Status)
-			log.Printf("Owner:>>> 		%s", info.Owner)
-			log.Printf("Avatar:>>> 		%s", info.Avatar)
-			log.Printf("RenderType:>>> 	%s", info.RenderType)
-			log.Printf("StreamURL:>>>  	%s", info.StreamURL)
-			log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
-			log.Printf("Title:>>>      	%s", info.Title)
-			log.Printf("ViewCount:>>>  	%s", info.ViewCount)
-			log.Printf("StartTime:>>>  	%s", info.StartTime)
-			log.Println("========================================")
+			// log.Println("========================================")
+			// log.Printf("Cid:>>> 		%s", info.Cid)
+			// log.Printf("Status:>>> 		%s", info.Status)
+			// log.Printf("Owner:>>> 		%s", info.Owner)
+			// log.Printf("Avatar:>>> 		%s", info.Avatar)
+			// log.Printf("RenderType:>>> 	%s", info.RenderType)
+			// log.Printf("StreamURL:>>>  	%s", info.StreamURL)
+			// log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
+			// log.Printf("Title:>>>      	%s", info.Title)
+			// log.Printf("ViewCount:>>>  	%s", info.ViewCount)
+			// log.Printf("StartTime:>>>  	%s", info.StartTime)
+			// log.Println("========================================")
 
 			// 寫入到 Redis中
 			bytes, err := json.Marshal(info)

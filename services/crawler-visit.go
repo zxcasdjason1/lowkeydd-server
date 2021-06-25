@@ -28,13 +28,7 @@ func CrawlerVisit(c *gin.Context) {
 	log.Printf("method %v\n", method)
 
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().Visit(cid, method)
+	crawlers.GetInstance().Visit_Conditionally(cid, method)
 	// 再從redis取出資料作為回傳
-	defer CrawlerVisitTransport(c, cid)
-}
-
-func CrawlerVisitTransport(c *gin.Context, cid string) {
-
-	GetSingleChannel(c, cid)
-
+	defer GetSingleChannelResponse(c, cid)
 }

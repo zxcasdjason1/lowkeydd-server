@@ -109,6 +109,8 @@ func (c *Crawler) TodoSearch(userid string) {
 		// 或直播已經結束，所以再重新請求來獲取最近一次的影片記錄檔。
 		info = GetOffChannelInfo(c.GetVedios(userid))
 	}
+	info.Method = "twitch"
+	info.UpdateTime = GetNextUpdateTime()
 
 	// log.Println("================正在重播==================")
 	// log.Printf("Cid:>>> 		%s", info.Cid)

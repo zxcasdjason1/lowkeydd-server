@@ -9,15 +9,9 @@ import (
 
 func CrawlerVisitAll(c *gin.Context) {
 	log.Println("CrawlerVisitAll")
-	crawlers.GetInstance().VisitAll()
-
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().VisitAll()
+	crawlers.GetInstance().VisitAll_Conditionally()
 	// 再從redis取出資料作為回傳
-	defer CrawlerVisitAllTransport(c)
-}
+	defer GetAllChannelsResponse(c)
 
-func CrawlerVisitAllTransport(c *gin.Context) {
-
-	GetAllChannels(c)
 }

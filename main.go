@@ -77,3 +77,20 @@ func main() {
 	// }
 
 }
+
+// func CORSMiddleware(c *gin.Context) gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		h := &http.Header{}
+// 		h.Add("Content-Type", "application/json")
+// 		h.Add("Access-Control-Allow-Origin", "*")
+// 		h.Add("Access-Control-Max-Age", "86400")
+// 		h.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
+// 		h.Add("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max")
+// 		h.Add("Access-Control-Allow-Credentials", "true")
+// 		if c.Request.Method == "OPTIONS" {
+// 			c.AbortWithStatus(200)
+// 		} else {
+// 			c.Next()
+// 		}
+// 	}
+// }

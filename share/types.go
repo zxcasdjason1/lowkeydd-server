@@ -11,7 +11,9 @@ type ChannelInfo struct {
 	Thumbnail  string `json:"thumbnail"`
 	Title      string `json:"title"`
 	ViewCount  string `json:"viewcount"`
-	StartTime  string `json:"starttime"` //直播開始時間
+	StartTime  string `json:"starttime"`  // 直播開始時間
+	Method     string `json:"method"`     // 使用的crawler方式
+	UpdateTime int64  `json:"updatetime"` // 最近一次的更新時間
 }
 
 type VisitItem struct {
