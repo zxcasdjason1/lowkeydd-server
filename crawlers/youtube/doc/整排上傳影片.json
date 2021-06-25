@@ -1,0 +1,636 @@
+{
+    "shelfRenderer": {
+     "title": {
+      "runs": [
+       {
+        "text": "熱門上傳影片",
+        "navigationEndpoint": {
+         "clickTrackingParams": "CF0Q3BwYACITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+         "commandMetadata": { "webCommandMetadata": { "url": "/playlist?list=PLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t", "webPageType": "WEB_PAGE_TYPE_PLAYLIST", "rootVe": 5754, "apiUrl": "/youtubei/v1/browse" } },
+         "browseEndpoint": { "browseId": "VLPLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t" }
+        }
+       }
+      ]
+     },
+     "endpoint": {
+      "clickTrackingParams": "CF0Q3BwYACITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+      "commandMetadata": { "webCommandMetadata": { "url": "/playlist?list=PLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t", "webPageType": "WEB_PAGE_TYPE_PLAYLIST", "rootVe": 5754, "apiUrl": "/youtubei/v1/browse" } },
+      "browseEndpoint": { "browseId": "VLPLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t" }
+     },
+     "content": {
+      "horizontalListRenderer": {
+       "items": [
+        {
+         "gridVideoRenderer": {
+          "videoId": "65F8I6UebbQ",
+          "thumbnail": {
+           "thumbnails": [
+            { "url": "https://i.ytimg.com/vi/65F8I6UebbQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLDfu-Id6-48T9W8edjAZAAYpKI9Pg", "width": 168, "height": 94 },
+            { "url": "https://i.ytimg.com/vi/65F8I6UebbQ/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLAMvi6keFc2NNTSMSPMVhBWkmouCw", "width": 196, "height": 110 },
+            { "url": "https://i.ytimg.com/vi/65F8I6UebbQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLCIRcIoFzDyj68QYp2dkPhg3cf20g", "width": 246, "height": 138 },
+            { "url": "https://i.ytimg.com/vi/65F8I6UebbQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLDKR4R_6s4cEUtoWGJcPnL1_-_cIw", "width": 336, "height": 188 }
+           ]
+          },
+          "title": {
+           "accessibility": { "accessibilityData": { "label": "【羅傑】 我好歹也曾是一代宗師受萬人景仰　標準教學 | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527 上傳者：羅傑 Roger 1 週前 8 分鐘 15 秒 觀看次數：24,155次" } },
+           "simpleText": "【羅傑】 我好歹也曾是一代宗師受萬人景仰　標準教學 | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527"
+          },
+          "publishedTimeText": { "simpleText": "1 週前" },
+          "viewCountText": { "simpleText": "觀看次數：24,155次" },
+          "navigationEndpoint": {
+           "clickTrackingParams": "CG4QlDUYACITCMHUqfP5nvACFbxFhQodBz8FzzIGZy1oaWdoWhhVQ2lFbTlub2VnQkliLUF6anFweEtmZkGaAQUQ8jgYZA==",
+           "commandMetadata": { "webCommandMetadata": { "url": "/watch?v=65F8I6UebbQ", "webPageType": "WEB_PAGE_TYPE_WATCH", "rootVe": 3832 } },
+           "watchEndpoint": { "videoId": "65F8I6UebbQ" }
+          },
+          "shortBylineText": {
+           "runs": [
+            {
+             "text": "羅傑 Roger",
+             "navigationEndpoint": {
+              "clickTrackingParams": "CG4QlDUYACITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+              "commandMetadata": { "webCommandMetadata": { "url": "/channel/UCiEm9noegBIb-AzjqpxKffA", "webPageType": "WEB_PAGE_TYPE_CHANNEL", "rootVe": 3611, "apiUrl": "/youtubei/v1/browse" } },
+              "browseEndpoint": { "browseId": "UCiEm9noegBIb-AzjqpxKffA", "canonicalBaseUrl": "/channel/UCiEm9noegBIb-AzjqpxKffA" }
+             }
+            }
+           ]
+          },
+          "trackingParams": "CG4QlDUYACITCMHUqfP5nvACFbxFhQodBz8Fz0C02_mouoTfyOsB",
+          "shortViewCountText": { "accessibility": { "accessibilityData": { "label": "觀看次數：2.4萬次" } }, "simpleText": "觀看次數：2.4萬次" },
+          "menu": {
+           "menuRenderer": {
+            "items": [
+             {
+              "menuServiceItemRenderer": {
+               "text": { "runs": [{ "text": "加入待播清單" }] },
+               "icon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+               "serviceEndpoint": {
+                "clickTrackingParams": "CHEQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+                "signalServiceEndpoint": {
+                 "signal": "CLIENT_SIGNAL",
+                 "actions": [
+                  {
+                   "clickTrackingParams": "CHEQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "addToPlaylistCommand": {
+                    "openMiniplayer": true,
+                    "videoId": "65F8I6UebbQ",
+                    "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                    "onCreateListCommand": {
+                     "clickTrackingParams": "CHEQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                     "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                     "createPlaylistServiceEndpoint": { "videoIds": ["65F8I6UebbQ"], "params": "CAQ%3D" }
+                    },
+                    "videoIds": ["65F8I6UebbQ"]
+                   }
+                  }
+                 ]
+                }
+               },
+               "trackingParams": "CHEQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+              }
+             }
+            ],
+            "trackingParams": "CG4QlDUYACITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+            "accessibility": { "accessibilityData": { "label": "動作選單" } }
+           }
+          },
+          "thumbnailOverlays": [
+           { "thumbnailOverlayTimeStatusRenderer": { "text": { "accessibility": { "accessibilityData": { "label": "8 分鐘 15 秒" } }, "simpleText": "8:15" }, "style": "DEFAULT" } },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "isToggled": false,
+             "untoggledIcon": { "iconType": "WATCH_LATER" },
+             "toggledIcon": { "iconType": "CHECK" },
+             "untoggledTooltip": "稍後觀看",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CHAQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "addedVideoId": "65F8I6UebbQ", "action": "ACTION_ADD_VIDEO" }] }
+             },
+             "toggledServiceEndpoint": {
+              "clickTrackingParams": "CHAQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", "removedVideoId": "65F8I6UebbQ" }] }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "稍後觀看" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CHAQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "untoggledIcon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+             "toggledIcon": { "iconType": "PLAYLIST_ADD_CHECK" },
+             "untoggledTooltip": "加入待播清單",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CG8Qx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+              "signalServiceEndpoint": {
+               "signal": "CLIENT_SIGNAL",
+               "actions": [
+                {
+                 "clickTrackingParams": "CG8Qx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                 "addToPlaylistCommand": {
+                  "openMiniplayer": true,
+                  "videoId": "65F8I6UebbQ",
+                  "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                  "onCreateListCommand": {
+                   "clickTrackingParams": "CG8Qx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                   "createPlaylistServiceEndpoint": { "videoIds": ["65F8I6UebbQ"], "params": "CAQ%3D" }
+                  },
+                  "videoIds": ["65F8I6UebbQ"]
+                 }
+                }
+               ]
+              }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "加入待播清單" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CG8Qx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           { "thumbnailOverlayNowPlayingRenderer": { "text": { "runs": [{ "text": "現正播放" }] } } }
+          ],
+          "richThumbnail": {
+           "movingThumbnailRenderer": {
+            "movingThumbnailDetails": {
+             "thumbnails": [{ "url": "https://i.ytimg.com/an_webp/65F8I6UebbQ/mqdefault_6s.webp?du=3000\u0026sqp=CKj3oIQG\u0026rs=AOn4CLCwozDhj6EM8RYTU-oQK3LwkOnWvQ", "width": 320, "height": 180 }],
+             "logAsMovingThumbnail": true
+            },
+            "enableHoveredLogging": true,
+            "enableOverlay": true
+           }
+          }
+         }
+        },
+        {
+         "gridVideoRenderer": {
+          "videoId": "dWUS8_pJPuQ",
+          "thumbnail": {
+           "thumbnails": [
+            { "url": "https://i.ytimg.com/vi/dWUS8_pJPuQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLBq5qxDNOhlLmTZXBtYCwyonNrg1Q", "width": 168, "height": 94 },
+            { "url": "https://i.ytimg.com/vi/dWUS8_pJPuQ/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLDXyXzBaaev8o5l1mxyAkuSeknhFA", "width": 196, "height": 110 },
+            { "url": "https://i.ytimg.com/vi/dWUS8_pJPuQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLAspuVEPy_UCeJhaI_WWAa7B7mqww", "width": 246, "height": 138 },
+            { "url": "https://i.ytimg.com/vi/dWUS8_pJPuQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLDFL4muLFo8YMvbzQMYTI8ktbm67g", "width": 336, "height": 188 }
+           ]
+          },
+          "title": {
+           "accessibility": { "accessibilityData": { "label": "【羅傑】昔日冬季賽冠軍淪為憤怒雞殺手!? 爐石標準模式炸魚實錄 | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527 上傳者：羅傑 Roger 2 週前 8 分鐘 31 秒 觀看次數：24,750次" } },
+           "simpleText": "【羅傑】昔日冬季賽冠軍淪為憤怒雞殺手!? 爐石標準模式炸魚實錄 | 《爐石戰記》Hearthstone｜英雄 戰場｜Roger9527"
+          },
+          "publishedTimeText": { "simpleText": "2 週前" },
+          "viewCountText": { "simpleText": "觀看次數 ：24,750次" },
+          "navigationEndpoint": {
+           "clickTrackingParams": "CGoQlDUYASITCMHUqfP5nvACFbxFhQodBz8FzzIGZy1oaWdoWhhVQ2lFbTlub2VnQkliLUF6anFweEtmZkGaAQUQ8jgYZA==",
+           "commandMetadata": { "webCommandMetadata": { "url": "/watch?v=dWUS8_pJPuQ", "webPageType": "WEB_PAGE_TYPE_WATCH", "rootVe": 3832 } },
+           "watchEndpoint": { "videoId": "dWUS8_pJPuQ" }
+          },
+          "shortBylineText": {
+           "runs": [
+            {
+             "text": "羅傑 Roger",
+             "navigationEndpoint": {
+              "clickTrackingParams": "CGoQlDUYASITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+              "commandMetadata": { "webCommandMetadata": { "url": "/channel/UCiEm9noegBIb-AzjqpxKffA", "webPageType": "WEB_PAGE_TYPE_CHANNEL", "rootVe": 3611, "apiUrl": "/youtubei/v1/browse" } },
+              "browseEndpoint": { "browseId": "UCiEm9noegBIb-AzjqpxKffA", "canonicalBaseUrl": "/channel/UCiEm9noegBIb-AzjqpxKffA" }
+             }
+            }
+           ]
+          },
+          "trackingParams": "CGoQlDUYASITCMHUqfP5nvACFbxFhQodBz8Fz0Dk_aTSv97EsnU=",
+          "shortViewCountText": { "accessibility": { "accessibilityData": { "label": "觀看次數：2.4萬次" } }, "simpleText": "觀看次數：2.4萬次" },
+          "menu": {
+           "menuRenderer": {
+            "items": [
+             {
+              "menuServiceItemRenderer": {
+               "text": { "runs": [{ "text": "加入待播清單" }] },
+               "icon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+               "serviceEndpoint": {
+                "clickTrackingParams": "CG0Q_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+                "signalServiceEndpoint": {
+                 "signal": "CLIENT_SIGNAL",
+                 "actions": [
+                  {
+                   "clickTrackingParams": "CG0Q_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "addToPlaylistCommand": {
+                    "openMiniplayer": true,
+                    "videoId": "dWUS8_pJPuQ",
+                    "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                    "onCreateListCommand": {
+                     "clickTrackingParams": "CG0Q_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                     "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                     "createPlaylistServiceEndpoint": { "videoIds": ["dWUS8_pJPuQ"], "params": "CAQ%3D" }
+                    },
+                    "videoIds": ["dWUS8_pJPuQ"]
+                   }
+                  }
+                 ]
+                }
+               },
+               "trackingParams": "CG0Q_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+              }
+             }
+            ],
+            "trackingParams": "CGoQlDUYASITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+            "accessibility": { "accessibilityData": { "label": "動作選 單" } }
+           }
+          },
+          "thumbnailOverlays": [
+           { "thumbnailOverlayTimeStatusRenderer": { "text": { "accessibility": { "accessibilityData": { "label": "8 分鐘 31 秒" } }, "simpleText": "8:31" }, "style": "DEFAULT" } },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "isToggled": false,
+             "untoggledIcon": { "iconType": "WATCH_LATER" },
+             "toggledIcon": { "iconType": "CHECK" },
+             "untoggledTooltip": "稍後觀看",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGwQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "addedVideoId": "dWUS8_pJPuQ", "action": "ACTION_ADD_VIDEO" }] }
+             },
+             "toggledServiceEndpoint": {
+              "clickTrackingParams": "CGwQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", "removedVideoId": "dWUS8_pJPuQ" }] }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "稍後觀看" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGwQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "untoggledIcon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+             "toggledIcon": { "iconType": "PLAYLIST_ADD_CHECK" },
+             "untoggledTooltip": "加入待播清單",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGsQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+              "signalServiceEndpoint": {
+               "signal": "CLIENT_SIGNAL",
+               "actions": [
+                {
+                 "clickTrackingParams": "CGsQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                 "addToPlaylistCommand": {
+                  "openMiniplayer": true,
+                  "videoId": "dWUS8_pJPuQ",
+                  "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                  "onCreateListCommand": {
+                   "clickTrackingParams": "CGsQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                   "createPlaylistServiceEndpoint": { "videoIds": ["dWUS8_pJPuQ"], "params": "CAQ%3D" }
+                  },
+                  "videoIds": ["dWUS8_pJPuQ"]
+                 }
+                }
+               ]
+              }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "加入待播清單" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGsQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           { "thumbnailOverlayNowPlayingRenderer": { "text": { "runs": [{ "text": "現正播放" }] } } }
+          ],
+          "richThumbnail": {
+           "movingThumbnailRenderer": {
+            "movingThumbnailDetails": {
+             "thumbnails": [{ "url": "https://i.ytimg.com/an_webp/dWUS8_pJPuQ/mqdefault_6s.webp?du=3000\u0026sqp=CNj0oIQG\u0026rs=AOn4CLC5R1jWPB6UD1fpJjS7BNtSJnyS8w", "width": 320, "height": 180 }],
+             "logAsMovingThumbnail": true
+            },
+            "enableHoveredLogging": true,
+            "enableOverlay": true
+           }
+          }
+         }
+        },
+        {
+         "gridVideoRenderer": {
+          "videoId": "ei7TT4sJGPw",
+          "thumbnail": {
+           "thumbnails": [
+            { "url": "https://i.ytimg.com/vi/ei7TT4sJGPw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLD3JPk0eOBiH4kzf8We6hifU5L75g", "width": 168, "height": 94 },
+            { "url": "https://i.ytimg.com/vi/ei7TT4sJGPw/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLA_cdm-9fDs9Nwzy-svRdojEVsA4A", "width": 196, "height": 110 },
+            { "url": "https://i.ytimg.com/vi/ei7TT4sJGPw/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLB_2S74hX--DjGjQv0NmWrTeDhVCg", "width": 246, "height": 138 },
+            { "url": "https://i.ytimg.com/vi/ei7TT4sJGPw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLBMOPb5CFNu1cGOIih-aL69A0Dzzg", "width": 336, "height": 188 }
+           ]
+          },
+          "title": {
+           "accessibility": { "accessibilityData": { "label": "【羅傑】 聊天室冷靜! 當個 好傑寶 加入會員買一個快樂!! | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527 上傳者：羅傑 Roger 5 天前 8 分鐘 16 秒 觀看次數：20,294次" } },
+           "simpleText": "【羅傑】 聊天室冷靜! 當個好傑寶 加入會員買一個快樂!! | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527"
+          },
+          "publishedTimeText": { "simpleText": "5 天前" },
+          "viewCountText": { "simpleText": "觀看次數：20,294次" },
+          "navigationEndpoint": {
+           "clickTrackingParams": "CGYQlDUYAiITCMHUqfP5nvACFbxFhQodBz8FzzIGZy1oaWdoWhhVQ2lFbTlub2VnQkliLUF6anFweEtmZkGaAQUQ8jgYZA==",
+           "commandMetadata": { "webCommandMetadata": { "url": "/watch?v=ei7TT4sJGPw", "webPageType": "WEB_PAGE_TYPE_WATCH", "rootVe": 3832 } },
+           "watchEndpoint": { "videoId": "ei7TT4sJGPw" }
+          },
+          "shortBylineText": {
+           "runs": [
+            {
+             "text": "羅傑 Roger",
+             "navigationEndpoint": {
+              "clickTrackingParams": "CGYQlDUYAiITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+              "commandMetadata": { "webCommandMetadata": { "url": "/c/%E7%BE%85%E5%82%91Roger", "webPageType": "WEB_PAGE_TYPE_CHANNEL", "rootVe": 3611, "apiUrl": "/youtubei/v1/browse" } },
+              "browseEndpoint": { "browseId": "UCiEm9noegBIb-AzjqpxKffA", "canonicalBaseUrl": "/c/羅傑Roger" }
+             }
+            }
+           ]
+          },
+          "trackingParams": "CGYQlDUYAiITCMHUqfP5nvACFbxFhQodBz8Fz0D8saTY-Om0l3o=",
+          "shortViewCountText": { "accessibility": { "accessibilityData": { "label": "觀看次數：2萬次" } }, "simpleText": "觀 看次數：2萬次" },
+          "menu": {
+           "menuRenderer": {
+            "items": [
+             {
+              "menuServiceItemRenderer": {
+               "text": { "runs": [{ "text": "加入待播清單" }] },
+               "icon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+               "serviceEndpoint": {
+                "clickTrackingParams": "CGkQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+                "signalServiceEndpoint": {
+                 "signal": "CLIENT_SIGNAL",
+                 "actions": [
+                  {
+                   "clickTrackingParams": "CGkQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "addToPlaylistCommand": {
+                    "openMiniplayer": true,
+                    "videoId": "ei7TT4sJGPw",
+                    "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                    "onCreateListCommand": {
+                     "clickTrackingParams": "CGkQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                     "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                     "createPlaylistServiceEndpoint": { "videoIds": ["ei7TT4sJGPw"], "params": "CAQ%3D" }
+                    },
+                    "videoIds": ["ei7TT4sJGPw"]
+                   }
+                  }
+                 ]
+                }
+               },
+               "trackingParams": "CGkQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+              }
+             }
+            ],
+            "trackingParams": "CGYQlDUYAiITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+            "accessibility": { "accessibilityData": { "label": "動作選單" } }
+           }
+          },
+          "thumbnailOverlays": [
+           { "thumbnailOverlayTimeStatusRenderer": { "text": { "accessibility": { "accessibilityData": { "label": "8 分鐘 16 秒" } }, "simpleText": "8:16" }, "style": "DEFAULT" } },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "isToggled": false,
+             "untoggledIcon": { "iconType": "WATCH_LATER" },
+             "toggledIcon": { "iconType": "CHECK" },
+             "untoggledTooltip": "稍後觀看",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGgQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "addedVideoId": "ei7TT4sJGPw", "action": "ACTION_ADD_VIDEO" }] }
+             },
+             "toggledServiceEndpoint": {
+              "clickTrackingParams": "CGgQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", "removedVideoId": "ei7TT4sJGPw" }] }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "稍後觀看" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGgQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "untoggledIcon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+             "toggledIcon": { "iconType": "PLAYLIST_ADD_CHECK" },
+             "untoggledTooltip": "加入待播清單",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGcQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+              "signalServiceEndpoint": {
+               "signal": "CLIENT_SIGNAL",
+               "actions": [
+                {
+                 "clickTrackingParams": "CGcQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                 "addToPlaylistCommand": {
+                  "openMiniplayer": true,
+                  "videoId": "ei7TT4sJGPw",
+                  "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                  "onCreateListCommand": {
+                   "clickTrackingParams": "CGcQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                   "createPlaylistServiceEndpoint": { "videoIds": ["ei7TT4sJGPw"], "params": "CAQ%3D" }
+                  },
+                  "videoIds": ["ei7TT4sJGPw"]
+                 }
+                }
+               ]
+              }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "加入待播清單" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGcQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           { "thumbnailOverlayNowPlayingRenderer": { "text": { "runs": [{ "text": "現正播放" }] } } }
+          ],
+          "richThumbnail": {
+           "movingThumbnailRenderer": {
+            "movingThumbnailDetails": {
+             "thumbnails": [{ "url": "https://i.ytimg.com/an_webp/ei7TT4sJGPw/mqdefault_6s.webp?du=3000\u0026sqp=CKSUoYQG\u0026rs=AOn4CLCOoyY1dsXg_VO-UzkjilgtnjEkrQ", "width": 320, "height": 180 }],
+             "logAsMovingThumbnail": true
+            },
+            "enableHoveredLogging": true,
+            "enableOverlay": true
+           }
+          }
+         }
+        },
+        {
+         "gridVideoRenderer": {
+          "videoId": "0CAZqqEo7NQ",
+          "thumbnail": {
+           "thumbnails": [
+            { "url": "https://i.ytimg.com/vi/0CAZqqEo7NQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLCBNWrN1AIYWKnh_58exd2l868CoQ", "width": 168, "height": 94 },
+            { "url": "https://i.ytimg.com/vi/0CAZqqEo7NQ/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLB-rzkpOfbdqC4HOOty0fwu5WHbyQ", "width": 196, "height": 110 },
+            { "url": "https://i.ytimg.com/vi/0CAZqqEo7NQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLB0R5DWXPHYGBHHiGHb_lxJlVyP7Q", "width": 246, "height": 138 },
+            { "url": "https://i.ytimg.com/vi/0CAZqqEo7NQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==\u0026rs=AOn4CLBSklKiHASgZSBrBXpDsM0E8TMWpw", "width": 336, "height": 188 }
+           ]
+          },
+          "title": {
+           "accessibility": { "accessibilityData": { "label": "【羅傑】 剛開台就遭遇危機 卡 銅大師換人當 薛喜打lol也放鳥　標準教學 | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527 上傳者：羅傑 Roger 1 天前 11 分鐘 47 秒 觀看次數：17,462次" } },
+           "simpleText": "【羅傑】 剛開台就遭遇危機 卡銅大師換人當  薛喜打lol也放鳥　標準教學 | 《爐石戰記》Hearthstone｜英雄戰場｜Roger9527"
+          },
+          "publishedTimeText": { "simpleText": "1 天前" },
+          "viewCountText": { "simpleText": "觀看次數：17,462次" },
+          "navigationEndpoint": {
+           "clickTrackingParams": "CGIQlDUYAyITCMHUqfP5nvACFbxFhQodBz8FzzIGZy1oaWdoWhhVQ2lFbTlub2VnQkliLUF6anFweEtmZkGaAQUQ8jgYZA==",
+           "commandMetadata": { "webCommandMetadata": { "url": "/watch?v=0CAZqqEo7NQ", "webPageType": "WEB_PAGE_TYPE_WATCH", "rootVe": 3832 } },
+           "watchEndpoint": { "videoId": "0CAZqqEo7NQ" }
+          },
+          "shortBylineText": {
+           "runs": [
+            {
+             "text": "羅傑 Roger",
+             "navigationEndpoint": {
+              "clickTrackingParams": "CGIQlDUYAyITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+              "commandMetadata": { "webCommandMetadata": { "url": "/c/%E7%BE%85%E5%82%91Roger", "webPageType": "WEB_PAGE_TYPE_CHANNEL", "rootVe": 3611, "apiUrl": "/youtubei/v1/browse" } },
+              "browseEndpoint": { "browseId": "UCiEm9noegBIb-AzjqpxKffA", "canonicalBaseUrl": "/c/羅傑Roger" }
+             }
+            }
+           ]
+          },
+          "trackingParams": "CGIQlDUYAyITCMHUqfP5nvACFbxFhQodBz8Fz0DU2aOJqrWGkNAB",
+          "shortViewCountText": { "accessibility": { "accessibilityData": { "label": "觀看次數 ：1.7萬次" } }, "simpleText": "觀看次數：1.7萬次" },
+          "menu": {
+           "menuRenderer": {
+            "items": [
+             {
+              "menuServiceItemRenderer": {
+               "text": { "runs": [{ "text": "加入待播清單" }] },
+               "icon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+               "serviceEndpoint": {
+                "clickTrackingParams": "CGUQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+                "signalServiceEndpoint": {
+                 "signal": "CLIENT_SIGNAL",
+                 "actions": [
+                  {
+                   "clickTrackingParams": "CGUQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "addToPlaylistCommand": {
+                    "openMiniplayer": true,
+                    "videoId": "0CAZqqEo7NQ",
+                    "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                    "onCreateListCommand": {
+                     "clickTrackingParams": "CGUQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                     "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                     "createPlaylistServiceEndpoint": { "videoIds": ["0CAZqqEo7NQ"], "params": "CAQ%3D" }
+                    },
+                    "videoIds": ["0CAZqqEo7NQ"]
+                   }
+                  }
+                 ]
+                }
+               },
+               "trackingParams": "CGUQ_pgEGAQiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+              }
+             }
+            ],
+            "trackingParams": "CGIQlDUYAyITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+            "accessibility": { "accessibilityData": { "label": "動作選單" } }
+           }
+          },
+          "thumbnailOverlays": [
+           { "thumbnailOverlayTimeStatusRenderer": { "text": { "accessibility": { "accessibilityData": { "label": "11 分鐘 47 秒" } }, "simpleText": "11:47" }, "style": "DEFAULT" } },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "isToggled": false,
+             "untoggledIcon": { "iconType": "WATCH_LATER" },
+             "toggledIcon": { "iconType": "CHECK" },
+             "untoggledTooltip": "稍後觀看",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGQQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "addedVideoId": "0CAZqqEo7NQ", "action": "ACTION_ADD_VIDEO" }] }
+             },
+             "toggledServiceEndpoint": {
+              "clickTrackingParams": "CGQQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/browse/edit_playlist" } },
+              "playlistEditEndpoint": { "playlistId": "WL", "actions": [{ "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID", "removedVideoId": "0CAZqqEo7NQ" }] }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "稍後觀看" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGQQ-ecDGAEiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           {
+            "thumbnailOverlayToggleButtonRenderer": {
+             "untoggledIcon": { "iconType": "ADD_TO_QUEUE_TAIL" },
+             "toggledIcon": { "iconType": "PLAYLIST_ADD_CHECK" },
+             "untoggledTooltip": "加入待播清單",
+             "toggledTooltip": "已新增",
+             "untoggledServiceEndpoint": {
+              "clickTrackingParams": "CGMQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+              "commandMetadata": { "webCommandMetadata": { "sendPost": true } },
+              "signalServiceEndpoint": {
+               "signal": "CLIENT_SIGNAL",
+               "actions": [
+                {
+                 "clickTrackingParams": "CGMQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                 "addToPlaylistCommand": {
+                  "openMiniplayer": true,
+                  "videoId": "0CAZqqEo7NQ",
+                  "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                  "onCreateListCommand": {
+                   "clickTrackingParams": "CGMQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+                   "commandMetadata": { "webCommandMetadata": { "sendPost": true, "apiUrl": "/youtubei/v1/playlist/create" } },
+                   "createPlaylistServiceEndpoint": { "videoIds": ["0CAZqqEo7NQ"], "params": "CAQ%3D" }
+                  },
+                  "videoIds": ["0CAZqqEo7NQ"]
+                 }
+                }
+               ]
+              }
+             },
+             "untoggledAccessibility": { "accessibilityData": { "label": "加入待播清單" } },
+             "toggledAccessibility": { "accessibilityData": { "label": "已新增" } },
+             "trackingParams": "CGMQx-wEGAIiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+            }
+           },
+           { "thumbnailOverlayNowPlayingRenderer": { "text": { "runs": [{ "text": "現正播放" }] } } }
+          ],
+          "richThumbnail": {
+           "movingThumbnailRenderer": {
+            "movingThumbnailDetails": {
+             "thumbnails": [{ "url": "https://i.ytimg.com/an_webp/0CAZqqEo7NQ/mqdefault_6s.webp?du=3000\u0026sqp=CPyPoYQG\u0026rs=AOn4CLBT2-Y5C8cdVjjujp2TVkLRhYdyEQ", "width": 320, "height": 180 }],
+             "logAsMovingThumbnail": true
+            },
+            "enableHoveredLogging": true,
+            "enableOverlay": true
+           }
+          }
+         }
+        }
+       ],
+       "trackingParams": "CF8QxjkiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+       "visibleItemCount": 4,
+       "nextButton": {
+        "buttonRenderer": { "style": "STYLE_DEFAULT", "size": "SIZE_DEFAULT", "isDisabled": false, "icon": { "iconType": "CHEVRON_RIGHT" }, "accessibility": { "label": "下一頁" }, "trackingParams": "CGEQ8FsiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=" }
+       },
+       "previousButton": {
+        "buttonRenderer": { "style": "STYLE_DEFAULT", "size": "SIZE_DEFAULT", "isDisabled": false, "icon": { "iconType": "CHEVRON_LEFT" }, "accessibility": { "label": "前一頁" }, "trackingParams": "CGAQ8FsiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=" }
+       }
+      }
+     },
+     "trackingParams": "CF0Q3BwYACITCMHUqfP5nvACFbxFhQodBz8Fzw==",
+     "playAllButton": {
+      "buttonRenderer": {
+       "style": "STYLE_TEXT",
+       "size": "SIZE_DEFAULT",
+       "isDisabled": false,
+       "text": { "runs": [{ "text": "全部播放" }] },
+       "icon": { "iconType": "PLAY_ALL" },
+       "navigationEndpoint": {
+        "clickTrackingParams": "CF4Q8FsiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8=",
+        "commandMetadata": { "webCommandMetadata": { "url": "/watch?v=65F8I6UebbQ\u0026list=PLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t", "webPageType": "WEB_PAGE_TYPE_WATCH", "rootVe": 3832 } },
+        "watchEndpoint": { "videoId": "65F8I6UebbQ", "playlistId": "PLTsu_zOBeI37pqHCoTXt9ykN3AZtqj94t" }
+       },
+       "trackingParams": "CF4Q8FsiEwjB1Knz-Z7wAhW8RYUKHQc_Bc8="
+      }
+     }
+    }
+   }
+   

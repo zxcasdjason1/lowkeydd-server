@@ -1,0 +1,411 @@
+{
+    "videoId": "s2UxaX5U2Wc",
+    "thumbnail": {
+        "thumbnails": [
+            {
+                "url": "https://i.ytimg.com/vi/s2UxaX5U2Wc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAksiY09XzsesbcL_Wcl4-1KJUvJA",
+                "width": 168,
+                "height": 94
+            },
+            {
+                "url": "https://i.ytimg.com/vi/s2UxaX5U2Wc/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAZWOzRlmH0j6PcpWRQDKH8nUzBWw",
+                "width": 196,
+                "height": 110
+            },
+            {
+                "url": "https://i.ytimg.com/vi/s2UxaX5U2Wc/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAlioiGFz_rX2cCKMFCvAmkl1zxFg",
+                "width": 246,
+                "height": 138
+            },
+            {
+                "url": "https://i.ytimg.com/vi/s2UxaX5U2Wc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB4I1ffxanHkvBLrfv2GcvImHuBPQ",
+                "width": 336,
+                "height": 188
+            }
+        ]
+    },
+    "title": {
+        "accessibility": {
+            "accessibilityData": {
+                "label": "no 上傳者：Kureiji Ollie Ch. hololive-ID 4 個月前 9 秒 觀看次數：941,328次"
+            }
+        },
+        "simpleText": "no"
+    },
+    "descriptionSnippet": {
+        "runs": [
+            {
+                "text": "OLLIE REFUSES"
+            }
+        ]
+    },
+    "longBylineText": {
+        "runs": [
+            {
+                "text": "Kureiji Ollie Ch. hololive-ID",
+                "navigationEndpoint": {
+                    "clickTrackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4=",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "url": "/channel/UCYz_5n-uDuChHtLo7My1HnQ",
+                            "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+                            "rootVe": 3611,
+                            "apiUrl": "/youtubei/v1/browse"
+                        }
+                    },
+                    "browseEndpoint": {
+                        "browseId": "UCYz_5n-uDuChHtLo7My1HnQ",
+                        "canonicalBaseUrl": "/channel/UCYz_5n-uDuChHtLo7My1HnQ"
+                    }
+                }
+            }
+        ]
+    },
+    "publishedTimeText": {
+        "simpleText": "4 個月前"
+    },
+    "lengthText": {
+        "accessibility": {
+            "accessibilityData": {
+                "label": "9 秒"
+            }
+        },
+        "simpleText": "0:09"
+    },
+    "viewCountText": {
+        "simpleText": "觀看次數：941,328次"
+    },
+    "navigationEndpoint": {
+        "clickTrackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4yBmctaGlnaFoYVUNZel81bi11RHVDaEh0TG83TXkxSG5RmgEGEPI4GIgF",
+        "commandMetadata": {
+            "webCommandMetadata": {
+                "url": "/watch?v=s2UxaX5U2Wc",
+                "webPageType": "WEB_PAGE_TYPE_WATCH",
+                "rootVe": 3832
+            }
+        },
+        "watchEndpoint": {
+            "videoId": "s2UxaX5U2Wc",
+            "watchEndpointSupportedOnesieConfig": {
+                "html5PlaybackOnesieConfig": {
+                    "commonConfig": {
+                        "url": "https://r4---sn-ipoxu-un5e7.googlevideo.com/initplayback?source=youtube&orc=1&oeis=1&c=WEB&oad=3200&ovd=3200&oaad=11000&oavd=11000&ocs=700&oewis=1&oputc=1&ofpcc=1&msp=1&odeak=1&odepv=1&osfc=1&ip=1.172.27.129&id=b36531697e54d967&initcwndbps=756250&mt=1622700285&oweuc="
+                    }
+                }
+            }
+        }
+    },
+    "ownerBadges": [
+        {
+            "metadataBadgeRenderer": {
+                "icon": {
+                    "iconType": "CHECK_CIRCLE_THICK"
+                },
+                "style": "BADGE_STYLE_TYPE_VERIFIED",
+                "tooltip": "已驗證",
+                "trackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4="
+            }
+        }
+    ],
+    "ownerText": {
+        "runs": [
+            {
+                "text": "Kureiji Ollie Ch. hololive-ID",
+                "navigationEndpoint": {
+                    "clickTrackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4=",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "url": "/channel/UCYz_5n-uDuChHtLo7My1HnQ",
+                            "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+                            "rootVe": 3611,
+                            "apiUrl": "/youtubei/v1/browse"
+                        }
+                    },
+                    "browseEndpoint": {
+                        "browseId": "UCYz_5n-uDuChHtLo7My1HnQ",
+                        "canonicalBaseUrl": "/channel/UCYz_5n-uDuChHtLo7My1HnQ"
+                    }
+                }
+            }
+        ]
+    },
+    "shortBylineText": {
+        "runs": [
+            {
+                "text": "Kureiji Ollie Ch. hololive-ID",
+                "navigationEndpoint": {
+                    "clickTrackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4=",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "url": "/channel/UCYz_5n-uDuChHtLo7My1HnQ",
+                            "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+                            "rootVe": 3611,
+                            "apiUrl": "/youtubei/v1/browse"
+                        }
+                    },
+                    "browseEndpoint": {
+                        "browseId": "UCYz_5n-uDuChHtLo7My1HnQ",
+                        "canonicalBaseUrl": "/channel/UCYz_5n-uDuChHtLo7My1HnQ"
+                    }
+                }
+            }
+        ]
+    },
+    "trackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo5A57LT8petzLKzAQ==",
+    "showActionMenu": false,
+    "shortViewCountText": {
+        "accessibility": {
+            "accessibilityData": {
+                "label": "觀看次數：94萬次"
+            }
+        },
+        "simpleText": "觀看次數：94萬次"
+    },
+    "menu": {
+        "menuRenderer": {
+            "items": [
+                {
+                    "menuServiceItemRenderer": {
+                        "text": {
+                            "runs": [
+                                {
+                                    "text": "加入待播清單"
+                                }
+                            ]
+                        },
+                        "icon": {
+                            "iconType": "ADD_TO_QUEUE_TAIL"
+                        },
+                        "serviceEndpoint": {
+                            "clickTrackingParams": "COcBEP6YBBgFIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                            "commandMetadata": {
+                                "webCommandMetadata": {
+                                    "sendPost": true
+                                }
+                            },
+                            "signalServiceEndpoint": {
+                                "signal": "CLIENT_SIGNAL",
+                                "actions": [
+                                    {
+                                        "clickTrackingParams": "COcBEP6YBBgFIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                                        "addToPlaylistCommand": {
+                                            "openMiniplayer": true,
+                                            "videoId": "s2UxaX5U2Wc",
+                                            "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                                            "onCreateListCommand": {
+                                                "clickTrackingParams": "COcBEP6YBBgFIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                                                "commandMetadata": {
+                                                    "webCommandMetadata": {
+                                                        "sendPost": true,
+                                                        "apiUrl": "/youtubei/v1/playlist/create"
+                                                    }
+                                                },
+                                                "createPlaylistServiceEndpoint": {
+                                                    "videoIds": [
+                                                        "s2UxaX5U2Wc"
+                                                    ],
+                                                    "params": "CAQ%3D"
+                                                }
+                                            },
+                                            "videoIds": [
+                                                "s2UxaX5U2Wc"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "trackingParams": "COcBEP6YBBgFIhMI4P6w2eb68AIVCgFYCh3xuwaO"
+                    }
+                }
+            ],
+            "trackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4=",
+            "accessibility": {
+                "accessibilityData": {
+                    "label": "動作選單"
+                }
+            }
+        }
+    },
+    "channelThumbnailSupportedRenderers": {
+        "channelThumbnailWithLinkRenderer": {
+            "thumbnail": {
+                "thumbnails": [
+                    {
+                        "url": "https://yt3.ggpht.com/ytc/AAUvwnjIfGLTIQT83r0fKch6BBpK0Vuhgwb5_yfCP7Q=s68-c-k-c0x00ffffff-no-rj",
+                        "width": 68,
+                        "height": 68
+                    }
+                ]
+            },
+            "navigationEndpoint": {
+                "clickTrackingParams": "COQBENwwGAAiEwjg_rDZ5vrwAhUKAVgKHfG7Bo4=",
+                "commandMetadata": {
+                    "webCommandMetadata": {
+                        "url": "/channel/UCYz_5n-uDuChHtLo7My1HnQ",
+                        "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+                        "rootVe": 3611,
+                        "apiUrl": "/youtubei/v1/browse"
+                    }
+                },
+                "browseEndpoint": {
+                    "browseId": "UCYz_5n-uDuChHtLo7My1HnQ",
+                    "canonicalBaseUrl": "/channel/UCYz_5n-uDuChHtLo7My1HnQ"
+                }
+            },
+            "accessibility": {
+                "accessibilityData": {
+                    "label": "前往頻道"
+                }
+            }
+        }
+    },
+    "thumbnailOverlays": [
+        {
+            "thumbnailOverlayTimeStatusRenderer": {
+                "text": {
+                    "accessibility": {
+                        "accessibilityData": {
+                            "label": "9 秒"
+                        }
+                    },
+                    "simpleText": "0:09"
+                },
+                "style": "DEFAULT"
+            }
+        },
+        {
+            "thumbnailOverlayToggleButtonRenderer": {
+                "isToggled": false,
+                "untoggledIcon": {
+                    "iconType": "WATCH_LATER"
+                },
+                "toggledIcon": {
+                    "iconType": "CHECK"
+                },
+                "untoggledTooltip": "稍後觀看",
+                "toggledTooltip": "已新增",
+                "untoggledServiceEndpoint": {
+                    "clickTrackingParams": "COYBEPnnAxgCIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "sendPost": true,
+                            "apiUrl": "/youtubei/v1/browse/edit_playlist"
+                        }
+                    },
+                    "playlistEditEndpoint": {
+                        "playlistId": "WL",
+                        "actions": [
+                            {
+                                "addedVideoId": "s2UxaX5U2Wc",
+                                "action": "ACTION_ADD_VIDEO"
+                            }
+                        ]
+                    }
+                },
+                "toggledServiceEndpoint": {
+                    "clickTrackingParams": "COYBEPnnAxgCIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "sendPost": true,
+                            "apiUrl": "/youtubei/v1/browse/edit_playlist"
+                        }
+                    },
+                    "playlistEditEndpoint": {
+                        "playlistId": "WL",
+                        "actions": [
+                            {
+                                "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID",
+                                "removedVideoId": "s2UxaX5U2Wc"
+                            }
+                        ]
+                    }
+                },
+                "untoggledAccessibility": {
+                    "accessibilityData": {
+                        "label": "稍後觀看"
+                    }
+                },
+                "toggledAccessibility": {
+                    "accessibilityData": {
+                        "label": "已新增"
+                    }
+                },
+                "trackingParams": "COYBEPnnAxgCIhMI4P6w2eb68AIVCgFYCh3xuwaO"
+            }
+        },
+        {
+            "thumbnailOverlayToggleButtonRenderer": {
+                "untoggledIcon": {
+                    "iconType": "ADD_TO_QUEUE_TAIL"
+                },
+                "toggledIcon": {
+                    "iconType": "PLAYLIST_ADD_CHECK"
+                },
+                "untoggledTooltip": "加入待播清單",
+                "toggledTooltip": "已新增",
+                "untoggledServiceEndpoint": {
+                    "clickTrackingParams": "COUBEMfsBBgDIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                    "commandMetadata": {
+                        "webCommandMetadata": {
+                            "sendPost": true
+                        }
+                    },
+                    "signalServiceEndpoint": {
+                        "signal": "CLIENT_SIGNAL",
+                        "actions": [
+                            {
+                                "clickTrackingParams": "COUBEMfsBBgDIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                                "addToPlaylistCommand": {
+                                    "openMiniplayer": true,
+                                    "videoId": "s2UxaX5U2Wc",
+                                    "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                                    "onCreateListCommand": {
+                                        "clickTrackingParams": "COUBEMfsBBgDIhMI4P6w2eb68AIVCgFYCh3xuwaO",
+                                        "commandMetadata": {
+                                            "webCommandMetadata": {
+                                                "sendPost": true,
+                                                "apiUrl": "/youtubei/v1/playlist/create"
+                                            }
+                                        },
+                                        "createPlaylistServiceEndpoint": {
+                                            "videoIds": [
+                                                "s2UxaX5U2Wc"
+                                            ],
+                                            "params": "CAQ%3D"
+                                        }
+                                    },
+                                    "videoIds": [
+                                        "s2UxaX5U2Wc"
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "untoggledAccessibility": {
+                    "accessibilityData": {
+                        "label": "加入待播清單"
+                    }
+                },
+                "toggledAccessibility": {
+                    "accessibilityData": {
+                        "label": "已新增"
+                    }
+                },
+                "trackingParams": "COUBEMfsBBgDIhMI4P6w2eb68AIVCgFYCh3xuwaO"
+            }
+        },
+        {
+            "thumbnailOverlayNowPlayingRenderer": {
+                "text": {
+                    "runs": [
+                        {
+                            "text": "現正播放"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

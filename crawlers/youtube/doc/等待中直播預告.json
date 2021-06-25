@@ -1,0 +1,419 @@
+{
+  "videoId": "REcGXEDsFVo",
+  "thumbnail": {
+    "thumbnails": [
+      {
+        "url": "https://i.ytimg.com/vi/REcGXEDsFVo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLATzL3UB015CxIu41ksRaRbWcE6BQ",
+        "width": 168,
+        "height": 94
+      },
+      {
+        "url": "https://i.ytimg.com/vi/REcGXEDsFVo/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAcCOOs93r3mlhM-gHcdhWv0_p9xA",
+        "width": 196,
+        "height": 110
+      },
+      {
+        "url": "https://i.ytimg.com/vi/REcGXEDsFVo/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLACg9efKsJ5tAOt3_o3GwhcKHl4GA",
+        "width": 246,
+        "height": 138
+      },
+      {
+        "url": "https://i.ytimg.com/vi/REcGXEDsFVo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDINiEDHOS420dHwWswky1lJ0w4Xw",
+        "width": 336,
+        "height": 188
+      }
+    ]
+  },
+  "title": {
+    "accessibility": {
+      "accessibilityData": {
+        "label": "【Minecraft】何ができるかなぁ？【角巻わため/ホロライブ４期生】 上傳者：Watame Ch. 角巻わため 觀看次數：0次"
+      }
+    },
+    "simpleText": "【Minecraft】何ができるかなぁ？【角巻わため/ホロライブ４期生】"
+  },
+  "descriptionSnippet": {
+    "runs": [
+      {
+        "text": "わためぇは一体何を作ろうとしているのか...\n出来上がるまで内緒！\n今日で大体形はできそうな予感！\n\n◆わためのうたvol.1（アルバム）配信開始..."
+      }
+    ]
+  },
+  "longBylineText": {
+    "runs": [
+      {
+        "text": "Watame Ch. 角巻わため",
+        "navigationEndpoint": {
+          "clickTrackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s=",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "url": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA",
+              "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+              "rootVe": 3611,
+              "apiUrl": "/youtubei/v1/browse"
+            }
+          },
+          "browseEndpoint": {
+            "browseId": "UCqm3BQLlJfvkTsX_hvm0UmA",
+            "canonicalBaseUrl": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA"
+          }
+        }
+      }
+    ]
+  },
+  "viewCountText": {
+    "runs": [
+      {
+        "text": "181"
+      },
+      {
+        "text": " 位觀眾等待中"
+      }
+    ]
+  },
+  "navigationEndpoint": {
+    "clickTrackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6syBmctaGlnaFoYVUNxbTNCUUxsSmZ2a1RzWF9odm0wVW1BmgEFEPI4GG0=",
+    "commandMetadata": {
+      "webCommandMetadata": {
+        "url": "/watch?v=REcGXEDsFVo",
+        "webPageType": "WEB_PAGE_TYPE_WATCH",
+        "rootVe": 3832
+      }
+    },
+    "watchEndpoint": {
+      "videoId": "REcGXEDsFVo",
+      "watchEndpointSupportedOnesieConfig": {
+        "html5PlaybackOnesieConfig": {
+          "commonConfig": {
+            "url": "https://r5---sn-ipoxu-un5y.googlevideo.com/initplayback?source=youtube&orc=1&oeis=1&c=WEB&oad=3200&ovd=3200&oaad=11000&oavd=11000&ocs=700&oewis=1&oputc=1&ofpcc=1&msp=1&odeak=1&odepv=1&osfc=1&ip=1.172.27.129&id=4447065c40ec155a&initcwndbps=358750&mt=1622701245&oweuc="
+          }
+        }
+      }
+    }
+  },
+  "ownerBadges": [
+    {
+      "metadataBadgeRenderer": {
+        "icon": {
+          "iconType": "CHECK_CIRCLE_THICK"
+        },
+        "style": "BADGE_STYLE_TYPE_VERIFIED",
+        "tooltip": "已驗證",
+        "trackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s="
+      }
+    }
+  ],
+  "ownerText": {
+    "runs": [
+      {
+        "text": "Watame Ch. 角巻わため",
+        "navigationEndpoint": {
+          "clickTrackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s=",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "url": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA",
+              "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+              "rootVe": 3611,
+              "apiUrl": "/youtubei/v1/browse"
+            }
+          },
+          "browseEndpoint": {
+            "browseId": "UCqm3BQLlJfvkTsX_hvm0UmA",
+            "canonicalBaseUrl": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA"
+          }
+        }
+      }
+    ]
+  },
+  "upcomingEventData": {
+    "startTime": "1622728800",
+    "isReminderSet": false,
+    "upcomingEventText": {
+      "runs": [
+        {
+          "text": "預定發布時間："
+        },
+        {
+          "text": "DATE_PLACEHOLDER"
+        }
+      ]
+    }
+  },
+  "shortBylineText": {
+    "runs": [
+      {
+        "text": "Watame Ch. 角巻わため",
+        "navigationEndpoint": {
+          "clickTrackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s=",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "url": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA",
+              "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+              "rootVe": 3611,
+              "apiUrl": "/youtubei/v1/browse"
+            }
+          },
+          "browseEndpoint": {
+            "browseId": "UCqm3BQLlJfvkTsX_hvm0UmA",
+            "canonicalBaseUrl": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA"
+          }
+        }
+      }
+    ]
+  },
+  "trackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6tA2qqwh8TLwaNE",
+  "showActionMenu": false,
+  "shortViewCountText": {
+    "runs": [
+      {
+        "text": "181"
+      },
+      {
+        "text": " 人正在等候"
+      }
+    ]
+  },
+  "menu": {
+    "menuRenderer": {
+      "items": [
+        {
+          "menuServiceItemRenderer": {
+            "text": {
+              "runs": [
+                {
+                  "text": "加入待播清單"
+                }
+              ]
+            },
+            "icon": {
+              "iconType": "ADD_TO_QUEUE_TAIL"
+            },
+            "serviceEndpoint": {
+              "clickTrackingParams": "CPQCEP6YBBgFIhMIkozI0er68AIVgzcqCh3VVAer",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "sendPost": true
+                }
+              },
+              "signalServiceEndpoint": {
+                "signal": "CLIENT_SIGNAL",
+                "actions": [
+                  {
+                    "clickTrackingParams": "CPQCEP6YBBgFIhMIkozI0er68AIVgzcqCh3VVAer",
+                    "addToPlaylistCommand": {
+                      "openMiniplayer": true,
+                      "videoId": "REcGXEDsFVo",
+                      "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                      "onCreateListCommand": {
+                        "clickTrackingParams": "CPQCEP6YBBgFIhMIkozI0er68AIVgzcqCh3VVAer",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "sendPost": true,
+                            "apiUrl": "/youtubei/v1/playlist/create"
+                          }
+                        },
+                        "createPlaylistServiceEndpoint": {
+                          "videoIds": ["REcGXEDsFVo"],
+                          "params": "CAQ%3D"
+                        }
+                      },
+                      "videoIds": ["REcGXEDsFVo"]
+                    }
+                  }
+                ]
+              }
+            },
+            "trackingParams": "CPQCEP6YBBgFIhMIkozI0er68AIVgzcqCh3VVAer"
+          }
+        }
+      ],
+      "trackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s=",
+      "accessibility": {
+        "accessibilityData": {
+          "label": "動作選單"
+        }
+      }
+    }
+  },
+  "channelThumbnailSupportedRenderers": {
+    "channelThumbnailWithLinkRenderer": {
+      "thumbnail": {
+        "thumbnails": [
+          {
+            "url": "https://yt3.ggpht.com/ytc/AAUvwnitWcmmZK60TDG8y5aUeQfZlmH9YlBNJ4D1ZSFI=s68-c-k-c0x00ffffff-no-rj",
+            "width": 68,
+            "height": 68
+          }
+        ]
+      },
+      "navigationEndpoint": {
+        "clickTrackingParams": "CPECENwwGAAiEwiSjMjR6vrwAhWDNyoKHdVUB6s=",
+        "commandMetadata": {
+          "webCommandMetadata": {
+            "url": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA",
+            "webPageType": "WEB_PAGE_TYPE_CHANNEL",
+            "rootVe": 3611,
+            "apiUrl": "/youtubei/v1/browse"
+          }
+        },
+        "browseEndpoint": {
+          "browseId": "UCqm3BQLlJfvkTsX_hvm0UmA",
+          "canonicalBaseUrl": "/channel/UCqm3BQLlJfvkTsX_hvm0UmA"
+        }
+      },
+      "accessibility": {
+        "accessibilityData": {
+          "label": "前往頻道"
+        }
+      }
+    }
+  },
+  "thumbnailOverlays": [
+    {
+      "thumbnailOverlayTimeStatusRenderer": {
+        "text": {
+          "runs": [
+            {
+              "text": "直播"
+            }
+          ],
+          "accessibility": {
+            "accessibilityData": {
+              "label": "直播"
+            }
+          }
+        },
+        "style": "UPCOMING"
+      }
+    },
+    {
+      "thumbnailOverlayToggleButtonRenderer": {
+        "isToggled": false,
+        "untoggledIcon": {
+          "iconType": "WATCH_LATER"
+        },
+        "toggledIcon": {
+          "iconType": "CHECK"
+        },
+        "untoggledTooltip": "稍後觀看",
+        "toggledTooltip": "已新增",
+        "untoggledServiceEndpoint": {
+          "clickTrackingParams": "CPMCEPnnAxgCIhMIkozI0er68AIVgzcqCh3VVAer",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "sendPost": true,
+              "apiUrl": "/youtubei/v1/browse/edit_playlist"
+            }
+          },
+          "playlistEditEndpoint": {
+            "playlistId": "WL",
+            "actions": [
+              {
+                "addedVideoId": "REcGXEDsFVo",
+                "action": "ACTION_ADD_VIDEO"
+              }
+            ]
+          }
+        },
+        "toggledServiceEndpoint": {
+          "clickTrackingParams": "CPMCEPnnAxgCIhMIkozI0er68AIVgzcqCh3VVAer",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "sendPost": true,
+              "apiUrl": "/youtubei/v1/browse/edit_playlist"
+            }
+          },
+          "playlistEditEndpoint": {
+            "playlistId": "WL",
+            "actions": [
+              {
+                "action": "ACTION_REMOVE_VIDEO_BY_VIDEO_ID",
+                "removedVideoId": "REcGXEDsFVo"
+              }
+            ]
+          }
+        },
+        "untoggledAccessibility": {
+          "accessibilityData": {
+            "label": "稍後觀看"
+          }
+        },
+        "toggledAccessibility": {
+          "accessibilityData": {
+            "label": "已新增"
+          }
+        },
+        "trackingParams": "CPMCEPnnAxgCIhMIkozI0er68AIVgzcqCh3VVAer"
+      }
+    },
+    {
+      "thumbnailOverlayToggleButtonRenderer": {
+        "untoggledIcon": {
+          "iconType": "ADD_TO_QUEUE_TAIL"
+        },
+        "toggledIcon": {
+          "iconType": "PLAYLIST_ADD_CHECK"
+        },
+        "untoggledTooltip": "加入待播清單",
+        "toggledTooltip": "已新增",
+        "untoggledServiceEndpoint": {
+          "clickTrackingParams": "CPICEMfsBBgDIhMIkozI0er68AIVgzcqCh3VVAer",
+          "commandMetadata": {
+            "webCommandMetadata": {
+              "sendPost": true
+            }
+          },
+          "signalServiceEndpoint": {
+            "signal": "CLIENT_SIGNAL",
+            "actions": [
+              {
+                "clickTrackingParams": "CPICEMfsBBgDIhMIkozI0er68AIVgzcqCh3VVAer",
+                "addToPlaylistCommand": {
+                  "openMiniplayer": true,
+                  "videoId": "REcGXEDsFVo",
+                  "listType": "PLAYLIST_EDIT_LIST_TYPE_QUEUE",
+                  "onCreateListCommand": {
+                    "clickTrackingParams": "CPICEMfsBBgDIhMIkozI0er68AIVgzcqCh3VVAer",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "sendPost": true,
+                        "apiUrl": "/youtubei/v1/playlist/create"
+                      }
+                    },
+                    "createPlaylistServiceEndpoint": {
+                      "videoIds": ["REcGXEDsFVo"],
+                      "params": "CAQ%3D"
+                    }
+                  },
+                  "videoIds": ["REcGXEDsFVo"]
+                }
+              }
+            ]
+          }
+        },
+        "untoggledAccessibility": {
+          "accessibilityData": {
+            "label": "加入待播清單"
+          }
+        },
+        "toggledAccessibility": {
+          "accessibilityData": {
+            "label": "已新增"
+          }
+        },
+        "trackingParams": "CPICEMfsBBgDIhMIkozI0er68AIVgzcqCh3VVAer"
+      }
+    },
+    {
+      "thumbnailOverlayNowPlayingRenderer": {
+        "text": {
+          "runs": [
+            {
+              "text": "現正播放"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
