@@ -15,11 +15,10 @@ type ChannelInfo struct {
 }
 
 type VisitItem struct {
-	Cid   string `json:"cid"`   // 頻道索引
-	Cname string `json:"cname"` // 頻道主真實ID
-	Owner string `json:"owner"` // 自定義的頻道稱呼
-	Group string `json:"group"` // 自定義的頻道分群
-
+	Cid    string `json:"cid"`    // 頻道索引
+	Cname  string `json:"cname"`  // 頻道主真實ID
+	Owner  string `json:"owner"`  // 自定義的頻道稱呼
+	Group  string `json:"group"`  // 自定義的頻道分群
 	Method string `json:"method"` // 使用的crawler方式
 }
 

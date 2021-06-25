@@ -1,11 +1,12 @@
 package main
 
 import (
-	"log"
 	"lowkeydd-crawler/crawlers"
 	"lowkeydd-crawler/redisdb"
+	"lowkeydd-crawler/services"
 	. "lowkeydd-crawler/share"
-	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 var (
@@ -27,33 +28,49 @@ func main() {
 	// 建立 Redis Diver，並透過設定檔取得連線
 	redisdb.GetInstance().Connect(redisSetting)
 
-	// 流程: 先執行一次 VisitAll, 之後間隔再循環執行
-	crawlers := crawlers.CreateCrawlers(visitList)
-	crawlers.VisitAll()
+	//配置爬蟲
+	crawlers.GetInstance(visitList)
+
+	// 設定GIN路由器
+	router := gin.Default()
+
+	// 解決Cors問題
+	router.Use(CORSMiddleware())
+
+	// 配置API
+	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
+
+	router.POST("/crawler/visit/", services.CrawlerVisit)
+
+	router.Run(":8002")
+
+	// // 流程: 先執行一次 VisitAll, 之後間隔再循環執行
+	// crawlers := crawlers.GetInstance(visitList)
+	// crawlers.VisitAll()
 
 	// 啟動 Schedule 循環
-	for {
+	// for {
 
-		// 設置流程
-		remaining := During
-		scheUpdate := func() {
-			remaining -= Interval
-			if remaining <= 0 {
-				remaining = 0
-			}
-			log.Printf("Event remaining, %d", remaining)
-		}
-		scheEnd := func() {
-			crawlers.VisitAll()
-		}
+	// 	// 設置流程
+	// 	remaining := During
+	// 	scheUpdate := func() {
+	// 		remaining -= Interval
+	// 		if remaining <= 0 {
+	// 			remaining = 0
+	// 		}
+	// 		log.Printf("Event remaining, %d", remaining)
+	// 	}
+	// 	scheEnd := func() {
+	// 		crawlers.VisitAll()
+	// 	}
 
-		sche := NewSchedule(Interval * time.Millisecond)
-		sche.Event.AddListener(SCHE_UPDATE, scheUpdate)
-		sche.Event.AddListener(SCHE_END, scheEnd)
-		time.Sleep(time.Millisecond * During)
-		sche.Stop()
-		sche.Event.RemoveListener(SCHE_UPDATE, scheUpdate)
-		sche.Event.RemoveListener(SCHE_END, scheEnd)
-	}
+	// 	sche := NewSchedule(Interval * time.Millisecond)
+	// 	sche.Event.AddListener(SCHE_UPDATE, scheUpdate)
+	// 	sche.Event.AddListener(SCHE_END, scheEnd)
+	// 	time.Sleep(time.Millisecond * During)
+	// 	sche.Stop()
+	// 	sche.Event.RemoveListener(SCHE_UPDATE, scheUpdate)
+	// 	sche.Event.RemoveListener(SCHE_END, scheEnd)
+	// }
 
 }
