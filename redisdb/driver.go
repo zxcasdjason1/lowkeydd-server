@@ -40,7 +40,7 @@ func (this *Driver) GetClient() *redis.Client {
 
 func (this *Driver) Connect(setting *Setting) {
 
-	log.Println("創建資料庫驅動器")
+	log.Println("[RedisBD] 創建資料庫驅動器")
 	this.Setting = setting
 	ip := setting.IP           // localhost 為預設本地連線，若為遠端請自行輸入
 	port := setting.Port       // "6379" 為預設port
@@ -55,10 +55,10 @@ func (this *Driver) Connect(setting *Setting) {
 
 	pong, err := this.client.Ping().Result()
 	if err != nil {
-		panic("資料庫連線狀態異常")
+		panic("[RedisBD] 資料庫連線狀態異常")
 	}
 
-	log.Println("資料庫連線成功 : ", pong)
+	log.Println("[RedisBD] 資料庫連線成功 : ", pong)
 }
 
 func (this *Driver) Set(key string, val []byte) {
@@ -70,7 +70,7 @@ func (this *Driver) Set(key string, val []byte) {
 		panic(err)
 	}
 
-	log.Printf("保存數據: %s..............................寫入成功 ok\n", key)
+	log.Printf("[RedisBD] 保存數據: %s..............................寫入成功 ok\n", key)
 }
 
 func (this *Driver) Get(key string) string {
@@ -79,10 +79,10 @@ func (this *Driver) Get(key string) string {
 
 	val, err := client.Get(key).Result() // => GET key
 	if err != nil {
-		log.Printf("查無此數據: %s..............................讀取失敗 fail\n", key)
+		log.Printf("[RedisBD] 查無此數據: %s..............................讀取失敗 fail\n", key)
 		return ""
 	}
 
-	log.Printf("取得數據: %s..............................讀取成功 ok\n", key)
+	log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
 	return val
 }

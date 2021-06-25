@@ -38,6 +38,9 @@ func main() {
 	router.Use(CORSMiddleware())
 
 	// 配置API
+
+	router.GET("/crawler/update/", services.CrawlerUpdate)
+
 	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
 
 	router.POST("/crawler/visit/", services.CrawlerVisit)

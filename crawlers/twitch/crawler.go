@@ -163,4 +163,5 @@ func (c *Crawler) GetVedios(userid string) string {
 
 func (c *Crawler) Visit(cid string) {
 	c.TodoSearch(cid)
+	log.Printf("[Twitch] cid :> %v", cid)
 }

@@ -1,10 +1,8 @@
 package services
 
 import (
-	"encoding/json"
 	"log"
 	"lowkeydd-crawler/crawlers"
-	"lowkeydd-crawler/redisdb"
 	. "lowkeydd-crawler/share"
 
 	"github.com/gin-gonic/gin"
@@ -37,14 +35,6 @@ func CrawlerVisit(c *gin.Context) {
 
 func CrawlerVisitTransport(c *gin.Context, cid string) {
 
-	jsonStr := redisdb.GetInstance().Get(cid)
-	log.Printf("ChannelInfo:> %v\n", jsonStr)
+	GetSingleChannel(c, cid)
 
-	var channel ChannelInfo
-	if jsonStr != "" {
-		json.Unmarshal([]byte(jsonStr), &channel)
-		c.JSON(200, gin.H{"code": "success", "channel": channel})
-	} else {
-		c.JSON(400, gin.H{"code": "error", "channel": channel})
-	}
 }

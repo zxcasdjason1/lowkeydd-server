@@ -33,7 +33,6 @@ func NewCrawler(v *VisitList) *Crawler {
 
 			// 以youtube頻道的URL作為儲存資訊時的Key值。
 			// 當 CreateChannelInfo 失敗時才直接從輸入的url取。
-
 			info := CreateChannelInfo(ytJSONstr)
 			if info.Cid == "" {
 				if channelID := getCidByUrl(h.Request.URL.String()); channelID == "" {
@@ -43,27 +42,19 @@ func NewCrawler(v *VisitList) *Crawler {
 				}
 			}
 
-			// 檢查是否成功解析此頻道資源
-			if info.RenderType == "nilRenderer" {
-				log.Printf("訪問頻道: %s..............................獲取失敗 fail\n", info.Cid)
-				info.Cid = "FAILURE_" + info.Cid //在獲取失敗的頻道KEY中添加錯誤提示前綴訊息，方便檢查
-			} else {
-				log.Printf("訪問頻道: %s..............................獲取成功 ok\n", info.Cid)
-
-				// 打印出獲取到的頻道資訊
-				// log.Println("========================================")
-				// log.Printf("Cid:>>> 		%s", info.Cid)
-				// log.Printf("Status:>>> 		%s", info.Status)
-				// log.Printf("Owner:>>> 		%s", info.Owner)
-				// log.Printf("Avatar:>>> 		%s", info.Avatar)
-				// log.Printf("RenderType:>>> 	%s", info.RenderType)
-				// log.Printf("StreamURL:>>>  	%s", info.StreamURL)
-				// log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
-				// log.Printf("Title:>>>      	%s", info.Title)
-				// log.Printf("ViewCount:>>>  	%s", info.ViewCount)
-				// log.Printf("StartTime:>>>  	%s", info.StartTime)
-				// log.Println("========================================")
-			}
+			// 打印出獲取到的頻道資訊
+			log.Println("========================================")
+			log.Printf("Cid:>>> 		%s", info.Cid)
+			log.Printf("Status:>>> 		%s", info.Status)
+			log.Printf("Owner:>>> 		%s", info.Owner)
+			log.Printf("Avatar:>>> 		%s", info.Avatar)
+			log.Printf("RenderType:>>> 	%s", info.RenderType)
+			log.Printf("StreamURL:>>>  	%s", info.StreamURL)
+			log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
+			log.Printf("Title:>>>      	%s", info.Title)
+			log.Printf("ViewCount:>>>  	%s", info.ViewCount)
+			log.Printf("StartTime:>>>  	%s", info.StartTime)
+			log.Println("========================================")
 
 			// 寫入到 Redis中
 			bytes, err := json.Marshal(info)
@@ -85,7 +76,7 @@ func NewCrawler(v *VisitList) *Crawler {
 
 func (c *Crawler) Visit(cid string) {
 	c.collector.Visit("https://www.youtube.com/channel/" + cid)
-	log.Printf("cid :> %v", cid)
+	log.Printf("[Youtube] cid :> %v", cid)
 }
 
 func getCidByUrl(urlStr string) string {
@@ -94,25 +85,20 @@ func getCidByUrl(urlStr string) string {
 		st := strings.Index(urlStr, "/channel/") + 9
 		ed := len(urlStr)
 		urlStr = urlStr[st:ed]
-		// log.Printf("getCid:> %s", urlStr)
 	}
 	return urlStr
 }
 
 func getYtInitialData(ytStr string) (matched bool, result string) {
-
 	// fetch ytInitialData str from response
 	m, _ := regexp.MatchString("var ytInitialData", ytStr)
 	if m {
 		st := strings.Index(ytStr, "{")
 		ed := len(ytStr) - 1
 		for ytStr[ed] != ('}') {
-			// log.Printf("ytStr[ed]:> %c", ytStr[ed])
 			ed--
 		}
 		ytStr = ytStr[st : ed+1]
-		// log.Printf("%s", ytStr)
 	}
-
 	return m, ytStr
 }
