@@ -34,8 +34,8 @@ func GetInstance() *Driver {
 	return driver
 }
 
-func (this *Driver) GetClient() *redis.Client {
-	return driver.client
+func (this *Driver) Keys(p string) []string {
+	return driver.client.Keys(p).Val()
 }
 
 func (this *Driver) Connect(setting *Setting) {
@@ -63,7 +63,7 @@ func (this *Driver) Connect(setting *Setting) {
 
 func (this *Driver) Set(key string, val []byte) {
 
-	client := *this.client
+	client := *driver.client
 
 	err := client.Set(key, val, 0).Err() // => SET key value 0 數字代表過期秒數，在這裡0為永不過期
 	if err != nil {
@@ -75,7 +75,7 @@ func (this *Driver) Set(key string, val []byte) {
 
 func (this *Driver) Get(key string) string {
 
-	client := *this.client
+	client := *driver.client
 
 	val, err := client.Get(key).Result() // => GET key
 	if err != nil {

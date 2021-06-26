@@ -9,9 +9,10 @@ import (
 )
 
 type CrawlerVisitRequest struct {
-	Cid    string `json:"cid"`
-	Method string `json:"method"`
+	Cid    string `uri:"cid"`
+	Method string `uri:"method"`
 }
+
 type CrawlerVisitResponse struct {
 	Code    string      `json:"code"`
 	Channel ChannelInfo `json:"channel"`
@@ -19,16 +20,19 @@ type CrawlerVisitResponse struct {
 
 func CrawlerVisit(c *gin.Context) {
 
-	// var req CrawlerVisitRequest
-	// var resp CrawlerVisitResponse
+	req := &CrawlerVisitRequest{}
+	if err := c.ShouldBindUri(&req); err != nil {
+		GetSingleChannelResponse(c, "")
+	}
 
-	cid := c.DefaultPostForm("cid", "")
-	method := c.DefaultPostForm("method", "")
-	log.Printf("cid %v\n", cid)
-	log.Printf("method %v\n", method)
+	if req.Cid == "" || req.Method == "" {
+		GetSingleChannelResponse(c, "")
+	}
 
+	log.Printf("cid %v\n", req.Cid)
+	log.Printf("method %v\n", req.Method)
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().Visit_Conditionally(cid, method)
+	crawlers.GetInstance().Visit_Conditionally(req.Cid, req.Method)
 	// 再從redis取出資料作為回傳
-	defer GetSingleChannelResponse(c, cid)
+	GetSingleChannelResponse(c, req.Cid)
 }

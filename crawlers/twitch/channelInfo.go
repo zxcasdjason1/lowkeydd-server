@@ -26,14 +26,14 @@ func GetLiveChannelInfo(stream string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        cid,
-		Owner:      removeQuotes(owner),
-		Avatar:     removeQuotes(avatar),
+		Owner:      RemoveQuotes(owner),
+		Avatar:     RemoveQuotes(avatar),
 		Status:     "live",
 		RenderType: "twitchapi-kraken-streams-[USERS_ID]",
-		StreamURL:  removeQuotes(streamurl),
-		Thumbnail:  removeQuotes(thumbnail),
-		Title:      removeQuotes(title),
-		ViewCount:  AddComma(removeQuotes(viewcount)),
+		StreamURL:  RemoveQuotes(streamurl),
+		Thumbnail:  RemoveQuotes(thumbnail),
+		Title:      RemoveQuotes(title),
+		ViewCount:  AddComma(RemoveQuotes(viewcount)),
 		StartTime:  "",
 	}
 }
@@ -52,15 +52,15 @@ func GetOffChannelInfo(vedios string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        cid,
-		Owner:      removeQuotes(owner),
-		Avatar:     removeQuotes(avatar),
+		Owner:      RemoveQuotes(owner),
+		Avatar:     RemoveQuotes(avatar),
 		Status:     "off",
 		RenderType: "twitchapi-kraken-channels-[USERS_ID]-videos",
-		StreamURL:  removeQuotes(streamurl),
-		Thumbnail:  removeQuotes(thumbnail),
-		Title:      removeQuotes(title),
-		ViewCount:  "觀看次數：" + AddComma(removeQuotes(viewcount)) + "次",
-		StartTime:  removeQuotes(starttime),
+		StreamURL:  RemoveQuotes(streamurl),
+		Thumbnail:  RemoveQuotes(thumbnail),
+		Title:      RemoveQuotes(title),
+		ViewCount:  "觀看次數：" + AddComma(RemoveQuotes(viewcount)) + "次",
+		StartTime:  RemoveQuotes(starttime),
 	}
 
 }

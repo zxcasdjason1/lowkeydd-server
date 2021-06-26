@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func removeQuotes(s string) string {
+func RemoveQuotes(s string) string {
 	return strings.ReplaceAll(s, "\"", "")
 }
 func AddComma(str string) string {

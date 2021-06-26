@@ -163,6 +163,15 @@ func (c *Crawler) GetVedios(userid string) string {
 	})
 }
 
+func (c *Crawler) GetUserInfo(loginName string) string {
+
+	return c.Fetch("https://api.twitch.tv/kraken/users?login="+loginName, Header{
+		Accept:        "application/vnd.twitchtv.v5+json",
+		Authorization: c.AuthToken,
+		ClientID:      c.ClientID,
+	})
+}
+
 func (c *Crawler) Visit(cid string) {
 	c.TodoSearch(cid)
 	log.Printf("[Twitch] cid :> %v", cid)

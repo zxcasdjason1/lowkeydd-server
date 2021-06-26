@@ -166,3 +166,11 @@ func (c *Crawlers) VisitAll_Conditionally() {
 	log.Printf("[crawlers] Time Complete...VisitAll is done ")
 
 }
+
+func GetTwitchCrawler() *twitch.Crawler {
+	return crawlers.twCrawler
+}
+
+func GetYouttubeCrawler() *youtube.Crawler {
+	return crawlers.ytCrawler
+}

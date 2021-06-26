@@ -23,7 +23,7 @@ func GetChannelInfo(cid string) []ChannelInfo {
 }
 
 func GetAllChannelInfo() []ChannelInfo {
-	if cidlist := redisdb.GetInstance().GetClient().Keys("*").Val(); cidlist != nil {
+	if cidlist := redisdb.GetInstance().Keys("*"); cidlist != nil {
 
 		log.Printf("多筆查詢:> %v ", cidlist)
 		channels := make([]ChannelInfo, 0, len(cidlist))

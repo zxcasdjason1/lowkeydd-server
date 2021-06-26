@@ -37,13 +37,28 @@ func main() {
 	// 解決Cors問題
 	router.Use(CORSMiddleware())
 
-	// 配置API
+	// Crawler後臺控制
+	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
 
 	router.GET("/crawler/update/", services.CrawlerUpdate)
 
-	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
+	router.GET("/crawler/:method/:cid", services.CrawlerVisit)
 
-	router.POST("/crawler/visit/", services.CrawlerVisit)
+	// GetChannels前端API
+
+	router.POST("/channels/search/", services.GetSearchChannelResponse)
+
+	router.GET("/channels/all", services.GetAllChannelsResponse)
+
+	router.GET("/channels/:tag", services.GetTagedChannelsResponse)
+
+	// router.GET("/channels/live", services.GetLiveChannelsResponse)
+
+	// router.GET("/channels/wait", services.GetWaitingChannelsResponse)
+
+	// router.GET("/channels/off", services.GetOfflineChannelsResponse)
+
+	// router.GET("/channels/fail", services.GetFailureChannelsResponse)
 
 	router.Run(":8002")
 
@@ -77,20 +92,3 @@ func main() {
 	// }
 
 }
-
-// func CORSMiddleware(c *gin.Context) gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		h := &http.Header{}
-// 		h.Add("Content-Type", "application/json")
-// 		h.Add("Access-Control-Allow-Origin", "*")
-// 		h.Add("Access-Control-Max-Age", "86400")
-// 		h.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, UPDATE")
-// 		h.Add("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Max")
-// 		h.Add("Access-Control-Allow-Credentials", "true")
-// 		if c.Request.Method == "OPTIONS" {
-// 			c.AbortWithStatus(200)
-// 		} else {
-// 			c.Next()
-// 		}
-// 	}
-// }
