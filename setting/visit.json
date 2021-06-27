@@ -11,24 +11,9 @@
         { "cid": "119497908","cname": "kyo1984123", "owner": "kyo1984123","group":"","method":"twitch" },
         { "cid": "11561802", "cname": "godjj", "owner": "接接","group":"","method":"twitch" },
         { "cid": "29722828", "cname": "never_loses", "owner": "NeVeR_LosEs","group":"","method":"twitch" },
-        { "cid": "36316455", "cname": "tomchen60229", "owner": "tomchen60229","group":"","method":"twitch" },
+        { "cid": "36316455", "cname": "tomchen60229", "owner": "tomchen60229","group":"","method":"twitch" }
 
-        
-        {"cid":"UCFKOVgVbGmX65RxO3EtH3iw", "cname":"","owner":"Lamy Ch. 雪花ラミィ","group":"","method":"youtube"},
-        {"cid":"UCAWSyEs_Io8MtpY3m-zqILA", "cname":"","owner":"Nene Ch.桃鈴ねね","group":"","method":"youtube"},
-        {"cid":"UCUKD-uaobj9jiqB-VXt71mA", "cname":"","owner":"Botan Ch.獅白ぼたん","group":"","method":"youtube"},
-        {"cid":"UCgZuwn-O7Szh9cAgHqJ6vjw", "cname":"","owner":"Aloe Ch.魔乃アロエ","group":"","method":"youtube"},
-        {"cid":"UCK9V2B22uJYu3N7eR_BT9QA", "cname":"","owner":"Polka Ch. 尾丸ポルカ","group":"","method":"youtube"}, 
 
-        {"cid":"UCoSrY_IQQVpmIRZ9Xf-y93g", "cname":"","owner":"Gawr Gura Ch. hololive-EN","group":"","method":"youtube"},
-        {"cid":"UCyl1z3jo3XHR1riLFKG5UAg", "cname":"","owner":"Watson Amelia Ch. hololive-EN","group":"","method":"youtube"},
-        {"cid":"UCL_qhgtOy0dy1Agp8vkySQg", "cname":"","owner":"Mori Calliope Ch. hololive-EN","group":"","method":"youtube"},
-        {"cid":"UCHsx4Hqa-1ORjQTh9TYDhww", "cname":"","owner":"Takanashi Kiara Ch. hololive-EN","group":"","method":"youtube"},
-        {"cid":"UCMwGHR0BTZuLsmjY_NT5Pwg", "cname":"","owner":"Ninomae Ina'nis Ch. hololive-EN","group":"","method":"youtube"},
-
-        {"cid":"UCYz_5n-uDuChHtLo7My1HnQ", "cname":"","owner":"Kureiji Ollie Ch. hololive-ID","group":"","method":"youtube"},
-        {"cid":"UC727SQYUvx5pDDGQpTICNWg", "cname":"","owner":"Anya Melfissa Ch. hololive-ID","group":"","method":"youtube"},
-        {"cid":"UChgTyjG-pdNvxxhdsXfHQ5Q", "cname":"","owner":"Pavolia Reine Ch. hololive-ID","group":"","method":"youtube"}
     ]     
 }
 

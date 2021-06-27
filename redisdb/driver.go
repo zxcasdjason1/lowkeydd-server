@@ -3,15 +3,14 @@ package redisdb
 import (
 	"encoding/json"
 	"log"
-	"lowkeydd-crawler/share"
+	. "lowkeydd-crawler/share"
 	"sync"
 
 	"github.com/go-redis/redis"
 )
 
 type Driver struct {
-	client  *redis.Client
-	Setting *Setting
+	client *redis.Client
 }
 
 type Setting struct {
@@ -21,8 +20,11 @@ type Setting struct {
 	DBIndex  int    `json:"dbindex"`
 }
 
-var lock = &sync.Mutex{}
-var driver *Driver
+var (
+	lock    = &sync.Mutex{}
+	driver  *Driver
+	setting Setting
+)
 
 func GetInstance() *Driver {
 	if driver == nil {
@@ -40,10 +42,11 @@ func (this *Driver) Keys(p string) []string {
 	return driver.client.Keys(p).Val()
 }
 
-func (this *Driver) Connect(setting *Setting) {
+func (this *Driver) Connect() {
+
+	JSONFileLoader("setting/redis.json", &setting)
 
 	log.Println("[RedisBD] 創建資料庫驅動器")
-	this.Setting = setting
 	ip := setting.IP           // localhost 為預設本地連線，若為遠端請自行輸入
 	port := setting.Port       // "6379" 為預設port
 	passwd := setting.Password // "" 表示無密碼進入
@@ -89,9 +92,9 @@ func (this *Driver) Get(key string) string {
 	return val
 }
 
-func (this *Driver) GetChannelInfo(cid string) (share.ChannelInfo, bool) {
+func (this *Driver) GetChannelInfo(cid string) (ChannelInfo, bool) {
 
-	info := share.ChannelInfo{}
+	info := ChannelInfo{}
 	jsonStr := this.Get(cid)
 	if jsonStr != "" {
 		json.Unmarshal([]byte(jsonStr), &info)
@@ -100,4 +103,21 @@ func (this *Driver) GetChannelInfo(cid string) (share.ChannelInfo, bool) {
 		return info, false
 	}
 
+}
+
+func GetAllChannelInfo() []ChannelInfo {
+	if cidlist := driver.Keys("*"); cidlist != nil {
+
+		channels := make([]ChannelInfo, 0, len(cidlist))
+
+		for _, cid := range cidlist {
+			if info, exist := driver.GetChannelInfo(cid); exist {
+				channels = append(channels, info)
+			}
+		}
+
+		return channels
+	} else {
+		return []ChannelInfo{}
+	}
 }

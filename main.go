@@ -9,27 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var (
-	visitList    *VisitList
-	redisSetting *redisdb.Setting
-)
-
-// const (
-// 	Interval = 10000
-// 	During   = 300000 //單位為ms
-// )
-
 func main() {
 
-	// 載入設定檔
-	JSONFileLoader("setting/redis.json", &redisSetting)
-	JSONFileLoader("setting/visit.json", &visitList)
-
 	// 建立 Redis Diver，並透過設定檔取得連線
-	redisdb.GetInstance().Connect(redisSetting)
+	redisdb.GetInstance().Connect()
 
 	//配置爬蟲
-	crawlers.GetInstance(visitList)
+	crawlers.NewCrawlers()
 
 	// 設定GIN路由器
 	router := gin.Default()
@@ -38,6 +24,8 @@ func main() {
 	router.Use(CORSMiddleware())
 
 	// Crawler後臺控制
+	router.GET("/crawler/reload/", services.CrawlerReload)
+
 	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
 
 	router.GET("/crawler/update/", services.CrawlerUpdate)
