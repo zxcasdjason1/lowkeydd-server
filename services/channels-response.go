@@ -1,7 +1,6 @@
 package services
 
 import (
-	"encoding/json"
 	"log"
 	"lowkeydd-crawler/crawlers"
 	"lowkeydd-crawler/crawlers/twitch"
@@ -22,17 +21,14 @@ type ChannelInfoResponse struct {
 
 func GetSingleChannelResponse(c *gin.Context, cid string) {
 
+	log.Printf("單筆查詢:> %v ", cid)
+
 	if cid == "" {
 		c.JSON(400, gin.H{"code": "error", "channels": []ChannelInfo{}})
 		return
 	}
 
-	jsonStr := redisdb.GetInstance().Get(cid)
-	log.Printf("單筆查詢:> %v ", jsonStr)
-
-	if jsonStr != "" {
-		info := ChannelInfo{}
-		json.Unmarshal([]byte(jsonStr), &info)
+	if info, exist := redisdb.GetInstance().GetChannelInfo(cid); exist {
 		c.JSON(200, gin.H{"code": "success", "channels": []ChannelInfo{info}})
 	} else {
 		c.JSON(400, gin.H{"code": "error", "channels": []ChannelInfo{}})
@@ -46,9 +42,7 @@ func GetChannelsResponseByCondition(c *gin.Context, condition func(c ChannelInfo
 		log.Printf("多筆查詢:> %v ", cidlist)
 
 		for _, cid := range cidlist {
-			var info ChannelInfo
-			if jsonStr := redisdb.GetInstance().Get(cid); jsonStr != "" {
-				json.Unmarshal([]byte(jsonStr), &info)
+			if info, exist := redisdb.GetInstance().GetChannelInfo(cid); exist {
 				if condition(info) {
 					channels = append(channels, info)
 				}
@@ -86,7 +80,7 @@ func GetSearchChannelResponse(c *gin.Context) {
 	log.Printf("cid %v\n", cid)
 	log.Printf("method %v\n", method)
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().Visit_Conditionally(cid, method)
+	crawlers.GetInstance().Checked_Visit(cid, method)
 	// 再從redis取出資料作為回傳
 	GetSingleChannelResponse(c, cid)
 }
@@ -120,7 +114,6 @@ func GetTwitchCid(url string) string {
 	}
 
 	loginName := string(submatch[1])
-
 	users := crawlers.GetTwitchCrawler().GetUserInfo(loginName)
 	return twitch.RemoveQuotes(gjson.Get(users, "users.0._id").Raw)
 }

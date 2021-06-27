@@ -1,7 +1,9 @@
 package redisdb
 
 import (
+	"encoding/json"
 	"log"
+	"lowkeydd-crawler/share"
 	"sync"
 
 	"github.com/go-redis/redis"
@@ -85,4 +87,17 @@ func (this *Driver) Get(key string) string {
 
 	log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
 	return val
+}
+
+func (this *Driver) GetChannelInfo(cid string) (share.ChannelInfo, bool) {
+
+	info := share.ChannelInfo{}
+	jsonStr := this.Get(cid)
+	if jsonStr != "" {
+		json.Unmarshal([]byte(jsonStr), &info)
+		return info, true
+	} else {
+		return info, false
+	}
+
 }

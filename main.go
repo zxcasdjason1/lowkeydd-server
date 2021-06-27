@@ -14,10 +14,10 @@ var (
 	redisSetting *redisdb.Setting
 )
 
-const (
-	Interval = 10000
-	During   = 300000 //單位為ms
-)
+// const (
+// 	Interval = 10000
+// 	During   = 300000 //單位為ms
+// )
 
 func main() {
 
@@ -45,20 +45,11 @@ func main() {
 	router.GET("/crawler/:method/:cid", services.CrawlerVisit)
 
 	// GetChannels前端API
-
 	router.POST("/channels/search/", services.GetSearchChannelResponse)
 
 	router.GET("/channels/all", services.GetAllChannelsResponse)
 
 	router.GET("/channels/:tag", services.GetTagedChannelsResponse)
-
-	// router.GET("/channels/live", services.GetLiveChannelsResponse)
-
-	// router.GET("/channels/wait", services.GetWaitingChannelsResponse)
-
-	// router.GET("/channels/off", services.GetOfflineChannelsResponse)
-
-	// router.GET("/channels/fail", services.GetFailureChannelsResponse)
 
 	router.Run(":8002")
 

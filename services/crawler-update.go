@@ -3,6 +3,8 @@ package services
 import (
 	"log"
 	"lowkeydd-crawler/crawlers"
+	"lowkeydd-crawler/redisdb"
+	. "lowkeydd-crawler/share"
 
 	"time"
 
@@ -11,7 +13,7 @@ import (
 
 func CrawlerUpdate(c *gin.Context) {
 
-	channels := GetAllChannelInfo()
+	channels := getAllChannelInfo()
 
 	// 更新
 	log.Println("[Services] 頻道資訊更新作業開始....")
@@ -30,4 +32,22 @@ func CrawlerUpdate(c *gin.Context) {
 
 	// 顯示結果
 	GetAllChannelsResponse(c)
+}
+
+func getAllChannelInfo() []ChannelInfo {
+	if cidlist := redisdb.GetInstance().Keys("*"); cidlist != nil {
+
+		log.Printf("多筆查詢:> %v ", cidlist)
+		channels := make([]ChannelInfo, 0, len(cidlist))
+
+		for _, cid := range cidlist {
+			if info, exist := redisdb.GetInstance().GetChannelInfo(cid); exist {
+				channels = append(channels, info)
+			}
+		}
+
+		return channels
+	} else {
+		return []ChannelInfo{}
+	}
 }

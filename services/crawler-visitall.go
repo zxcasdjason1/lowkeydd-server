@@ -10,7 +10,7 @@ import (
 func CrawlerVisitAll(c *gin.Context) {
 	log.Println("CrawlerVisitAll")
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().VisitAll_Conditionally()
+	crawlers.GetInstance().Checked_VisitAll()
 	// 再從redis取出資料作為回傳
 	defer GetAllChannelsResponse(c)
 

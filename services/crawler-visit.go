@@ -32,7 +32,7 @@ func CrawlerVisit(c *gin.Context) {
 	log.Printf("cid %v\n", req.Cid)
 	log.Printf("method %v\n", req.Method)
 	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().Visit_Conditionally(req.Cid, req.Method)
+	crawlers.GetInstance().Checked_Visit(req.Cid, req.Method)
 	// 再從redis取出資料作為回傳
 	GetSingleChannelResponse(c, req.Cid)
 }

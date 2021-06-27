@@ -1,7 +1,6 @@
 package crawlers
 
 import (
-	"encoding/json"
 	"log"
 	"lowkeydd-crawler/crawlers/twitch"
 	"lowkeydd-crawler/crawlers/youtube"
@@ -72,7 +71,19 @@ func (c *Crawlers) Update(item ChannelInfo, curr int64) {
 	}
 }
 
-// 對單一個目標去蒐集頻道資訊，並寫入到redis中。
+func (c *Crawlers) Checked_Request(curr int64, cid string, method string) {
+	if info, exist := redisdb.GetInstance().GetChannelInfo(cid); exist {
+		if curr > info.UpdateTime {
+			c.Request(cid, method)
+		} else {
+			c.wg.Done()
+		}
+	} else {
+		c.Request(cid, method)
+	}
+}
+
+// 訪問目標後蒐集資訊後寫入到redis中。
 func (c *Crawlers) Visit(cid string, method string) {
 	log.Printf("[crawlers] Start to Visit: %v", cid)
 
@@ -83,43 +94,20 @@ func (c *Crawlers) Visit(cid string, method string) {
 	log.Printf("[crawlers] Time Complete...Visit is done ")
 }
 
-func (c *Crawlers) Visit_Conditionally(cid string, method string) {
+// 訪問目標前，先檢查其更新狀態，再蒐集資訊後寫入到redis中。
+func (c *Crawlers) Checked_Visit(cid string, method string) {
 	log.Printf("[crawlers] Start to Visit: %v", cid)
 
 	curr := time.Now().Unix()
-
 	c.wg.Add(1)
-	go func(cid string, method string) {
-
-		jsonStr := redisdb.GetInstance().Get(cid)
-
-		if jsonStr != "" {
-			channel := ChannelInfo{}
-			err := json.Unmarshal([]byte(jsonStr), &channel)
-			if err != nil {
-				panic(err)
-			}
-			// 找到了超時了要更新
-			if curr > channel.UpdateTime {
-				c.Request(cid, method)
-			} else {
-				c.wg.Done()
-			}
-		} else {
-			// 找不到要更新
-			c.Request(cid, method)
-		}
-
-	}(cid, method)
-
+	go c.Checked_Request(curr, cid, method)
 	c.wg.Wait()
 
 	log.Printf("[crawlers] Time Complete...Visit is done ")
 }
 
-// 根據vist list中的紀錄，對多個目標以並行方式去各頻道蒐集資訊，並寫入到redis中。
+// 根據訪問清單，訪問訪問多個目標後，再將蒐集資訊後寫入到redis中。
 func (c *Crawlers) VisitAll() {
-
 	log.Printf("[crawlers] Start to VisitAll: \n%v", c.List)
 
 	c.wg.Add(len(c.List))
@@ -127,42 +115,22 @@ func (c *Crawlers) VisitAll() {
 		go c.Request(item.Cid, item.Method)
 	}
 	c.wg.Wait()
+
 	log.Printf("[crawlers] Time Complete...VisitAll is done ")
 
 }
 
-func (c *Crawlers) VisitAll_Conditionally() {
+func (c *Crawlers) Checked_VisitAll() {
 
-	// 根據userid 取得用戶的 visitlist
 	log.Printf("[crawlers] Start to VisitAll: \n%v", c.List)
 
 	curr := time.Now().Unix()
-
 	c.wg.Add(len(c.List))
 	for _, item := range c.List {
-		go func(item VisitItem) {
-
-			jsonStr := redisdb.GetInstance().Get(item.Cid)
-
-			if jsonStr != "" {
-				channel := ChannelInfo{}
-				err := json.Unmarshal([]byte(jsonStr), &channel)
-				if err != nil {
-					panic(err)
-				}
-				// 找到了超時了要更新
-				if curr > channel.UpdateTime {
-					c.Request(item.Cid, item.Method)
-				} else {
-					c.wg.Done()
-				}
-			} else {
-				// 找不到要更新
-				c.Request(item.Cid, item.Method)
-			}
-		}(item)
+		go c.Checked_Request(curr, item.Cid, item.Method)
 	}
 	c.wg.Wait()
+
 	log.Printf("[crawlers] Time Complete...VisitAll is done ")
 
 }
