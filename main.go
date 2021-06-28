@@ -1,11 +1,17 @@
 package main
 
 import (
+	"fmt"
+	"log"
+	"lowkeydd-server/consul"
 	"lowkeydd-server/crawlers"
 	"lowkeydd-server/pgxdb"
 	"lowkeydd-server/redisdb"
 	"lowkeydd-server/services"
 	. "lowkeydd-server/share"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,8 +32,8 @@ func main() {
 	router.Use(CORSMiddleware())
 
 	// health check
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{"status": "ok"})
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok"})
 	})
 
 	// Crawler後臺控制
@@ -60,7 +66,31 @@ func main() {
 
 	router.GET("/letsdd", services.LetsddEndpoint)
 
-	router.Run(":8002")
+	cs := consul.GetInstance()
+	cs.RegisterService()
+
+	errChan := make(chan error)
+	go (func() {
+		err := router.Run(":8002")
+		if err != nil {
+			log.Println(err)
+			errChan <- err
+		}
+	})()
+	go (func() {
+		sig_c := make(chan os.Signal, 1)
+
+		// 信號名	value  說明
+		// SIGINT    2    發送ctrl+c
+		// SIGTERM   15   结束程序時
+		signal.Notify(sig_c, syscall.SIGINT, syscall.SIGTERM)
+		errChan <- fmt.Errorf("%s", <-sig_c)
+	})()
+	// 主程序因為 errChan 已阻塞，直到收到 (如錯誤、程序停止、ctrl+c等)
+	// 訊息才會繼續往下執行，藉此實現服務對 consult "優雅地退出"。
+	getErr := <-errChan
+	cs.KillService() //
+	log.Println(getErr)
 
 	// // 流程: 先執行一次 VisitAll, 之後間隔再循環執行
 	// crawlers := crawlers.GetInstance(visitList)

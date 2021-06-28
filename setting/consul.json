@@ -1,0 +1,27 @@
+{
+  "server": {
+    "IP": "192.168.50.200",
+    "Port": "8500"
+  },
+  "services": [
+    {
+      "ID": "lowkeydd-server",
+      "Name": "lowkeydd-server",
+      "Tags": ["lowkeydd"],
+      "Address": "192.168.50.240",
+      "Port": 8002,
+      "checks": [
+        {
+          "HTTP": "http://192.168.50.240:8002/health",
+          "Interval": "10s",
+          "Timeout": "1s"
+        },
+        {
+          "HTTP": "http://192.168.50.240:8002/crawler/update/",
+          "Interval": "1m",
+          "Timeout": "3s"
+        }
+      ]
+    }
+  ]
+}

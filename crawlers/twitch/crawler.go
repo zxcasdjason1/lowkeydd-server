@@ -112,7 +112,7 @@ func (c *Crawler) TodoSearch(userid string) {
 	ch.UpdateTime = GetNextUpdateTime()
 
 	// log.Println("================正在重播==================")
-	// log.Printf("Cid:>>> 		%s", ch.Cid)
+	// log.Printf("Cid:>>> 			%s", ch.Cid)
 	// log.Printf("Status:>>> 		%s", ch.Status)
 	// log.Printf("Owner:>>> 		%s", ch.Owner)
 	// log.Printf("Avatar:>>> 		%s", ch.Avatar)
