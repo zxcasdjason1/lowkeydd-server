@@ -2,8 +2,8 @@ package services
 
 import (
 	"log"
-	"lowkeydd-crawler/crawlers"
-	. "lowkeydd-crawler/share"
+	"lowkeydd-server/crawlers"
+	. "lowkeydd-server/share"
 
 	"github.com/gin-gonic/gin"
 )
@@ -42,5 +42,5 @@ func CrawlerVisitAll(c *gin.Context) {
 	// 做爬蟲，資料會寫入到redis中
 	crawlers.GetInstance().Checked_VisitByDefaultList()
 	// 再從redis取出資料作為回傳
-	defer GetAllChannelsResponse(c)
+	GetAllChannelsResponse(c)
 }

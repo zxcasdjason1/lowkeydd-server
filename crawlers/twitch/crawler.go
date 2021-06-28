@@ -1,12 +1,11 @@
 package twitch
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"lowkeydd-crawler/redisdb"
-	. "lowkeydd-crawler/share"
+	"lowkeydd-server/redisdb"
+	. "lowkeydd-server/share"
 	"net/http"
 
 	"github.com/tidwall/gjson"
@@ -99,40 +98,34 @@ func (c *Crawler) SearchChannels(userid_list []string) string {
 
 func (c *Crawler) TodoSearch(userid string) {
 
-	var info *ChannelInfo
+	var ch ChannelInfo
 
 	if stream := c.GetStream(userid); stream != "null" {
 		// 發起獲取正在直播的串流資訊
-		info = GetLiveChannelInfo(stream)
+		ch = GetLiveChannelInfo(stream)
 	} else {
 		// 假如取得串流訊息的結果為 {"stream":"null"}，表示當前沒有直播
 		// 或直播已經結束，所以再重新請求來獲取最近一次的影片記錄檔。
-		info = GetOffChannelInfo(c.GetVedios(userid))
+		ch = GetOffChannelInfo(c.GetVedios(userid))
 	}
-	info.Method = "twitch"
-	info.UpdateTime = GetNextUpdateTime()
+	ch.Method = "twitch"
+	ch.UpdateTime = GetNextUpdateTime()
 
 	// log.Println("================正在重播==================")
-	// log.Printf("Cid:>>> 		%s", info.Cid)
-	// log.Printf("Status:>>> 		%s", info.Status)
-	// log.Printf("Owner:>>> 		%s", info.Owner)
-	// log.Printf("Avatar:>>> 		%s", info.Avatar)
-	// log.Printf("RenderType:>>> 	%s", info.RenderType)
-	// log.Printf("StreamURL:>>>  	%s", info.StreamURL)
-	// log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
-	// log.Printf("Title:>>>      	%s", info.Title)
-	// log.Printf("ViewCount:>>>  	%s", info.ViewCount)
-	// log.Printf("StartTime:>>>  	%s", info.StartTime)
+	// log.Printf("Cid:>>> 		%s", ch.Cid)
+	// log.Printf("Status:>>> 		%s", ch.Status)
+	// log.Printf("Owner:>>> 		%s", ch.Owner)
+	// log.Printf("Avatar:>>> 		%s", ch.Avatar)
+	// log.Printf("RenderType:>>> 	%s", ch.RenderType)
+	// log.Printf("StreamURL:>>>  	%s", ch.StreamURL)
+	// log.Printf("Thumbnail:>>>  	%s", ch.Thumbnail)
+	// log.Printf("Title:>>>      	%s", ch.Title)
+	// log.Printf("ViewCount:>>>  	%s", ch.ViewCount)
+	// log.Printf("StartTime:>>>  	%s", ch.StartTime)
 	// log.Println("========================================")
 
-	// 寫入到 Redis中
-	bytes, err := json.Marshal(info)
-	if err != nil {
-		log.Fatal("json.Marshal失敗")
-		panic(err)
-	} else {
-		redisdb.GetInstance().Set(info.Cid, bytes)
-	}
+	// 寫入到 Redis
+	redisdb.GetInstance().SetChannel(ch)
 
 }
 

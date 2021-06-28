@@ -1,10 +1,11 @@
 package main
 
 import (
-	"lowkeydd-crawler/crawlers"
-	"lowkeydd-crawler/redisdb"
-	"lowkeydd-crawler/services"
-	. "lowkeydd-crawler/share"
+	"lowkeydd-server/crawlers"
+	"lowkeydd-server/pgxdb"
+	"lowkeydd-server/redisdb"
+	"lowkeydd-server/services"
+	. "lowkeydd-server/share"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,6 +14,7 @@ func main() {
 
 	// 建立 Redis Diver，並透過設定檔取得連線
 	redisdb.GetInstance().Connect()
+	pgxdb.NewDriver()
 
 	//配置爬蟲
 	crawlers.NewCrawlers()
@@ -22,6 +24,11 @@ func main() {
 
 	// 解決Cors問題
 	router.Use(CORSMiddleware())
+
+	// health check
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(200, gin.H{"status": "ok"})
+	})
 
 	// Crawler後臺控制
 	router.GET("/crawler/reload/", services.CrawlerReload)
@@ -38,6 +45,20 @@ func main() {
 	router.GET("/channels/all", services.GetAllChannelsResponse)
 
 	router.GET("/channels/:tag", services.GetTagedChannelsResponse)
+
+	// pgx
+	router.POST("/login/", services.LoginEndpoint)
+
+	router.GET("/cookie/:key/:value", services.SetCookie)
+	router.GET("/cookie/:key", services.GetCookie)
+
+	router.POST("/register/", services.RegisterEndpoint)
+
+	router.POST("/visit/edit", services.VisitEditEndpoint)
+
+	router.POST("/visit/update", services.VisitUpdateEndpoint)
+
+	router.GET("/letsdd", services.LetsddEndpoint)
 
 	router.Run(":8002")
 

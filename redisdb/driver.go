@@ -1,10 +1,10 @@
 package redisdb
 
 import (
-	"encoding/json"
 	"log"
-	. "lowkeydd-crawler/share"
+	. "lowkeydd-server/share"
 	"sync"
+	"time"
 
 	"github.com/go-redis/redis"
 )
@@ -22,8 +22,9 @@ type Setting struct {
 
 var (
 	lock    = &sync.Mutex{}
+	lock2   = &sync.Mutex{}
 	driver  *Driver
-	setting Setting
+	setting *Setting
 )
 
 func GetInstance() *Driver {
@@ -38,8 +39,27 @@ func GetInstance() *Driver {
 	return driver
 }
 
+func (this *Driver) SelectDB(dbName string) {
+
+	lock2.Lock()
+	defer lock2.Unlock()
+
+	var dbindex int
+	switch dbName {
+	case "ssid":
+		dbindex = 1
+	default:
+		dbindex = 0
+	}
+	if setting.DBIndex != dbindex {
+		log.Printf("[RedisBD] 切換資料庫目錄: %d \n", dbindex)
+		setting.DBIndex = dbindex
+		driver.client.Do("SELECT", dbindex)
+	}
+}
+
 func (this *Driver) Keys(p string) []string {
-	return driver.client.Keys(p).Val()
+	return this.client.Keys(p).Val()
 }
 
 func (this *Driver) Connect() {
@@ -66,11 +86,9 @@ func (this *Driver) Connect() {
 	log.Println("[RedisBD] 資料庫連線成功 : ", pong)
 }
 
-func (this *Driver) Set(key string, val []byte) {
+func (this *Driver) Set(key string, val []byte, expiration time.Duration) {
 
-	client := *driver.client
-
-	err := client.Set(key, val, 0).Err() // => SET key value 0 數字代表過期秒數，在這裡0為永不過期
+	err := this.client.Set(key, val, expiration).Err() // => SET key value 0 數字代表過期秒數，在這裡0為永不過期
 	if err != nil {
 		panic(err)
 	}
@@ -80,44 +98,12 @@ func (this *Driver) Set(key string, val []byte) {
 
 func (this *Driver) Get(key string) string {
 
-	client := *driver.client
-
-	val, err := client.Get(key).Result() // => GET key
+	val, err := this.client.Get(key).Result() // => GET key
 	if err != nil {
-		log.Printf("[RedisBD] 查無此數據: %s..............................讀取失敗 fail\n", key)
+		log.Printf("[RedisBD] 查無此數據: %s............................讀取失敗 fail\n", key)
 		return ""
 	}
 
 	log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
 	return val
-}
-
-func (this *Driver) GetChannelInfo(cid string) (ChannelInfo, bool) {
-
-	info := ChannelInfo{}
-	jsonStr := this.Get(cid)
-	if jsonStr != "" {
-		json.Unmarshal([]byte(jsonStr), &info)
-		return info, true
-	} else {
-		return info, false
-	}
-
-}
-
-func GetAllChannelInfo() []ChannelInfo {
-	if cidlist := driver.Keys("*"); cidlist != nil {
-
-		channels := make([]ChannelInfo, 0, len(cidlist))
-
-		for _, cid := range cidlist {
-			if info, exist := driver.GetChannelInfo(cid); exist {
-				channels = append(channels, info)
-			}
-		}
-
-		return channels
-	} else {
-		return []ChannelInfo{}
-	}
 }

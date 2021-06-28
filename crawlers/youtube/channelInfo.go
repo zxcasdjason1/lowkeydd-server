@@ -2,7 +2,7 @@ package youtube
 
 import (
 	"log"
-	. "lowkeydd-crawler/share"
+	. "lowkeydd-server/share"
 	"strconv"
 
 	"github.com/tidwall/gjson"

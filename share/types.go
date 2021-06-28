@@ -29,3 +29,8 @@ type VisitList struct {
 	AuthToken string      `json:"auth_token"`
 	List      []VisitItem `json:"list"`
 }
+
+type SessionValue struct {
+	UserID  string `json:"userid"`
+	Timeout string `json:"timeout"`
+}

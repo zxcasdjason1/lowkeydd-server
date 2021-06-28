@@ -1,7 +1,7 @@
 package services
 
 import (
-	"lowkeydd-crawler/crawlers"
+	"lowkeydd-server/crawlers"
 
 	"github.com/gin-gonic/gin"
 )

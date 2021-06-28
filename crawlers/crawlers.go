@@ -2,10 +2,10 @@ package crawlers
 
 import (
 	"log"
-	"lowkeydd-crawler/crawlers/twitch"
-	"lowkeydd-crawler/crawlers/youtube"
-	"lowkeydd-crawler/redisdb"
-	. "lowkeydd-crawler/share"
+	"lowkeydd-server/crawlers/twitch"
+	"lowkeydd-server/crawlers/youtube"
+	"lowkeydd-server/redisdb"
+	. "lowkeydd-server/share"
 	"sync"
 	"time"
 )
@@ -74,7 +74,7 @@ func (c *Crawlers) updated_Request(curr int64, item ChannelInfo) {
 // Checked 先驗證更新時間與是否存在才進行訪問。
 // 減少實際對平台訪問次數，降低被平台當作機器人的機會。
 func (c *Crawlers) checked_Request(curr int64, cid string, method string) {
-	if info, exist := redisdb.GetInstance().GetChannelInfo(cid); exist {
+	if info, success := redisdb.GetInstance().GetChannel(cid); success {
 		c.updated_Request(curr, info)
 	} else {
 		c.request(cid, method)
@@ -134,10 +134,25 @@ func (c *Crawlers) Checked_VisitByDefaultList() {
 
 }
 
+func (c *Crawlers) Checked_VisitByList(list []VisitItem) {
+
+	log.Printf("[crawlers] Start to VisitAll: \n%v", list)
+
+	curr := time.Now().Unix()
+	c.wg.Add(len(list))
+	for _, item := range list {
+		go c.checked_Request(curr, item.Cid, item.Method)
+	}
+	c.wg.Wait()
+
+	log.Printf("[crawlers] Time Complete...VisitAll is done ")
+
+}
+
 func (c *Crawlers) UnChecked_Update() {
 
 	// 為當前Redis中所有的頻道資訊建立副本
-	channels := redisdb.GetAllChannelInfo()
+	channels, _ := redisdb.GetInstance().GetAllChannels()
 
 	log.Println("[crawlers] 所有頻道資訊更新作業開始....")
 

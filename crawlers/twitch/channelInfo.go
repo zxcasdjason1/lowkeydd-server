@@ -3,7 +3,7 @@ package twitch
 import (
 	"strings"
 
-	. "lowkeydd-crawler/share"
+	. "lowkeydd-server/share"
 
 	"github.com/tidwall/gjson"
 )
@@ -12,7 +12,7 @@ func getThumbnail(str string, width string, height string) string {
 	return strings.ReplaceAll(strings.ReplaceAll(str, `{width}`, width), `{height}`, height)
 }
 
-func GetLiveChannelInfo(stream string) *ChannelInfo {
+func GetLiveChannelInfo(stream string) ChannelInfo {
 	//取直播中
 	channel := gjson.Get(stream, "channel").Raw
 	cid := gjson.Get(channel, "_id").Raw
@@ -24,7 +24,7 @@ func GetLiveChannelInfo(stream string) *ChannelInfo {
 	viewcount := gjson.Get(stream, "viewers").Raw
 	// starttime := gjson.Get(stream, "created_at").Raw //正在直播
 
-	return &ChannelInfo{
+	return ChannelInfo{
 		Cid:        cid,
 		Owner:      RemoveQuotes(owner),
 		Avatar:     RemoveQuotes(avatar),
@@ -38,7 +38,7 @@ func GetLiveChannelInfo(stream string) *ChannelInfo {
 	}
 }
 
-func GetOffChannelInfo(vedios string) *ChannelInfo {
+func GetOffChannelInfo(vedios string) ChannelInfo {
 	// 取第一筆
 	vedio := gjson.Get(vedios, "videos.0").Raw
 	cid := gjson.Get(vedio, "channel._id").Raw
@@ -50,7 +50,7 @@ func GetOffChannelInfo(vedios string) *ChannelInfo {
 	viewcount := gjson.Get(vedio, "views").Raw
 	starttime := gjson.Get(vedio, "published_at").Raw
 
-	return &ChannelInfo{
+	return ChannelInfo{
 		Cid:        cid,
 		Owner:      RemoveQuotes(owner),
 		Avatar:     RemoveQuotes(avatar),

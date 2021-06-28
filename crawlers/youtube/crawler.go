@@ -3,8 +3,8 @@ package youtube
 import (
 	"encoding/json"
 	"log"
-	"lowkeydd-crawler/redisdb"
-	. "lowkeydd-crawler/share"
+	"lowkeydd-server/redisdb"
+	. "lowkeydd-server/share"
 	"regexp"
 	"strings"
 
@@ -64,7 +64,7 @@ func NewCrawler(v *VisitList) *Crawler {
 				log.Fatal("json.Marshal失敗")
 				panic(err)
 			} else {
-				redisdb.GetInstance().Set(info.Cid, bytes)
+				redisdb.GetInstance().Set(info.Cid, bytes, 0)
 			}
 		}
 	})
