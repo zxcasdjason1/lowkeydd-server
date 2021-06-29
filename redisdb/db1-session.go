@@ -3,30 +3,26 @@ package redisdb
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"lowkeydd-server/share"
 	"time"
 )
 
-// type SessionValue struct {
-// 	UserID  string `json:"userid"`
-// 	Timeout string `json:"timeout"`
-// }
+func (this *Driver) SetSession(userid string, ssid string, timeout time.Duration) {
 
-func (this *Driver) SetSession(ssid string, userid string, timeout time.Duration) {
-
-	session := fmt.Sprintf(`{"userid":"%s","timeout":"%d"}`, userid, timeout)
-	// log.Printf("session :> %s\n", session)
+	session := fmt.Sprintf(`{"ssid":"%s","timeout":"%d"}`, ssid, timeout)
+	log.Printf("session :> %s\n", session)
 
 	this.SelectDB("ssid")
-	this.Set(ssid, []byte(session), timeout*time.Second)
+	this.Set(userid, []byte(session), timeout*time.Second)
 }
 
-func (this *Driver) GetSession(ssid string) (share.SessionValue, bool) {
+func (this *Driver) GetSession(userid string) (share.SessionValue, bool) {
 
 	this.SelectDB("ssid")
 
-	data := this.Get(ssid)
-	// log.Printf("session :> %v\n", data)
+	data := this.Get(userid)
+	log.Printf("session :> %v\n", data)
 
 	var sv share.SessionValue
 	if data == "" {

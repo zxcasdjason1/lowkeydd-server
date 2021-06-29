@@ -113,8 +113,9 @@ func (c *Crawler) TodoSearch(userid string) {
 
 	// log.Println("================正在重播==================")
 	// log.Printf("Cid:>>> 			%s", ch.Cid)
-	// log.Printf("Status:>>> 		%s", ch.Status)
+	// log.Printf("Cname:>>> 		%s", info.Cname)
 	// log.Printf("Owner:>>> 		%s", ch.Owner)
+	// log.Printf("Status:>>> 		%s", ch.Status)
 	// log.Printf("Avatar:>>> 		%s", ch.Avatar)
 	// log.Printf("RenderType:>>> 	%s", ch.RenderType)
 	// log.Printf("StreamURL:>>>  	%s", ch.StreamURL)

@@ -16,13 +16,18 @@ type LoginRequest struct {
 
 type LoginResponse struct {
 	Code string `json:"code"`
+	SSID string `json:"ssid"`
 	Msg  string `json:"msg"`
 }
 
-// type SessionValue struct {
-// 	UserID  string `json:"userid"`
-// 	Timeout string `json:"timeout"`
-// }
+func getSSID() string {
+	if uid, err := uuid.NewUUID(); err == nil {
+		return uid.String()
+	} else {
+		log.Fatal("getUUID失敗, 錯誤如下: \n", err)
+		return ""
+	}
+}
 
 func LoginEndpoint(c *gin.Context) {
 	userid := c.DefaultPostForm("username", "")
@@ -38,24 +43,35 @@ func LoginEndpoint(c *gin.Context) {
 
 		const timeout = 3600 //逾時時間
 
-		if ssid, _ := c.Cookie("ssid"); ssid == "" {
-			// cookie 還沒有設定的話
-			if uid, err := uuid.NewUUID(); err == nil {
-				// cookie也設
-				c.SetCookie("ssid", uid.String(), timeout, "/", "localhost", false, true)
-				// redis也設
-				redisdb.GetInstance().SetSession(uid.String(), userid, timeout)
-			} else {
-				log.Fatal(err)
-			}
+		if session, success := redisdb.GetInstance().GetSession(userid); success {
+			redisdb.GetInstance().SetSession(userid, session.SSID, timeout)
+			// 前端的cookie也設
+			resp.SSID = session.SSID
 		} else {
-			log.Printf("ssid: %s ,已經設定了 \n", ssid)
-			// 刷新存活時間
-			// cookie也設
-			c.SetCookie("ssid", ssid, timeout, "/", "localhost", false, true)
-			// redis也設
-			redisdb.GetInstance().SetSession(ssid, userid, timeout)
+			ssid := getSSID()
+			redisdb.GetInstance().SetSession(userid, ssid, timeout)
+			// 前端的cookie也設
+			resp.SSID = ssid
 		}
+
+		// if ssid, _ := c.Cookie("ssid"); ssid == "" {
+		// 	// cookie 還沒有設定的話
+		// 	if uid, err := uuid.NewUUID(); err == nil {
+		// 		// cookie也設
+		// 		// c.SetCookie("ssid", uid.String(), timeout, "/", "localhost", false, true)
+		// 		// redis也設
+		// 		redisdb.GetInstance().SetSession(userid, uid.String(), timeout)
+		// 	} else {
+		// 		log.Fatal(err)
+		// 	}
+		// } else {
+		// 	log.Printf("ssid: %s ,已經設定了 \n", ssid)
+		// 	// 刷新存活時間
+		// 	// cookie也設
+		// 	// c.SetCookie("ssid", ssid, timeout, "/", "localhost", false, true)
+		// 	// redis也設
+		// 	redisdb.GetInstance().SetSession(userid, ssid, timeout)
+		// }
 	}
 
 	LoginTransPort(c, resp)
@@ -64,13 +80,13 @@ func LoginEndpoint(c *gin.Context) {
 func LoginTransPort(c *gin.Context, resp LoginResponse) {
 	switch resp.Code {
 	case "success":
-		c.JSON(200, gin.H{"code": resp.Code, "msg": resp.Msg})
+		c.JSON(200, gin.H{"code": resp.Code, "ssid": resp.SSID, "msg": resp.Msg})
 		return
 	case "failure":
-		c.JSON(200, gin.H{"code": resp.Code, "msg": resp.Msg})
+		c.JSON(200, gin.H{"code": resp.Code, "ssid": "", "msg": resp.Msg})
 		return
 	case "error":
-		c.JSON(400, gin.H{"code": resp.Code, "msg": resp.Msg})
+		c.JSON(400, gin.H{"code": resp.Code, "ssid": "", "msg": resp.Msg})
 		return
 	}
 }

@@ -47,10 +47,6 @@ func NewCrawlers() {
 
 }
 
-// func (c *Crawlers) GetWg() *sync.WaitGroup {
-// 	return c.wg
-// }
-
 // 透過cid, method, 直接對對應的平台進行訪問，並將解析後的資訊寫入到redis中。
 func (c *Crawlers) request(cid string, method string) {
 	defer c.wg.Done()

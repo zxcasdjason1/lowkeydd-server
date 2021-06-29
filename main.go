@@ -37,34 +37,36 @@ func main() {
 	})
 
 	// Crawler後臺控制
-	router.GET("/crawler/reload/", services.CrawlerReload)
+	router.GET("/crawler/reload", services.CrawlerReload)
 
-	router.GET("/crawler/visitall/", services.CrawlerVisitAll)
+	router.GET("/crawler/visitall", services.CrawlerVisitAll)
 
-	router.GET("/crawler/update/", services.CrawlerUpdate)
+	router.GET("/crawler/update", services.CrawlerUpdate)
 
 	router.GET("/crawler/:method/:cid", services.CrawlerVisit)
 
 	// GetChannels前端API
-	router.POST("/channels/search/", services.GetSearchChannelResponse)
+	router.POST("/channels/search", services.GetSearchChannelResponse)
 
 	router.GET("/channels/all", services.GetAllChannelsResponse)
 
 	router.GET("/channels/:tag", services.GetTagedChannelsResponse)
 
 	// pgx
-	router.POST("/login/", services.LoginEndpoint)
+	router.POST("/login", services.LoginEndpoint)
 
 	router.GET("/cookie/:key/:value", services.SetCookie)
 	router.GET("/cookie/:key", services.GetCookie)
 
-	router.POST("/register/", services.RegisterEndpoint)
+	router.POST("/register", services.RegisterEndpoint)
 
 	router.POST("/visit/edit", services.VisitEditEndpoint)
 
 	router.POST("/visit/update", services.VisitUpdateEndpoint)
 
-	router.GET("/letsdd", services.LetsddEndpoint)
+	router.POST("/letsdd", services.LetsddEndpoint)
+
+	// router.Run(":8002")
 
 	cs := consul.GetInstance()
 	cs.RegisterService()

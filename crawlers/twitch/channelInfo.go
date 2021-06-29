@@ -16,6 +16,7 @@ func GetLiveChannelInfo(stream string) ChannelInfo {
 	//取直播中
 	channel := gjson.Get(stream, "channel").Raw
 	cid := gjson.Get(channel, "_id").Raw
+	cname := gjson.Get(channel, "name").Raw
 	owner := gjson.Get(channel, "display_name").Raw
 	avatar := gjson.Get(channel, "logo").Raw
 	streamurl := gjson.Get(channel, "url").Raw
@@ -26,6 +27,7 @@ func GetLiveChannelInfo(stream string) ChannelInfo {
 
 	return ChannelInfo{
 		Cid:        cid,
+		Cname:      RemoveQuotes(cname),
 		Owner:      RemoveQuotes(owner),
 		Avatar:     RemoveQuotes(avatar),
 		Status:     "live",
@@ -42,6 +44,7 @@ func GetOffChannelInfo(vedios string) ChannelInfo {
 	// 取第一筆
 	vedio := gjson.Get(vedios, "videos.0").Raw
 	cid := gjson.Get(vedio, "channel._id").Raw
+	cname := gjson.Get(vedio, "channel.name").Raw
 	owner := gjson.Get(vedio, "channel.display_name").Raw
 	avatar := gjson.Get(vedio, "channel.logo").Raw
 	streamurl := gjson.Get(vedio, "url").Raw
@@ -52,6 +55,7 @@ func GetOffChannelInfo(vedios string) ChannelInfo {
 
 	return ChannelInfo{
 		Cid:        cid,
+		Cname:      RemoveQuotes(cname),
 		Owner:      RemoveQuotes(owner),
 		Avatar:     RemoveQuotes(avatar),
 		Status:     "off",

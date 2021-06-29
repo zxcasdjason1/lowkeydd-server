@@ -104,6 +104,6 @@ func (this *Driver) Get(key string) string {
 		return ""
 	}
 
-	log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
+	// log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
 	return val
 }

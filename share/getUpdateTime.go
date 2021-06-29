@@ -2,19 +2,15 @@ package share
 
 import (
 	"log"
+	"math/rand"
 	"time"
-)
-
-const (
-	UpdateTimeInterval = 180 //秒
 )
 
 func GetNextUpdateTime() int64 {
 	timeUnix := time.Now().Unix()
-	timeUnix += UpdateTimeInterval
+	timeUnix += 120 + rand.Int63n(180) //給予 120~300 秒的更新間隔時間。
 
-	// formatTimeStr := time.Unix(timeUnix, 0).Format("2006-01-02 15:04:05")
-	// log.Println(formatTimeStr)
+	// ToDateStr(timeUnix)
 
 	return timeUnix
 }

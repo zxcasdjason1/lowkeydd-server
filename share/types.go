@@ -3,6 +3,7 @@ package share
 // ChannelInfo 頻道資訊
 type ChannelInfo struct {
 	Cid        string `json:"cid"`
+	Cname      string `json:"cname"`
 	Owner      string `json:"owner"`
 	Avatar     string `json:"avatar"`
 	Status     string `json:"status"`
@@ -31,6 +32,6 @@ type VisitList struct {
 }
 
 type SessionValue struct {
-	UserID  string `json:"userid"`
+	SSID    string `json:"ssid"`
 	Timeout string `json:"timeout"`
 }

@@ -25,9 +25,9 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 		log.Println("取得頻道代碼(cid)失敗, " + channelId)
 		return &ChannelInfo{}
 	}
-	owner := gjson.Get(header, "title").Raw
-	if owner == "" {
-		panic("取得頻道所有者(owner)失敗, " + owner)
+	cname := gjson.Get(header, "title").Raw
+	if cname == "" {
+		panic("取得頻道所有者(cname)失敗, " + cname)
 	}
 	avatar := gjson.Get(header, "avatar.thumbnails.1.url").Raw //88x88
 	if avatar == "" {
@@ -87,7 +87,8 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 		}
 	}
 	info.Cid = removeQuotes(channelId)
-	info.Owner = removeQuotes(owner)
+	info.Cname = removeQuotes(cname)
+	info.Owner = removeQuotes(cname)
 	info.Avatar = removeQuotes(avatar)
 	return info
 }
@@ -103,7 +104,6 @@ func channelFeaturedContentRenderer(ctx string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        "",
-		Owner:      "",
 		Status:     "live",
 		RenderType: "channelFeaturedContentRenderer",
 		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw),
@@ -140,7 +140,6 @@ func shelf_expandedshelf_VideoRenderer(ctx string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        "",
-		Owner:      "",
 		Status:     "wait",
 		RenderType: "expandedShelfContentsRenderer",
 		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw),
@@ -166,7 +165,6 @@ func shelf_gridVideoRenderer(ctx string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        "",
-		Owner:      "",
 		Status:     status,
 		RenderType: "shelfRenderer+gridVideoRenderer",
 		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoId.Raw),
@@ -186,7 +184,6 @@ func shelf_gridPlaylistRenderer(ctx string) *ChannelInfo {
 
 	return &ChannelInfo{
 		Cid:        "",
-		Owner:      "",
 		Status:     "off",
 		RenderType: "shelfRenderer+gridPlaylistRenderer",
 		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(playlistId.Raw),

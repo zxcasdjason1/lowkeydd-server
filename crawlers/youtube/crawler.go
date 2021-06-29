@@ -47,8 +47,9 @@ func NewCrawler(v *VisitList) *Crawler {
 			// 打印出獲取到的頻道資訊
 			// log.Println("========================================")
 			// log.Printf("Cid:>>> 		%s", info.Cid)
-			// log.Printf("Status:>>> 		%s", info.Status)
+			// log.Printf("Cname:>>> 		%s", info.Cname)
 			// log.Printf("Owner:>>> 		%s", info.Owner)
+			// log.Printf("Status:>>> 		%s", info.Status)
 			// log.Printf("Avatar:>>> 		%s", info.Avatar)
 			// log.Printf("RenderType:>>> 	%s", info.RenderType)
 			// log.Printf("StreamURL:>>>  	%s", info.StreamURL)

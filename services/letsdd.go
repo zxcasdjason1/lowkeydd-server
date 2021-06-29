@@ -11,6 +11,7 @@ import (
 
 type LetsddRequest struct {
 	UserID string `json:"username"`
+	SSID   string `json:"ssid"`
 }
 
 type LetsddResponse struct {
@@ -19,30 +20,35 @@ type LetsddResponse struct {
 }
 
 func LetsddEndpoint(c *gin.Context) {
-	// 從cookie裡面去取得 ssid作為驗證
-	ssid, err := c.Cookie("ssid")
-	if err != nil {
-		c.JSON(200, gin.H{"msg": "get cookie fail"})
+
+	userid := c.DefaultPostForm("username", "")
+	ssid := c.DefaultPostForm("ssid", "")
+	log.Printf("username :> %s\n", userid)
+	log.Printf("ssid :> %s\n", ssid)
+
+	if userid == "" {
+		c.JSON(200, gin.H{"msg": "userid is required"})
 		return
 	}
-	log.Printf("ssid :> %s\n", ssid)
-	if session, success := redisdb.GetInstance().GetSession(ssid); success {
+
+	// 從cookie裡面去取得 ssid作為驗證
+	if ssid == "" {
+		c.JSON(200, gin.H{"msg": "get cookie fail"})
+	}
+
+	if s, success := redisdb.GetInstance().GetSession(userid); success && s.SSID == ssid {
 
 		log.Printf("ssid:> %s 驗證成功", ssid)
-		log.Printf("userid : %s , timeout : %s ", session.UserID, session.Timeout)
 
 		// 驗證成功，獲取該使用者visit
-		if code, visit := GetVisitList(session.UserID); code == "success" {
+		if code, visit := GetVisitList(userid); code == "success" {
 			crawlers.GetInstance().Checked_VisitByList(visit.List)
 		}
-
-		// 根據list去顯示response
-		GetAllChannelsResponse(c)
-
 	} else {
 		log.Printf("ssid:> %s 驗證失敗", ssid)
-		GetSingleChannelResponse(c, "")
 	}
+
+	GetAllChannelsResponse(c)
 
 	// 驗證成功
 	// 自定義的channels
