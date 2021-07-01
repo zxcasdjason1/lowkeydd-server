@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"lowkeydd-server/pgxdb"
+	"lowkeydd-server/redisdb"
+	"lowkeydd-server/share"
 	"regexp"
 	"strings"
 
@@ -16,8 +18,9 @@ type RegisterRequest struct {
 }
 
 type RegisterResponse struct {
-	Code string `json:"code"`
-	Msg  string `json:"msg"`
+	Code    string        `json:"code"`
+	Msg     string        `json:"msg"`
+	Session share.Session `json:"session"`
 }
 
 func RegisterEndpoint(c *gin.Context) {
@@ -36,7 +39,7 @@ func RegisterEndpoint(c *gin.Context) {
 func RegisterTransPort(c *gin.Context, resp RegisterResponse) {
 	switch resp.Code {
 	case "success":
-		c.JSON(200, gin.H{"code": resp.Code, "msg": resp.Msg})
+		c.JSON(200, gin.H{"code": resp.Code, "session": resp.Session, "msg": resp.Msg})
 		return
 	case "failure":
 		c.JSON(200, gin.H{"code": resp.Code, "msg": resp.Msg})
@@ -75,9 +78,20 @@ func GetRegisterMessage(userid string, passwd string) RegisterResponse {
 	if err := row.Scan(&uid); err == nil {
 		defer pgxpool.Close()
 		log.Printf("註冊成功了\n")
+
+		// 添加驗證session
+		ssid := getSSID()
+		redisdb.GetInstance().SetSession(userid, ssid, SSID_Expiration)
+
+		session := share.Session{
+			SSID:       ssid,
+			Expiration: int64(SSID_Expiration),
+		}
+
 		return RegisterResponse{
-			Code: "success",
-			Msg:  fmt.Sprintf("用戶: %s 註冊成功", uid),
+			Code:    "success",
+			Msg:     fmt.Sprintf("用戶: %s 註冊成功", uid),
+			Session: session,
 		}
 
 	} else {

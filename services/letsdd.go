@@ -17,6 +17,7 @@ type LetsddRequest struct {
 type LetsddResponse struct {
 	Code     string        `json:"code"`
 	Channels []ChannelInfo `json:"channels"`
+	Visit    VisitList     `json:"visit"`
 }
 
 func LetsddEndpoint(c *gin.Context) {
@@ -33,7 +34,9 @@ func LetsddEndpoint(c *gin.Context) {
 
 	// 從cookie裡面去取得 ssid作為驗證
 	if ssid == "" {
-		c.JSON(200, gin.H{"msg": "get cookie fail"})
+		log.Printf("get cookie fail")
+		GetAllChannelsResponse(c)
+		return
 	}
 
 	if s, success := redisdb.GetInstance().GetSession(userid); success && s.SSID == ssid {
@@ -43,16 +46,15 @@ func LetsddEndpoint(c *gin.Context) {
 		// 驗證成功，獲取該使用者visit
 		if code, visit := GetVisitList(userid); code == "success" {
 			crawlers.GetInstance().Checked_VisitByList(visit.List)
+			// 將讀取的visit傳入
+			GetLetsddChannelsResponse(c, &visit)
+			return
+		} else {
+			log.Printf("無法取得Visitlist\n userid: %s", userid)
+			GetLetsddChannelsResponse(c, nil)
 		}
 	} else {
 		log.Printf("ssid:> %s 驗證失敗", ssid)
+		GetLetsddChannelsResponse(c, nil)
 	}
-
-	GetAllChannelsResponse(c)
-
-	// 驗證成功
-	// 自定義的channels
-
-	// 要是沒有驗證到
-	// redis目前的channels
 }

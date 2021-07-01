@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"lowkeydd-server/redisdb"
+	"lowkeydd-server/share"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -15,10 +16,14 @@ type LoginRequest struct {
 }
 
 type LoginResponse struct {
-	Code string `json:"code"`
-	SSID string `json:"ssid"`
-	Msg  string `json:"msg"`
+	Code    string        `json:"code"`
+	Session share.Session `json:"session"`
+	Msg     string        `json:"msg"`
 }
+
+const (
+	SSID_Expiration = 3600 //逾時時間
+)
 
 func getSSID() string {
 	if uid, err := uuid.NewUUID(); err == nil {
@@ -38,55 +43,19 @@ func LoginEndpoint(c *gin.Context) {
 	resp := GetLoginMessage(userid, passwd)
 	log.Printf("登入回應訊息:> %v\n", resp.Msg)
 
-	// 寫入ssid
-	if resp.Code == "success" {
-
-		const timeout = 3600 //逾時時間
-
-		if session, success := redisdb.GetInstance().GetSession(userid); success {
-			redisdb.GetInstance().SetSession(userid, session.SSID, timeout)
-			// 前端的cookie也設
-			resp.SSID = session.SSID
-		} else {
-			ssid := getSSID()
-			redisdb.GetInstance().SetSession(userid, ssid, timeout)
-			// 前端的cookie也設
-			resp.SSID = ssid
-		}
-
-		// if ssid, _ := c.Cookie("ssid"); ssid == "" {
-		// 	// cookie 還沒有設定的話
-		// 	if uid, err := uuid.NewUUID(); err == nil {
-		// 		// cookie也設
-		// 		// c.SetCookie("ssid", uid.String(), timeout, "/", "localhost", false, true)
-		// 		// redis也設
-		// 		redisdb.GetInstance().SetSession(userid, uid.String(), timeout)
-		// 	} else {
-		// 		log.Fatal(err)
-		// 	}
-		// } else {
-		// 	log.Printf("ssid: %s ,已經設定了 \n", ssid)
-		// 	// 刷新存活時間
-		// 	// cookie也設
-		// 	// c.SetCookie("ssid", ssid, timeout, "/", "localhost", false, true)
-		// 	// redis也設
-		// 	redisdb.GetInstance().SetSession(userid, ssid, timeout)
-		// }
-	}
-
 	LoginTransPort(c, resp)
 }
 
 func LoginTransPort(c *gin.Context, resp LoginResponse) {
 	switch resp.Code {
 	case "success":
-		c.JSON(200, gin.H{"code": resp.Code, "ssid": resp.SSID, "msg": resp.Msg})
+		c.JSON(200, gin.H{"code": resp.Code, "session": resp.Session, "msg": resp.Msg})
 		return
 	case "failure":
-		c.JSON(200, gin.H{"code": resp.Code, "ssid": "", "msg": resp.Msg})
+		c.JSON(200, gin.H{"code": resp.Code, "msg": resp.Msg})
 		return
 	case "error":
-		c.JSON(400, gin.H{"code": resp.Code, "ssid": "", "msg": resp.Msg})
+		c.JSON(400, gin.H{"code": resp.Code, "msg": resp.Msg})
 		return
 	}
 }
@@ -113,9 +82,26 @@ func GetLoginMessage(userid string, passwd string) LoginResponse {
 	if pgxpool, pass := checkAuthPass(userid, passwd); pass {
 		defer pgxpool.Close()
 		log.Printf("登入成功\n")
+
+		// 添加驗證session；必須重複登入時對session刷新時效。
+		var ssid string
+		if session, success := redisdb.GetInstance().GetSession(userid); success {
+			// session已經存在時，表示為重複登入，則刷新session的時效
+			ssid = session.SSID
+			redisdb.GetInstance().SetSession(userid, ssid, SSID_Expiration)
+		} else {
+			// session不存在，表示首次登入，則生成session
+			ssid = getSSID()
+			redisdb.GetInstance().SetSession(userid, ssid, SSID_Expiration)
+		}
+
 		return LoginResponse{
 			Code: "success",
 			Msg:  fmt.Sprintf("用戶: %s 登入成功", userid),
+			Session: share.Session{
+				SSID:       ssid,
+				Expiration: SSID_Expiration,
+			},
 		}
 	}
 

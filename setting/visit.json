@@ -3,15 +3,6 @@
     "auth_token": "lmbym1ojhlnajo0896san8yjkoqu1i",
     "list": [
 
-        { "cid": "11692694", "cname": "uzra", "owner": "uzra", "group":"","method":"twitch" },
-        { "cid": "25236843", "cname": "a541021", "owner": "狂暴小建","group":"","method":"twitch" },
-        { "cid": "25202416", "cname": "shuteye_orange", "owner": "蝦愛橘子","group":"","method":"twitch" },
-        { "cid": "64855800", "cname": "nein1203", "owner": "小舞","group":"","method":"twitch" },
-        { "cid": "22596190", "cname": "takesipon", "owner": "踢虧","group":"","method":"twitch" },
-        { "cid": "119497908","cname": "kyo1984123", "owner": "kyo1984123","group":"","method":"twitch" },
-        { "cid": "11561802", "cname": "godjj", "owner": "接接","group":"","method":"twitch" },
-        { "cid": "29722828", "cname": "never_loses", "owner": "NeVeR_LosEs","group":"","method":"twitch" },
-        { "cid": "36316455", "cname": "tomchen60229", "owner": "tomchen60229","group":"","method":"twitch" },
 
         {"cid":"UCJFZiqLMntJufDCHc6bQixg", "cname":"", "owner":"hololive ホロライブ - VTuber Group","group":"","method":"youtube"},
         {"cid":"UCp6993wxpyDPHUpavwDFqgg", "cname":"", "owner":"SoraCh. ときのそらチャンネル", "group":"","method":"youtube"},

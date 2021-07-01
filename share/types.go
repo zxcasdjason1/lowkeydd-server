@@ -31,7 +31,7 @@ type VisitList struct {
 	List      []VisitItem `json:"list"`
 }
 
-type SessionValue struct {
-	SSID    string `json:"ssid"`
-	Timeout string `json:"timeout"`
+type Session struct {
+	SSID       string `json:"ssid"`
+	Expiration int64  `json:"expiration"`
 }
