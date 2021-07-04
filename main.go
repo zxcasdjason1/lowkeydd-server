@@ -50,7 +50,7 @@ func main() {
 
 	router.GET("/channels/all", services.GetAllChannelsResponse)
 
-	router.GET("/channels/:tag", services.GetTagedChannelsResponse)
+	router.GET("/channels/:tag", services.TagedChannelEndpoint)
 
 	// pgx
 	router.POST("/login", services.LoginEndpoint)
@@ -64,7 +64,9 @@ func main() {
 
 	router.POST("/visit/update", services.VisitUpdateEndpoint)
 
-	router.POST("/letsdd", services.LetsddEndpoint)
+	// router.POST("/letsdd", services.LetsddEndpoint)
+
+	router.POST("/letsddv2", services.Letsddv2Endpoint)
 
 	// router.Run(":8002")
 

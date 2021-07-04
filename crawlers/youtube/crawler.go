@@ -16,7 +16,10 @@ type Crawler struct {
 	List      []VisitItem
 }
 
-func NewCrawler(v *VisitList) *Crawler {
+type Authenticator struct {
+}
+
+func NewCrawler(v *VisitList, auth *Authenticator) *Crawler {
 
 	this := &Crawler{
 		List:      v.List,

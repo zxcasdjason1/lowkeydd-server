@@ -32,7 +32,6 @@ func LetsddEndpoint(c *gin.Context) {
 		return
 	}
 
-	// 從cookie裡面去取得 ssid作為驗證
 	if ssid == "" {
 		log.Printf("get cookie fail")
 		GetAllChannelsResponse(c)

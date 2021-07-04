@@ -25,6 +25,11 @@ type Header struct {
 	Authorization string
 }
 
+type Authenticator struct {
+	ClientID  string `json:"clien_id"`
+	AuthToken string `json:"auth_token"`
+}
+
 const (
 	ON_RESPOSE         = "crawler@@on_response"
 	ON_STREAM_RESPOSE  = "crawler@@on_stream_response"
@@ -32,14 +37,16 @@ const (
 	ON_VEDIOS_RESPOSE  = "crawler@@on_vedios_response"
 )
 
-func NewCrawler(v *VisitList) *Crawler {
+func NewCrawler(v *VisitList, a *Authenticator) *Crawler {
+
+	log.Printf("[Twitch] authtoken:> %s, clientid:> %s", a.AuthToken, a.ClientID)
 
 	this := &Crawler{
 		client: &http.Client{},
 
 		List:      v.List,
-		ClientID:  v.ClientID,
-		AuthToken: v.AuthToken,
+		ClientID:  a.ClientID,
+		AuthToken: a.AuthToken,
 		Event:     NewEmitter(),
 	}
 

@@ -16,10 +16,16 @@ type Crawlers struct {
 	wg        *sync.WaitGroup
 }
 
+type Authenticators struct {
+	TwitchAuth  twitch.Authenticator  `json:"twitch"`
+	YoutubeAuth youtube.Authenticator `json:"youtube"`
+}
+
 var (
 	lock     = &sync.Mutex{}
 	crawlers *Crawlers
 	visit    *VisitList
+	auths    *Authenticators
 )
 
 func GetInstance() *Crawlers {
@@ -38,10 +44,11 @@ func NewCrawlers() {
 
 	// crawlers 針對 twith、youtube兩直播平台，能以api或是爬蟲方式獲取頻道資訊，並存放到redis資料庫中
 	JSONFileLoader("setting/visit.json", &visit)
+	JSONFileLoader("setting/authenticator.json", &auths)
 
 	crawlers = &Crawlers{
-		ytCrawler: youtube.NewCrawler(visit),
-		twCrawler: twitch.NewCrawler(visit),
+		ytCrawler: youtube.NewCrawler(visit, &auths.YoutubeAuth),
+		twCrawler: twitch.NewCrawler(visit, &auths.TwitchAuth),
 		wg:        &sync.WaitGroup{},
 	}
 

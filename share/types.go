@@ -26,9 +26,8 @@ type VisitItem struct {
 }
 
 type VisitList struct {
-	ClientID  string      `json:"clien_id"`
-	AuthToken string      `json:"auth_token"`
-	List      []VisitItem `json:"list"`
+	Group []string    `json:"group"`
+	List  []VisitItem `json:"list"`
 }
 
 type Session struct {
