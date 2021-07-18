@@ -46,6 +46,10 @@ func main() {
 
 	router.GET("/crawler/:method/:cid", services.CrawlerVisit)
 
+	router.GET("/cookie/:key/:value", services.SetCookie)
+
+	router.GET("/cookie/:key", services.GetCookie)
+
 	// GetChannels前端API
 	router.POST("/channels/search", services.GetSearchChannelResponse)
 
@@ -53,17 +57,14 @@ func main() {
 
 	router.GET("/channels/:tag", services.TagedChannelEndpoint)
 
-	// pgx
-	router.POST("/login", services.LoginEndpoint)
-
-	router.GET("/cookie/:key/:value", services.SetCookie)
-	router.GET("/cookie/:key", services.GetCookie)
-
-	router.POST("/register", services.RegisterEndpoint)
-
+	// pgx-GetVisits
 	router.POST("/visit/edit", services.VisitEditEndpoint)
 
 	router.POST("/visit/update", services.VisitUpdateEndpoint)
+
+	router.POST("/auth/login", services.LoginEndpoint)
+
+	router.POST("/auth/register", services.RegisterEndpoint)
 
 	// router.POST("/letsdd", services.LetsddEndpoint)
 
