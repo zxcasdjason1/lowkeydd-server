@@ -8,16 +8,16 @@
       "ID": "lowkeydd-server",
       "Name": "lowkeydd-server",
       "Tags": ["lowkeydd"],
-      "Address": "192.168.50.240",
-      "Port": 8002,
+      "Address": "192.168.50.199",
+      "Port": 8000,
       "checks": [
         {
-          "HTTP": "http://192.168.50.240:8002/health",
+          "HTTP": "http://192.168.50.199:8000/health",
           "Interval": "10s",
           "Timeout": "1s"
         },
         {
-          "HTTP": "http://192.168.50.240:8002/crawler/update/",
+          "HTTP": "http://192.168.50.199:8000/crawler/update/",
           "Interval": "1m",
           "Timeout": "3s"
         }

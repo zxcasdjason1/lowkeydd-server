@@ -24,6 +24,7 @@ func main() {
 
 	//配置爬蟲
 	crawlers.NewCrawlers()
+	crawlers.GetInstance().UnChecked_Update()
 
 	// 設定GIN路由器
 	router := gin.Default()
@@ -68,14 +69,14 @@ func main() {
 
 	router.POST("/letsddv2", services.Letsddv2Endpoint)
 
-	// router.Run(":8002")
+	// router.Run(":8000")
 
 	cs := consul.GetInstance()
 	cs.RegisterService()
 
 	errChan := make(chan error)
 	go (func() {
-		err := router.Run(":8002")
+		err := router.Run(":8000")
 		if err != nil {
 			log.Println(err)
 			errChan <- err
@@ -95,34 +96,4 @@ func main() {
 	getErr := <-errChan
 	cs.KillService() //
 	log.Println(getErr)
-
-	// // 流程: 先執行一次 VisitAll, 之後間隔再循環執行
-	// crawlers := crawlers.GetInstance(visitList)
-	// crawlers.VisitAll()
-
-	// 啟動 Schedule 循環
-	// for {
-
-	// 	// 設置流程
-	// 	remaining := During
-	// 	scheUpdate := func() {
-	// 		remaining -= Interval
-	// 		if remaining <= 0 {
-	// 			remaining = 0
-	// 		}
-	// 		log.Printf("Event remaining, %d", remaining)
-	// 	}
-	// 	scheEnd := func() {
-	// 		crawlers.VisitAll()
-	// 	}
-
-	// 	sche := NewSchedule(Interval * time.Millisecond)
-	// 	sche.Event.AddListener(SCHE_UPDATE, scheUpdate)
-	// 	sche.Event.AddListener(SCHE_END, scheEnd)
-	// 	time.Sleep(time.Millisecond * During)
-	// 	sche.Stop()
-	// 	sche.Event.RemoveListener(SCHE_UPDATE, scheUpdate)
-	// 	sche.Event.RemoveListener(SCHE_END, scheEnd)
-	// }
-
 }
