@@ -27,11 +27,11 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 	}
 	cname := gjson.Get(header, "title").Raw
 	if cname == "" {
-		panic("取得頻道所有者(cname)失敗, " + cname)
+		log.Printf("取得頻道所有者(cname)失敗,\n %v", header)
 	}
 	avatar := gjson.Get(header, "avatar.thumbnails.1.url").Raw //88x88
 	if avatar == "" {
-		panic("取得頭像圖片(avatar)失敗, " + avatar)
+		log.Printf("取得頭像圖片(avatar)失敗,\n %v", header)
 	}
 
 	var info *ChannelInfo = nil

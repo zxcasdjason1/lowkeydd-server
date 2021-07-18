@@ -1,9 +1,5 @@
 {
-    "clien_id": "n5cb689sl2zqi3hefhmenjcxrt6ek8",
-    "auth_token": "lmbym1ojhlnajo0896san8yjkoqu1i",
     "list": [
-
-
         {"cid":"UCJFZiqLMntJufDCHc6bQixg", "cname":"", "owner":"hololive ホロライブ - VTuber Group","group":"","method":"youtube"},
         {"cid":"UCp6993wxpyDPHUpavwDFqgg", "cname":"", "owner":"SoraCh. ときのそらチャンネル", "group":"","method":"youtube"},
         {"cid":"UCDqI2jOz0weumE8s7paEk6g", "cname":"", "owner":"Roboco Ch. - ロボ子", "group":"","method":"youtube"},

@@ -25,11 +25,11 @@ func Letsddv2_all_Response(c *gin.Context, tags []string, visit *VisitList) {
 
 	log.Printf("[Letsddv2_all_Response] tags: [all]")
 
-	if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(info ChannelInfo) bool {
+	if channels, all, success := redisdb.GetInstance().GetChannelsByConditionV2(func(info ChannelInfo) bool {
 		return info.Status != "failure"
 	}); success {
 
-		Letsddv2_grouped_Response(c, visit, channels)
+		Letsddv2_grouped_Response(c, visit, channels, all)
 	} else {
 
 		c.JSON(400, gin.H{"code": "error", "channels": [][]ChannelInfo{}, "group": visit.Group})
@@ -42,13 +42,13 @@ func Letsddv2_taged_Response(c *gin.Context, tags []string, visit *VisitList) {
 
 	tagMap := make(map[string]bool)
 	for _, tag := range tags {
-		tagMap[tag] = true
+		tagMap[string(tag)] = true
 	}
-	if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(ch ChannelInfo) bool {
+	if channels, all, success := redisdb.GetInstance().GetChannelsByConditionV2(func(ch ChannelInfo) bool {
 		return tagMap[ch.Status]
 	}); success {
 
-		Letsddv2_grouped_Response(c, visit, channels)
+		Letsddv2_grouped_Response(c, visit, channels, all)
 	} else {
 
 		c.JSON(400, gin.H{"code": "error", "channels": [][]ChannelInfo{}, "group": visit.Group})

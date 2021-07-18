@@ -23,6 +23,7 @@ type VisitItem struct {
 	Owner  string `json:"owner"`  // 自定義的頻道稱呼
 	Group  string `json:"group"`  // 自定義的頻道分群
 	Method string `json:"method"` // 使用的crawler方式
+	Avatar string `json:"avatar"` // 圖片連結
 }
 
 type VisitList struct {

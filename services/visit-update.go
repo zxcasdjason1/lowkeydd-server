@@ -29,12 +29,14 @@ func VisitUpdateEndpoint(c *gin.Context) {
 	log.Printf("data :> %s\n", data)
 
 	if userid == "" {
-		c.JSON(200, gin.H{"code": "failure", "msg": "userid is required"})
+		log.Printf("userid is required")
+		VisitUpdateTransPort(c, "failure", nil, "userid is required")
 		return
 	}
 
 	if ssid == "" {
-		c.JSON(200, gin.H{"code": "failure", "msg": "get cookie fail"})
+		log.Printf("userid is required")
+		VisitUpdateTransPort(c, "failure", nil, "ssid is required")
 		return
 	}
 
@@ -45,13 +47,16 @@ func VisitUpdateEndpoint(c *gin.Context) {
 			UserID: userid,
 			Visit:  []byte(data),
 		}
-		code, visit := updateVisit(req)
-
-		log.Printf("更新Visit:> %v\n", visit)
-		VisitUpdateTransPort(c, code, &visit)
+		if code, visit := updateVisit(req); code == "success" {
+			log.Printf("更新Visit:> %v\n", visit)
+			VisitUpdateTransPort(c, "success", &visit, "auth is success")
+		} else {
+			log.Printf("ssid:> %s 驗證失敗", ssid)
+			VisitUpdateTransPort(c, "error", nil, "database is locked, or visit update method is broken")
+		}
 	} else {
 		log.Printf("ssid:> %s 驗證失敗", ssid)
-		VisitUpdateTransPort(c, "failure", nil)
+		VisitUpdateTransPort(c, "failure", nil, "auth is fail")
 	}
 
 }
@@ -62,16 +67,12 @@ func study() {
 	s := []byte(`{
 		"list": [
 			{
-				"cid": " UCJFZiqLMntJufDCHc6bQixg",
-				"owner": "hololive ホロライブ - VTuber Group"
-			},
-			{
-				"cid": "UCp6993wxpyDPHUpavwDFqgg",
-				"owner": "SoraCh. ときのそらチャンネル"
-			},
-			{
-				"cid": "UCp6993wxpyDPHUpavwDFqgg",
-				"owner": "SoraCh. ときのそらチャンネル"
+				"cid":"UCqm3BQLlJfvkTsX_hvm0UmA",
+				"cname":"Watame Ch. 角巻わため",
+				"owner":"Watame Ch. 角巻わため",
+				"avatar":"https://yt3.ggpht.com/ytc/AKedOLRWpyqOZzCmuSfmKGNo8TD2L_IRUYSw1wyhHXw-=s88-c-k-c0x00ffffff-no-rj",
+				"method":"youtube",
+				"group":"Favorite"
 			}
 		]
 	}`)
@@ -139,16 +140,16 @@ func updateVisit(req VisitUpdateRequest) (string, VisitList) {
 	}
 }
 
-func VisitUpdateTransPort(c *gin.Context, code string, visit *VisitList) {
+func VisitUpdateTransPort(c *gin.Context, code string, visit *VisitList, msg string) {
 	switch code {
 	case "success":
-		c.JSON(200, gin.H{"code": code, "visit": visit})
+		c.JSON(200, gin.H{"code": code, "visit": visit, "msg": msg})
 		return
 	case "failure":
-		c.JSON(200, gin.H{"code": code, "visit": visit})
+		c.JSON(200, gin.H{"code": code, "visit": visit, "msg": msg})
 		return
 	case "error":
-		c.JSON(400, gin.H{"code": code, "visit": visit})
+		c.JSON(400, gin.H{"code": code, "visit": visit, "msg": msg})
 		return
 	}
 }

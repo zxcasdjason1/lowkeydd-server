@@ -61,6 +61,30 @@ func (this *Driver) GetChannelsByCondition(condition func(c ChannelInfo) bool) (
 	}
 }
 
+func (this *Driver) GetChannelsByConditionV2(condition func(c ChannelInfo) bool) ([]ChannelInfo, []ChannelInfo, bool) {
+
+	this.SelectDB("")
+
+	if cidlist := this.Keys("*"); cidlist != nil {
+
+		all := make([]ChannelInfo, 0, len(cidlist))
+		channels := make([]ChannelInfo, 0, len(cidlist))
+
+		for _, cid := range cidlist {
+			if info, exist := this.GetChannel(cid); exist {
+				all = append(all, info)
+				if condition(info) {
+					channels = append(channels, info)
+				}
+			}
+		}
+
+		return channels, all, true
+	} else {
+		return []ChannelInfo{}, []ChannelInfo{}, false
+	}
+}
+
 func (this *Driver) SetChannel(ch ChannelInfo) {
 
 	this.SelectDB("")
