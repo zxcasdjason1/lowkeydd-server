@@ -8,7 +8,7 @@ import (
 	"lowkeydd-server/pgxdb"
 	"lowkeydd-server/redisdb"
 	"lowkeydd-server/services"
-	. "lowkeydd-server/share"
+
 	"os"
 	"os/signal"
 	"syscall"
@@ -30,7 +30,7 @@ func main() {
 	router := gin.Default()
 
 	// 解決Cors問題
-	router.Use(CORSMiddleware())
+	// router.Use(CORSMiddleware())
 
 	// health check
 	router.GET("/health", func(c *gin.Context) {
