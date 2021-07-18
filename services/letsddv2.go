@@ -82,24 +82,19 @@ func Letsddv2_auth_success_Response(c *gin.Context, tags []string, visit *VisitL
 
 func Letsddv2Endpoint(c *gin.Context) {
 
-	// var req Letsddv2Request
-	// if c.BindJSON(&req) != nil {
-	// 	c.JSON(200, gin.H{"code": "failure", "msg": "錯誤的JSON格式"})
-	// 	return
-	// }
-
 	userid := c.DefaultPostForm("username", "")
 	ssid := c.DefaultPostForm("ssid", "")
-	tagsStr := c.DefaultPostForm("tags", "")
+
 	var tags []string
-	json.Unmarshal([]byte(tagsStr), &tags)
+	if tagsStr := c.DefaultPostForm("tags", ""); tagsStr == "" {
+		tags = []string{"live"} //莫認為 live
+	} else {
+		json.Unmarshal([]byte(tagsStr), &tags)
+	}
+
 	log.Printf("username:> %v\n", userid)
 	log.Printf("ssid :> %s\n", ssid)
 	log.Printf("tags :> %v\n", tags)
-
-	// userid := req.UserID
-	// ssid := req.SSID
-	// tags := req.Tags
 
 	if userid == "" {
 		log.Printf("userid 沒有\n")
