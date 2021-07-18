@@ -66,9 +66,9 @@ func main() {
 
 	router.POST("/auth/register", services.RegisterEndpoint)
 
-	// router.POST("/letsdd", services.LetsddEndpoint)
+	// router.POST("/letsdd/v1", services.LetsddEndpoint)
 
-	router.POST("/letsddv2", services.Letsddv2Endpoint)
+	router.POST("/letsdd/v2", services.Letsddv2Endpoint)
 
 	// router.Run(":8000")
 
