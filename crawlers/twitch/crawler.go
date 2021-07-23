@@ -7,6 +7,7 @@ import (
 	"lowkeydd-server/redisdb"
 	. "lowkeydd-server/share"
 	"net/http"
+	"time"
 
 	"github.com/tidwall/gjson"
 )
@@ -103,7 +104,7 @@ func (c *Crawler) SearchChannels(userid_list []string) string {
 	})
 }
 
-func (c *Crawler) TodoSearch(userid string) {
+func (c *Crawler) TodoSearch(userid string) ChannelInfo {
 
 	var ch ChannelInfo
 
@@ -120,7 +121,7 @@ func (c *Crawler) TodoSearch(userid string) {
 
 	// log.Println("================正在重播==================")
 	// log.Printf("Cid:>>> 			%s", ch.Cid)
-	// log.Printf("Cname:>>> 		%s", info.Cname)
+	// log.Printf("Cname:>>> 		%s", ch.Cname)
 	// log.Printf("Owner:>>> 		%s", ch.Owner)
 	// log.Printf("Status:>>> 		%s", ch.Status)
 	// log.Printf("Avatar:>>> 		%s", ch.Avatar)
@@ -131,10 +132,7 @@ func (c *Crawler) TodoSearch(userid string) {
 	// log.Printf("ViewCount:>>>  	%s", ch.ViewCount)
 	// log.Printf("StartTime:>>>  	%s", ch.StartTime)
 	// log.Println("========================================")
-
-	// 寫入到 Redis
-	redisdb.GetInstance().SetChannel(ch)
-
+	return ch
 }
 
 func (c *Crawler) GetStream(userid string) string {
@@ -173,7 +171,24 @@ func (c *Crawler) GetUserInfo(loginName string) string {
 	})
 }
 
-func (c *Crawler) Visit(cid string) {
-	c.TodoSearch(cid)
+func (c *Crawler) Visit(cid string, expiration time.Duration) ChannelInfo {
+
+	// 獲取頻道資訊
 	log.Printf("[Twitch] cid :> %v", cid)
+	ch := c.TodoSearch(cid)
+	// 寫入到 Redis
+	redisdb.GetInstance().SetVisitChannel(ch, expiration)
+
+	return ch
+}
+
+func (c *Crawler) Search(cid string, expiration time.Duration) ChannelInfo {
+
+	// 獲取頻道資訊
+	log.Printf("[Twitch] cid :> %v", cid)
+	ch := c.TodoSearch(cid)
+	// 寫入到 Redis
+	redisdb.GetInstance().SetSearchChannel(ch, expiration)
+
+	return ch
 }

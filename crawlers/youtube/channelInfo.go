@@ -3,6 +3,7 @@ package youtube
 import (
 	"log"
 	. "lowkeydd-server/share"
+	"regexp"
 	"strconv"
 
 	"github.com/tidwall/gjson"
@@ -16,14 +17,14 @@ func getSectionContents(ytStr string, index int) gjson.Result {
 	return gjson.Get(ytStr, path)
 }
 
-func CreateChannelInfo(ytStr string) *ChannelInfo {
+func CreateChannelInfo(ytStr string) ChannelInfo {
 
 	header := gjson.Get(ytStr, "header.c4TabbedHeaderRenderer").Raw
 	// 獲取Header
 	channelId := gjson.Get(header, "channelId").Raw
 	if channelId == "" {
 		log.Println("取得頻道代碼(cid)失敗, " + channelId)
-		return &ChannelInfo{}
+		return ChannelInfo{}
 	}
 	cname := gjson.Get(header, "title").Raw
 	if cname == "" {
@@ -34,7 +35,8 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 		log.Printf("取得頭像圖片(avatar)失敗,\n %v", header)
 	}
 
-	var info *ChannelInfo = nil
+	var ch = ChannelInfo{}
+	var lasttime = 2147483647
 
 	for i := 0; i < 3; i++ {
 
@@ -47,14 +49,14 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 		// 直播開啟，會含有 channelFeaturedContentRenderer
 		if r := gjson.Get(ctx.Raw, "channelFeaturedContentRenderer.items.0.videoRenderer").Raw; r != "" {
 			// log.Printf("index: %d\n\n channelFeaturedContentRenderer:> %s\n", i, r)
-			info = channelFeaturedContentRenderer(r)
+			channelFeaturedContentRenderer(r, &ch)
 			break
 		}
 
-		// 已排定的直播訊息
+		// 已排定的直播訊息 (upcomingEventData)
 		if r := gjson.Get(ctx.Raw, "shelfRenderer.content.expandedShelfContentsRenderer.items.0.videoRenderer").Raw; r != "" {
 			// log.Printf("index: %d\n\n expandedShelf_ContentsRenderer:> %s\n", i, r)
-			info = shelf_expandedshelf_VideoRenderer(r)
+			shelf_expandedshelf_VideoRenderer(r, &ch)
 			if gjson.Get(r, "upcomingEventData").Raw != "" {
 				break //有直播預訂訊息
 			} else {
@@ -62,38 +64,43 @@ func CreateChannelInfo(ytStr string) *ChannelInfo {
 			}
 		}
 
-		// 為一整排的影片欄位，獲取欄位中第一個作為，最近一次的重播紀錄。
+		// 為一整排的影片欄位，獲取欄位中第一個作為最近一次的重播紀錄。
 		if r := gjson.Get(ctx.Raw, "shelfRenderer.content.horizontalListRenderer.items.0.gridVideoRenderer").Raw; r != "" {
 			// log.Printf("index: %d\n\n shelf_gridVideoRenderer:> %s\n", i, r)
-			info = shelf_gridVideoRenderer(r)
-			break
-		}
-
-		// 之下的層級是我們不關注的類型，先當作候選選項。
-		// 為多個播放清單所形成的欄位 (這類人通常沒有自己的任何影片)
-		if r := gjson.Get(ctx.Raw, "shelfRenderer.content.horizontalListRenderer.items.0.gridPlaylistRenderer").Raw; r != "" {
-			// log.Printf("index: %d\n\n shelf_gridPlaylistRenderer:> %s\n", i, r)
-			info = shelf_gridPlaylistRenderer(r)
+			var curChannel = ChannelInfo{}
+			shelf_gridVideoRenderer(r, &curChannel)
+			cur := getTimeByStartTimeStr(curChannel.StartTime)
+			if cur < lasttime {
+				lasttime = cur
+				ch = curChannel
+			}
 			continue
 		}
+
+		// // 之下的層級是我們不關注的類型，先當作候選選項。
+		// // 為多個播放清單所形成的欄位 (這類人通常沒有自己的任何影片)
+		// if r := gjson.Get(ctx.Raw, "shelfRenderer.content.horizontalListRenderer.items.0.gridPlaylistRenderer").Raw; r != "" {
+		// 	// log.Printf("index: %d\n\n shelf_gridPlaylistRenderer:> %s\n", i, r)
+		// 	shelf_gridPlaylistRenderer(r, &ch)
+		// 	continue
+		// }
 	}
 
 	// 設定Header
-	if info == nil {
+	if ch.RenderType == "" {
 		log.Println("缺少對應此類頻道資訊的方式 cid:> " + channelId)
-		info = &ChannelInfo{
-			RenderType: "nilRenderer",
-			Status:     "failure",
-		}
+		ch.RenderType = "nilRenderer"
+		ch.Status = "failure"
 	}
-	info.Cid = removeQuotes(channelId)
-	info.Cname = removeQuotes(cname)
-	info.Owner = removeQuotes(cname)
-	info.Avatar = removeQuotes(avatar)
-	return info
+	ch.Cid = removeQuotes(channelId)
+	ch.Cname = removeQuotes(cname)
+	ch.Owner = removeQuotes(cname)
+	ch.Avatar = removeQuotes(avatar)
+	return ch
 }
 
-func channelFeaturedContentRenderer(ctx string) *ChannelInfo {
+// 直播中
+func channelFeaturedContentRenderer(ctx string, ch *ChannelInfo) {
 
 	// 這個項目照理說不會被列出，有影片必定有播放清單，播放清單的
 
@@ -102,94 +109,78 @@ func channelFeaturedContentRenderer(ctx string) *ChannelInfo {
 	thumbnail := gjson.Get(ctx, "thumbnail.thumbnails.3.url") //圖片
 	viewCount := gjson.Get(ctx, "viewCountText.runs.0.text")  //影片當前觀看人數
 
-	return &ChannelInfo{
-		Cid:        "",
-		Status:     "live",
-		RenderType: "channelFeaturedContentRenderer",
-		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw),
-		Thumbnail:  removeQuotes(thumbnail.Raw),
-		Title:      removeQuotes(title.Raw),
-		ViewCount:  removeQuotes(viewCount.Raw),
-		StartTime:  "",
-	}
+	ch.Cid = ""
+	ch.Status = "live"
+	ch.RenderType = "channelFeaturedContentRenderer"
+	ch.StreamURL = "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw)
+	ch.Thumbnail = removeQuotes(thumbnail.Raw)
+	ch.Title = removeQuotes(title.Raw)
+	ch.ViewCount = removeQuotes(viewCount.Raw)
+	ch.StartTime = ""
 
 }
-func getViewCountStr(ctx string) string {
-	res := gjson.Get(ctx, "viewCountText.simpleText").Raw //影片當前觀看人數
-	if res == "" {
-		vc1 := gjson.Get(ctx, "viewCountText.runs.0.text")
-		vc2 := gjson.Get(ctx, "viewCountText.runs.1.text")
-		res = vc1.Raw + " " + vc2.Raw
-	}
-	return removeQuotes(res)
-}
-func getStartTimeStr(ctx string) string {
-	res := gjson.Get(ctx, "upcomingEventData.startTime").Raw // 檢查有沒有預定發布時間
-	if res != "" {
-		return timestampToDate(removeQuotes(res))
-	}
-	return ""
-}
-func shelf_expandedshelf_VideoRenderer(ctx string) *ChannelInfo {
+
+// 等待中
+func shelf_expandedshelf_VideoRenderer(ctx string, ch *ChannelInfo) {
 
 	title := gjson.Get(ctx, "title.simpleText")               //影片標題
 	videoID := gjson.Get(ctx, "videoId")                      //影片連結
 	thumbnail := gjson.Get(ctx, "thumbnail.thumbnails.3.url") //圖片
-	viewCountStr := getViewCountStr(ctx)                      //影片當前觀看人數
+	viewCountStr := getWaitOrOffViewCountStr(ctx)             //影片當前觀看人數
 	startTimeStr := getStartTimeStr(ctx)                      //預定發布時間
 
-	return &ChannelInfo{
-		Cid:        "",
-		Status:     "wait",
-		RenderType: "expandedShelfContentsRenderer",
-		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw),
-		Thumbnail:  removeQuotes(thumbnail.Raw),
-		Title:      removeQuotes(title.Raw),
-		ViewCount:  viewCountStr,
-		StartTime:  startTimeStr,
-	}
+	ch.Cid = ""
+	ch.Status = "wait"
+	ch.RenderType = "expandedShelfContentsRenderer"
+	ch.StreamURL = "https://www.youtube.com/watch?v=" + removeQuotes(videoID.Raw)
+	ch.Thumbnail = removeQuotes(thumbnail.Raw)
+	ch.Title = removeQuotes(title.Raw)
+	ch.ViewCount = viewCountStr
+	ch.StartTime = startTimeStr
+
 }
 
-func shelf_gridVideoRenderer(ctx string) *ChannelInfo {
+// 等待中
+func shelf_gridVideoRenderer(ctx string, ch *ChannelInfo) {
 
 	title := gjson.Get(ctx, "title.simpleText")
 	videoId := gjson.Get(ctx, "videoId")
 	thumbnail := gjson.Get(ctx, "thumbnail.thumbnails.3.url")
-	viewCountStr := getViewCountStr(ctx)
+	viewCountStr := getWaitOrOffViewCountStr(ctx)
 	startTimeStr := getStartTimeStr(ctx)
 	status := "wait"
 	if startTimeStr == "" {
-		startTimeStr = gjson.Get(ctx, "publishedTimeText.simpleText").Raw //改成發布時間
+		// 觀看時間: xx ...前
+		publishedTime := gjson.Get(ctx, "publishedTimeText.simpleText").Raw //改成發布時間
+		startTimeStr = regexp.MustCompile("[0-9]+.*").FindAllString(publishedTime, -1)[0]
+		// log.Printf("startTimeStr %s", startTimeStr)
 		status = "off"
 	}
 
-	return &ChannelInfo{
-		Cid:        "",
-		Status:     status,
-		RenderType: "shelfRenderer+gridVideoRenderer",
-		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(videoId.Raw),
-		Thumbnail:  removeQuotes(thumbnail.Raw),
-		Title:      removeQuotes(title.Raw),
-		ViewCount:  removeQuotes(viewCountStr),
-		StartTime:  removeQuotes(startTimeStr),
-	}
+	ch.Cid = ""
+	ch.Status = status
+	ch.RenderType = "shelfRenderer+gridVideoRenderer"
+	ch.StreamURL = "https://www.youtube.com/watch?v=" + removeQuotes(videoId.Raw)
+	ch.Thumbnail = removeQuotes(thumbnail.Raw)
+	ch.Title = removeQuotes(title.Raw)
+	ch.ViewCount = removeQuotes(viewCountStr)
+	ch.StartTime = removeQuotes(startTimeStr)
 
 }
 
-func shelf_gridPlaylistRenderer(ctx string) *ChannelInfo {
+// func shelf_gridPlaylistRenderer(ctx string, ch *ChannelInfo) {
 
-	playlistId := gjson.Get(ctx, "playlistId")
-	title := gjson.Get(ctx, "title.runs.0.text")
-	thumbnail := gjson.Get(ctx, "thumbnail.thumbnails.0.url")
+// 	playlistId := gjson.Get(ctx, "playlistId")
+// 	title := gjson.Get(ctx, "title.runs.0.text")
+// 	thumbnail := gjson.Get(ctx, "thumbnail.thumbnails.0.url")
 
-	return &ChannelInfo{
-		Cid:        "",
-		Status:     "off",
-		RenderType: "shelfRenderer+gridPlaylistRenderer",
-		StreamURL:  "https://www.youtube.com/watch?v=" + removeQuotes(playlistId.Raw),
-		Thumbnail:  removeQuotes(thumbnail.Raw),
-		Title:      removeQuotes(title.Raw),
-		ViewCount:  "",
-		StartTime:  "",
-	}
-}
+// 	ch.Cid = ""
+// 	ch.Status = "off"
+// 	ch.RenderType = "shelfRenderer+gridPlaylistRenderer"
+// 	ch.StreamURL = "https://www.youtube.com/watch?v=" + removeQuotes(playlistId.Raw)
+// 	ch.Thumbnail = removeQuotes(thumbnail.Raw)
+// 	ch.Title = removeQuotes(title.Raw)
+// 	ch.ViewCount = ""
+// 	ch.StartTime = ""
+
+// }

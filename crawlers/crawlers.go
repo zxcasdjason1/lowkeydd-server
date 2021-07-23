@@ -55,13 +55,16 @@ func NewCrawlers() {
 }
 
 // 透過cid, method, 直接對對應的平台進行訪問，並將解析後的資訊寫入到redis中。
-func (c *Crawlers) request(cid string, method string) {
+// 一般的頻道訪問保存期限一天。
+func (c *Crawlers) request(cid string, method string) ChannelInfo {
 	defer c.wg.Done()
 	switch method {
 	case "youtube":
-		c.ytCrawler.Visit(cid)
+		return c.ytCrawler.Visit(cid, 86400*time.Second)
 	case "twitch":
-		c.twCrawler.Visit(cid)
+		return c.twCrawler.Visit(cid, 86400*time.Second)
+	default:
+		return ChannelInfo{}
 	}
 }
 
@@ -77,23 +80,12 @@ func (c *Crawlers) updated_Request(curr int64, item ChannelInfo) {
 // Checked 先驗證更新時間與是否存在才進行訪問。
 // 減少實際對平台訪問次數，降低被平台當作機器人的機會。
 func (c *Crawlers) checked_Request(curr int64, cid string, method string) {
-	if info, success := redisdb.GetInstance().GetChannel(cid); success {
+	if info, success := redisdb.GetInstance().GetVisitChannel(cid); success {
 		c.updated_Request(curr, info)
 	} else {
 		c.request(cid, method)
 	}
 }
-
-// 訪問目標後蒐集資訊後寫入到redis中。
-// func (c *Crawlers) Visit(cid string, method string) {
-// 	log.Printf("[crawlers] Start to Visit: %v", cid)
-
-// 	c.wg.Add(1)
-// 	go c.Request(cid, method)
-// 	c.wg.Wait()
-
-// 	log.Printf("[crawlers] Time Complete...Visit is done ")
-// }
 
 // 訪問目標前，先檢查其更新狀態，再蒐集資訊後寫入到redis中。
 func (c *Crawlers) Checked_Visit(cid string, method string) {
@@ -155,7 +147,7 @@ func (c *Crawlers) Checked_VisitByList(list []VisitItem) {
 func (c *Crawlers) UnChecked_Update() {
 
 	// 為當前Redis中所有的頻道資訊建立副本
-	channels, _ := redisdb.GetInstance().GetAllChannels()
+	channels, _ := redisdb.GetInstance().GetAllVisitChannels()
 
 	log.Println("[crawlers] 所有頻道資訊更新作業開始....")
 
@@ -167,6 +159,37 @@ func (c *Crawlers) UnChecked_Update() {
 	c.wg.Wait()
 
 	log.Println("[crawlers] 所有頻道資訊更新作業結束....")
+}
+
+// 搜尋頻道資訊，搜尋結果一樣被保存在redis中
+func (c *Crawlers) search(cid string, method string) ChannelInfo {
+	switch method {
+	case "youtube":
+		return c.ytCrawler.Search(cid, 300*time.Second)
+	case "twitch":
+		return c.twCrawler.Search(cid, 300*time.Second)
+	default:
+		return ChannelInfo{}
+	}
+}
+
+func (c *Crawlers) GetSearchChannel(cid string, method string) ChannelInfo {
+
+	log.Printf("[crawlers] Start to get search channel: %v", cid)
+
+	result := ChannelInfo{}
+	curr := time.Now().Unix()
+	if ch, success := redisdb.GetInstance().GetSearchChannel(cid); success {
+		if curr > ch.UpdateTime {
+			result = c.search(ch.Cid, ch.Method)
+		} else {
+			result = ch
+		}
+	} else {
+		result = c.search(cid, method)
+	}
+	// log.Printf("[crawlers] Time Complete...get search channel is done, \n%v ", result)
+	return result
 }
 
 func GetTwitchCrawler() *twitch.Crawler {

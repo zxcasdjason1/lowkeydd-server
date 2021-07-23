@@ -34,7 +34,7 @@ func LetsddEndpoint(c *gin.Context) {
 
 	if ssid == "" {
 		log.Printf("get cookie fail")
-		GetAllChannelsResponse(c)
+		GetAllVisitChannelsResponse(c)
 		return
 	}
 

@@ -22,11 +22,11 @@ func CrawlerVisit(c *gin.Context) {
 
 	req := &CrawlerVisitRequest{}
 	if err := c.ShouldBindUri(&req); err != nil {
-		GetSingleChannelResponse(c, "")
+		GetSingleVisitChannelResponse(c, "")
 	}
 
 	if req.Cid == "" || req.Method == "" {
-		GetSingleChannelResponse(c, "")
+		GetSingleVisitChannelResponse(c, "")
 	}
 
 	log.Printf("cid %v\n", req.Cid)
@@ -34,7 +34,7 @@ func CrawlerVisit(c *gin.Context) {
 	// 做爬蟲，資料會寫入到redis中
 	crawlers.GetInstance().Checked_Visit(req.Cid, req.Method)
 	// 再從redis取出資料作為回傳
-	GetSingleChannelResponse(c, req.Cid)
+	GetSingleVisitChannelResponse(c, req.Cid)
 }
 
 func CrawlerVisitAll(c *gin.Context) {
@@ -42,5 +42,5 @@ func CrawlerVisitAll(c *gin.Context) {
 	// 做爬蟲，資料會寫入到redis中
 	crawlers.GetInstance().Checked_VisitByDefaultList()
 	// 再從redis取出資料作為回傳
-	GetAllChannelsResponse(c)
+	GetAllVisitChannelsResponse(c)
 }

@@ -1,19 +1,25 @@
 package youtube
 
 import (
-	"encoding/json"
 	"log"
 	"lowkeydd-server/redisdb"
 	. "lowkeydd-server/share"
 	"regexp"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/gocolly/colly"
 )
 
+var (
+	result = make(map[string]ChannelInfo)
+	lock   = &sync.Mutex{}
+)
+
 type Crawler struct {
-	collector *colly.Collector
 	List      []VisitItem
+	collector *colly.Collector // for redis
 }
 
 type Authenticator struct {
@@ -30,46 +36,40 @@ func NewCrawler(v *VisitList, auth *Authenticator) *Crawler {
 
 	this.collector.OnHTML("script", func(h *colly.HTMLElement) {
 
-		isValid, ytJSONstr := getYtInitialData(h.Text)
-
-		if isValid {
+		if isValid, ytJSONstr := getYtInitialData(h.Text); isValid {
 
 			// 以youtube頻道的URL作為儲存資訊時的Key值。
 			// 當 CreateChannelInfo 失敗時才直接從輸入的url取。
-			info := CreateChannelInfo(ytJSONstr)
-			if info.Cid == "" {
+			ch := CreateChannelInfo(ytJSONstr)
+			if ch.Cid == "" {
 				if channelID := getCidByUrl(h.Request.URL.String()); channelID == "" {
 					panic("獲取CID失敗，無法設定KEY值")
 				} else {
-					info.Cid = channelID
+					ch.Cid = channelID
 				}
 			}
-			info.Method = "youtube"
-			info.UpdateTime = GetNextUpdateTime()
+			ch.Method = "youtube"
+			ch.UpdateTime = GetNextUpdateTime()
 
 			// 打印出獲取到的頻道資訊
 			// log.Println("========================================")
-			// log.Printf("Cid:>>> 		%s", info.Cid)
-			// log.Printf("Cname:>>> 		%s", info.Cname)
-			// log.Printf("Owner:>>> 		%s", info.Owner)
-			// log.Printf("Status:>>> 		%s", info.Status)
-			// log.Printf("Avatar:>>> 		%s", info.Avatar)
-			// log.Printf("RenderType:>>> 	%s", info.RenderType)
-			// log.Printf("StreamURL:>>>  	%s", info.StreamURL)
-			// log.Printf("Thumbnail:>>>  	%s", info.Thumbnail)
-			// log.Printf("Title:>>>      	%s", info.Title)
-			// log.Printf("ViewCount:>>>  	%s", info.ViewCount)
-			// log.Printf("StartTime:>>>  	%s", info.StartTime)
+			// log.Printf("Cid:>>> 		%s", ch.Cid)
+			// log.Printf("Cname:>>> 		%s", ch.Cname)
+			// log.Printf("Owner:>>> 		%s", ch.Owner)
+			// log.Printf("Status:>>> 		%s", ch.Status)
+			// log.Printf("Avatar:>>> 		%s", ch.Avatar)
+			// log.Printf("RenderType:>>> 	%s", ch.RenderType)
+			// log.Printf("StreamURL:>>>  	%s", ch.StreamURL)
+			// log.Printf("Thumbnail:>>>  	%s", ch.Thumbnail)
+			// log.Printf("Title:>>>      	%s", ch.Title)
+			// log.Printf("ViewCount:>>>  	%s", ch.ViewCount)
+			// log.Printf("StartTime:>>>  	%s", ch.StartTime)
 			// log.Println("========================================")
 
-			// 寫入到 Redis中
-			bytes, err := json.Marshal(info)
-			if err != nil {
-				log.Fatal("json.Marshal失敗")
-				panic(err)
-			} else {
-				redisdb.GetInstance().Set(info.Cid, bytes, 0)
-			}
+			// 先暫存到 result 中
+			lock.Lock()
+			defer lock.Unlock()
+			result[ch.Cid] = ch
 		}
 	})
 
@@ -78,11 +78,6 @@ func NewCrawler(v *VisitList, auth *Authenticator) *Crawler {
 	})
 
 	return this
-}
-
-func (c *Crawler) Visit(cid string) {
-	c.collector.Visit("https://www.youtube.com/channel/" + cid)
-	log.Printf("[Youtube] cid :> %v", cid)
 }
 
 func getCidByUrl(urlStr string) string {
@@ -107,4 +102,38 @@ func getYtInitialData(ytStr string) (matched bool, result string) {
 		ytStr = ytStr[st : ed+1]
 	}
 	return m, ytStr
+}
+
+// 訪問並獲取頻道資訊後寫入Redis
+func (c *Crawler) Visit(cid string, expiration time.Duration) ChannelInfo {
+
+	// 獲取頻道資訊
+	log.Printf("[Youtube] cid :> %v", cid)
+	c.collector.Visit("https://www.youtube.com/channel/" + cid)
+	// 先取被暫存在result中的result數據, 再寫入到 Redis
+	// 不可略過這步驟，因為result不會主動被清除，必須每次訪問後清除。
+	lock.Lock()
+	defer lock.Unlock()
+	ch := result[cid]
+	redisdb.GetInstance().SetVisitChannel(ch, expiration)
+	delete(result, cid)
+
+	return ch
+}
+
+// 搜尋頻道資訊後寫入Redis
+func (c *Crawler) Search(cid string, expiration time.Duration) ChannelInfo {
+
+	// 獲取頻道資訊
+	log.Printf("[Youtube] cid :> %v", cid)
+	c.collector.Visit("https://www.youtube.com/channel/" + cid)
+	// 先取被暫存在result中的result數據, 再寫入到 Redis
+	// 不可略過這步驟，因為result不會主動被清除，必須每次訪問後清除。
+	lock.Lock()
+	defer lock.Unlock()
+	ch := result[cid]
+	redisdb.GetInstance().SetSearchChannel(ch, expiration)
+	delete(result, cid)
+
+	return ch
 }

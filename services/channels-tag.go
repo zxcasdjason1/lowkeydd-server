@@ -11,21 +11,21 @@ type GetTagedChannelsRequest struct {
 	Tag string `uri:"tag"`
 }
 
-func GetTagedChannels(c *gin.Context, tag string) (bool, []share.ChannelInfo) {
+// func GetTagedChannels(c *gin.Context, tag string) (bool, []share.ChannelInfo) {
 
-	if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(ch share.ChannelInfo) bool {
-		return ch.Status == tag
-	}); success {
-		return true, channels
-	} else {
-		return false, []share.ChannelInfo{}
-	}
+// 	if channels, success := redisdb.GetInstance().GetVisitChannelsByCondition(func(ch share.ChannelInfo) bool {
+// 		return ch.Status == tag
+// 	}); success {
+// 		return true, channels
+// 	} else {
+// 		return false, []share.ChannelInfo{}
+// 	}
 
-}
+// }
 
 func GetTagedChannelsResponse(c *gin.Context, tag string) {
 
-	if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(ch share.ChannelInfo) bool {
+	if channels, success := redisdb.GetInstance().GetVisitChannelsByCondition(func(ch share.ChannelInfo) bool {
 		return ch.Status == tag
 	}); success {
 		c.JSON(200, gin.H{"code": "success", "channels": channels})
@@ -38,7 +38,7 @@ func GetTagedChannelsResponse(c *gin.Context, tag string) {
 func Get_MultiTaged_Channels(c *gin.Context, tags []string) (bool, []share.ChannelInfo) {
 
 	if tags[0] == "all" {
-		if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(ch share.ChannelInfo) bool {
+		if channels, success := redisdb.GetInstance().GetVisitChannelsByCondition(func(ch share.ChannelInfo) bool {
 			return ch.Status != "failure"
 		}); success {
 			return true, channels
@@ -52,7 +52,7 @@ func Get_MultiTaged_Channels(c *gin.Context, tags []string) (bool, []share.Chann
 		tagMap[tag] = true
 	}
 
-	if channels, success := redisdb.GetInstance().GetChannelsByCondition(func(ch share.ChannelInfo) bool {
+	if channels, success := redisdb.GetInstance().GetVisitChannelsByCondition(func(ch share.ChannelInfo) bool {
 		return tagMap[ch.Status]
 	}); success {
 		return true, channels
@@ -61,10 +61,10 @@ func Get_MultiTaged_Channels(c *gin.Context, tags []string) (bool, []share.Chann
 	}
 }
 
-func TagedChannelEndpoint(c *gin.Context) {
+func GetTagedVisitChannelEndpoint(c *gin.Context) {
 	req := &GetTagedChannelsRequest{}
 	if err := c.ShouldBindUri(&req); err != nil {
-		GetSingleChannelResponse(c, "")
+		GetSingleVisitChannelResponse(c, "")
 	}
 
 	GetTagedChannelsResponse(c, req.Tag)

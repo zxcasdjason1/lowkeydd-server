@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"log"
 	. "lowkeydd-server/share"
+	"time"
 )
 
-func (this *Driver) GetChannel(cid string) (ChannelInfo, bool) {
+func (this *Driver) GetVisitChannel(cid string) (ChannelInfo, bool) {
 
 	this.SelectDB("")
 
@@ -19,7 +20,7 @@ func (this *Driver) GetChannel(cid string) (ChannelInfo, bool) {
 	}
 }
 
-func (this *Driver) GetAllChannels() ([]ChannelInfo, bool) {
+func (this *Driver) GetAllVisitChannels() ([]ChannelInfo, bool) {
 
 	this.SelectDB("")
 
@@ -28,7 +29,7 @@ func (this *Driver) GetAllChannels() ([]ChannelInfo, bool) {
 		channels := make([]ChannelInfo, 0, len(cidlist))
 
 		for _, cid := range cidlist {
-			if ch, exist := this.GetChannel(cid); exist {
+			if ch, exist := this.GetVisitChannel(cid); exist {
 				channels = append(channels, ch)
 			}
 		}
@@ -39,7 +40,7 @@ func (this *Driver) GetAllChannels() ([]ChannelInfo, bool) {
 	}
 }
 
-func (this *Driver) GetChannelsByCondition(condition func(c ChannelInfo) bool) ([]ChannelInfo, bool) {
+func (this *Driver) GetVisitChannelsByCondition(condition func(c ChannelInfo) bool) ([]ChannelInfo, bool) {
 
 	this.SelectDB("")
 
@@ -48,7 +49,7 @@ func (this *Driver) GetChannelsByCondition(condition func(c ChannelInfo) bool) (
 		channels := make([]ChannelInfo, 0, len(cidlist))
 
 		for _, cid := range cidlist {
-			if info, exist := this.GetChannel(cid); exist {
+			if info, exist := this.GetVisitChannel(cid); exist {
 				if condition(info) {
 					channels = append(channels, info)
 				}
@@ -61,7 +62,7 @@ func (this *Driver) GetChannelsByCondition(condition func(c ChannelInfo) bool) (
 	}
 }
 
-func (this *Driver) GetChannelsByConditionV2(condition func(c ChannelInfo) bool) ([]ChannelInfo, []ChannelInfo, bool) {
+func (this *Driver) GetVisitChannelsByConditionV2(condition func(c ChannelInfo) bool) ([]ChannelInfo, []ChannelInfo, bool) {
 
 	this.SelectDB("")
 
@@ -71,7 +72,7 @@ func (this *Driver) GetChannelsByConditionV2(condition func(c ChannelInfo) bool)
 		channels := make([]ChannelInfo, 0, len(cidlist))
 
 		for _, cid := range cidlist {
-			if info, exist := this.GetChannel(cid); exist {
+			if info, exist := this.GetVisitChannel(cid); exist {
 				all = append(all, info)
 				if condition(info) {
 					channels = append(channels, info)
@@ -85,7 +86,7 @@ func (this *Driver) GetChannelsByConditionV2(condition func(c ChannelInfo) bool)
 	}
 }
 
-func (this *Driver) SetChannel(ch ChannelInfo) {
+func (this *Driver) SetVisitChannel(ch ChannelInfo, expiration time.Duration) {
 
 	this.SelectDB("")
 
@@ -93,6 +94,6 @@ func (this *Driver) SetChannel(ch ChannelInfo) {
 	if err != nil {
 		log.Fatal("json.Marshal失敗")
 	} else {
-		this.Set(ch.Cid, bytes, 0)
+		this.Set(ch.Cid, bytes, expiration)
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"log"
 	"lowkeydd-server/crawlers"
 	"lowkeydd-server/crawlers/twitch"
+	. "lowkeydd-server/share"
 	"regexp"
 	"strings"
 
@@ -11,12 +12,17 @@ import (
 	"github.com/tidwall/gjson"
 )
 
+type SearchChannelResponse struct {
+	Code     string
+	Channels []ChannelInfo
+}
+
 func GetSearchChannelResponse(c *gin.Context) {
 
 	url := c.DefaultPostForm("url", "")
 
 	if url == "" {
-		GetSingleChannelResponse(c, "")
+		c.JSON(200, gin.H{"code": "error", "channels": []ChannelInfo{}})
 	}
 	log.Printf("url %v\n", url)
 
@@ -30,16 +36,21 @@ func GetSearchChannelResponse(c *gin.Context) {
 	} else if cid = GetTwitchCid(url); cid != "" {
 		method = "twitch"
 	} else {
-		GetSingleChannelResponse(c, "")
+		c.JSON(200, gin.H{"code": "error", "channels": []ChannelInfo{}})
 		return
 	}
 
 	log.Printf("cid %v\n", cid)
 	log.Printf("method %v\n", method)
-	// 做爬蟲，資料會寫入到redis中
-	crawlers.GetInstance().Checked_Visit(cid, method)
-	// 再從redis取出資料作為回傳
-	GetSingleChannelResponse(c, cid)
+
+	// 此處用cname來判斷，因為yt搜尋結果中，即使url輸入錯誤，也會以該錯誤的cid返回。
+	// 所以改用其他屬性，作為成功搜尋與否的依據。
+	if ch := crawlers.GetInstance().GetSearchChannel(cid, method); ch.Thumbnail != "" { // 沒有背景圖表示獲取失敗
+		log.Printf("GetSearchChannel: ch %v\n", ch)
+		c.JSON(200, gin.H{"code": "success", "channels": []ChannelInfo{ch}})
+	} else {
+		c.JSON(200, gin.H{"code": "failure", "channels": []ChannelInfo{ch}})
+	}
 }
 
 func GetYoutubeCid(url string) string {

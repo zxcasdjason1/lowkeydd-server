@@ -27,24 +27,6 @@ func IsUseridExist(userid string) (*pgxpool.Pool, bool) {
 	panic("IsUseridExist 發生例外狀況")
 }
 
-func IsMemberSettingExist(userid string) (*pgxpool.Pool, bool) {
-	var msg interface{}
-	pgxpool, row := pgxdb.QueryRow(`SELECT * FROM visit WHERE userid = $1 ;`, userid)
-	if err := row.Scan(&msg); err != nil {
-		if strings.Contains(err.Error(), "no rows in result set") {
-			log.Printf("會員 %s 的Member還沒設定\n", userid)
-			return pgxpool, false
-		} else if strings.Contains(err.Error(), "number of field descriptions must equal number of destinations,") {
-			log.Printf("會員 %s 的Member已經設定\n", userid)
-			return pgxpool, true
-		} else {
-			log.Printf("[IsVisitExist] %v", err)
-			os.Exit(1)
-		}
-	}
-	panic("IsUseridExist 發生例外狀況")
-}
-
 func IsVisitExist(userid string) (*pgxpool.Pool, bool, []byte) {
 
 	var data []byte

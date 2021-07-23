@@ -8,6 +8,7 @@ import (
 	"lowkeydd-server/pgxdb"
 	"lowkeydd-server/redisdb"
 	"lowkeydd-server/services"
+	"lowkeydd-server/share"
 
 	"os"
 	"os/signal"
@@ -30,7 +31,7 @@ func main() {
 	router := gin.Default()
 
 	// 解決Cors問題
-	// router.Use(CORSMiddleware())
+	router.Use(share.CORSMiddleware())
 
 	// health check
 	router.GET("/health", func(c *gin.Context) {
@@ -53,9 +54,9 @@ func main() {
 	// GetChannels前端API
 	router.POST("/channels/search", services.GetSearchChannelResponse)
 
-	router.GET("/channels/all", services.GetAllChannelsResponse)
+	router.GET("/channels/all", services.GetAllVisitChannelsResponse)
 
-	router.GET("/channels/:tag", services.TagedChannelEndpoint)
+	router.GET("/channels/:tag", services.GetTagedVisitChannelEndpoint)
 
 	// pgx-GetVisits
 	router.POST("/visit/edit", services.VisitEditEndpoint)

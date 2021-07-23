@@ -12,5 +12,5 @@ func CrawlerUpdate(c *gin.Context) {
 	crawlers.GetInstance().UnChecked_Update()
 
 	// 顯示結果
-	GetAllChannelsResponse(c)
+	GetAllVisitChannelsResponse(c)
 }

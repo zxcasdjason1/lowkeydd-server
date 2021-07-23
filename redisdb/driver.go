@@ -48,6 +48,12 @@ func (this *Driver) SelectDB(dbName string) {
 	switch dbName {
 	case "ssid":
 		dbindex = 1
+	case "visit":
+		dbindex = 0
+	case "":
+		dbindex = 0
+	case "search":
+		dbindex = 2
 	default:
 		dbindex = 0
 	}
