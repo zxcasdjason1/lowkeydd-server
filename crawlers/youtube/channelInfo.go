@@ -151,10 +151,15 @@ func shelf_gridVideoRenderer(ctx string, ch *ChannelInfo) {
 	status := "wait"
 	if startTimeStr == "" {
 		// 觀看時間: xx ...前
-		publishedTime := gjson.Get(ctx, "publishedTimeText.simpleText").Raw //改成發布時間
-		startTimeStr = regexp.MustCompile("[0-9]+.*").FindAllString(publishedTime, -1)[0]
-		// log.Printf("startTimeStr %s", startTimeStr)
-		status = "off"
+		if publishedTimeStr := gjson.Get(ctx, "publishedTimeText.simpleText").Raw; publishedTimeStr != "" {
+			log.Printf("videoId: %s publishedTimeStr %s", videoId, publishedTimeStr)
+			if startTime := regexp.MustCompile("[0-9]+.*").FindAllString(publishedTimeStr, -1); len(startTime) > 0 {
+				startTimeStr = startTime[0]
+			} else {
+				startTimeStr = publishedTimeStr
+			}
+			status = "off"
+		}
 	}
 
 	ch.Cid = ""

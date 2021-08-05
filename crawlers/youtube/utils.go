@@ -35,25 +35,6 @@ func getWaitOrOffViewCountStr(ctx string) string {
 	return res
 }
 
-// func getOffViewCountStr(ctx string) string {
-// 	res := gjson.Get(ctx, "viewCountText.simpleText").Raw //影片當前觀看人數
-// 	if res == "" {
-// 		vc1 := gjson.Get(ctx, "viewCountText.runs.0.text")
-// 		vc2 := gjson.Get(ctx, "viewCountText.runs.1.text")
-// 		res = vc1.Raw + " " + vc2.Raw
-
-// 		// 修整取出純數字的觀眾數量。
-// 		re := regexp.MustCompile("[0-9]+")
-// 		num := re.FindAllString(res, -1)
-// 		if len(num) > 0 {
-// 			res = num[0] + " 等待中"
-// 		} else {
-// 			res = "0 等待中"
-// 		}
-// 	}
-// 	return res
-// }
-
 func getStartTimeStr(ctx string) string {
 	res := gjson.Get(ctx, "upcomingEventData.startTime").Raw // 檢查有沒有預定發布時間
 	if res != "" {
