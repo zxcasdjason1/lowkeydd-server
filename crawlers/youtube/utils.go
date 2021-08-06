@@ -97,9 +97,12 @@ func getTimeByStartTimeStr(str string) int {
 
 	re := regexp.MustCompile("[0-9]+")
 	num := re.FindAllString(str, -1)
-	val, _ := strconv.Atoi(num[0])
-
-	// log.Printf("[getTimeByStartTimeStr] val: %d\n", val*priority)
-	return val * priority
+	if len(num) > 0 {
+		val, _ := strconv.Atoi(num[0])
+		log.Printf("[getTimeByStartTimeStr] val: %d\n", val*priority)
+		return val * priority
+	} else {
+		return 2147483647
+	}
 
 }
