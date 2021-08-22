@@ -67,6 +67,8 @@ func main() {
 
 	router.POST("/auth/register", services.RegisterEndpoint)
 
+	router.POST("/auth/logout", services.LogoutEndpoint)
+
 	// router.POST("/letsdd/v1", services.LetsddEndpoint)
 	router.POST("/letsdd/v2", services.Letsddv2Endpoint)
 

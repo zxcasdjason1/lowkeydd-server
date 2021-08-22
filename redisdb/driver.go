@@ -113,3 +113,13 @@ func (this *Driver) Get(key string) string {
 	// log.Printf("[RedisBD] 取得數據: %s..............................讀取成功 ok\n", key)
 	return val
 }
+
+func (this *Driver) Del(key string) int64 {
+
+	val, err := this.client.Del(key).Result() // => GET key
+	if err != nil {
+		// log.Printf("[RedisBD] 查無此數據: %s............................刪除失敗 fail\n", key)
+		return -1
+	}
+	return val
+}
