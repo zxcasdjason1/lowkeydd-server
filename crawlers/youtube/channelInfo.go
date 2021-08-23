@@ -152,7 +152,7 @@ func shelf_gridVideoRenderer(ctx string, ch *ChannelInfo) {
 	if startTimeStr == "" {
 		// 觀看時間: xx ...前
 		if publishedTimeStr := gjson.Get(ctx, "publishedTimeText.simpleText").Raw; publishedTimeStr != "" {
-			log.Printf("videoId: %s publishedTimeStr %s", videoId, publishedTimeStr)
+			// log.Printf("videoId: %s publishedTimeStr %s", videoId, publishedTimeStr)
 			if startTime := regexp.MustCompile("[0-9]+.*").FindAllString(publishedTimeStr, -1); len(startTime) > 0 {
 				startTimeStr = startTime[0]
 			} else {

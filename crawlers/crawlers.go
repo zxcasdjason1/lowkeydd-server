@@ -102,7 +102,7 @@ func (c *Crawlers) Checked_Visit(cid string, method string) {
 // 根據訪問清單，訪問訪問多個目標後，再將蒐集資訊後寫入到redis中。
 func (c *Crawlers) UnChecked_VisitByDefaultList() {
 
-	log.Printf("[crawlers] Start to VisitAll: \n%v", visit.List)
+	log.Printf("[crawlers] Start to VisitAll")
 
 	c.wg.Add(len(visit.List))
 	for _, item := range visit.List {
@@ -116,7 +116,7 @@ func (c *Crawlers) UnChecked_VisitByDefaultList() {
 
 func (c *Crawlers) Checked_VisitByDefaultList() {
 
-	log.Printf("[crawlers] Start to VisitAll: \n%v", visit.List)
+	log.Printf("[crawlers] Start to VisitAll")
 
 	curr := time.Now().Unix()
 	c.wg.Add(len(visit.List))
@@ -131,7 +131,7 @@ func (c *Crawlers) Checked_VisitByDefaultList() {
 
 func (c *Crawlers) Checked_VisitByList(list []VisitItem) {
 
-	log.Printf("[crawlers] Start to VisitAll: \n%v", list)
+	log.Printf("[crawlers] Start to VisitAll")
 
 	curr := time.Now().Unix()
 	c.wg.Add(len(list))

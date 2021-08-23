@@ -1,7 +1,6 @@
 package services
 
 import (
-	"log"
 	"lowkeydd-server/crawlers"
 	"lowkeydd-server/crawlers/twitch"
 	. "lowkeydd-server/share"
@@ -24,7 +23,7 @@ func GetSearchChannelResponse(c *gin.Context) {
 	if url == "" {
 		c.JSON(200, gin.H{"code": "error", "channels": []ChannelInfo{}})
 	}
-	log.Printf("url %v\n", url)
+	// log.Printf("url %v\n", url)
 
 	// https://www.youtube.com/watch?v=5cyW7zqhAO0
 	// https://www.youtube.com/channel/UC1uv2Oq6kNxgATlCiez59hw
@@ -40,13 +39,13 @@ func GetSearchChannelResponse(c *gin.Context) {
 		return
 	}
 
-	log.Printf("cid %v\n", cid)
-	log.Printf("method %v\n", method)
+	// log.Printf("cid %v\n", cid)
+	// log.Printf("method %v\n", method)
 
 	// 此處用cname來判斷，因為yt搜尋結果中，即使url輸入錯誤，也會以該錯誤的cid返回。
 	// 所以改用其他屬性，作為成功搜尋與否的依據。
 	if ch := crawlers.GetInstance().GetSearchChannel(cid, method); ch.Thumbnail != "" { // 沒有背景圖表示獲取失敗
-		log.Printf("GetSearchChannel: ch %v\n", ch)
+		// log.Printf("GetSearchChannel: ch %v\n", ch)
 		c.JSON(200, gin.H{"code": "success", "channels": []ChannelInfo{ch}})
 	} else {
 		c.JSON(200, gin.H{"code": "failure", "channels": []ChannelInfo{ch}})

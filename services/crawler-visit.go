@@ -29,8 +29,8 @@ func CrawlerVisit(c *gin.Context) {
 		GetSingleVisitChannelResponse(c, "")
 	}
 
-	log.Printf("cid %v\n", req.Cid)
-	log.Printf("method %v\n", req.Method)
+	// log.Printf("cid %v\n", req.Cid)
+	// log.Printf("method %v\n", req.Method)
 	// 做爬蟲，資料會寫入到redis中
 	crawlers.GetInstance().Checked_Visit(req.Cid, req.Method)
 	// 再從redis取出資料作為回傳

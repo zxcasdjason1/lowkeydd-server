@@ -1,6 +1,5 @@
 {
     "list": [
-        {"cid":"UCJFZiqLMntJufDCHc6bQixg","owner":"hololive ホロライブ - VTuber Group","method":"youtube"},
         {"cid":"UCp6993wxpyDPHUpavwDFqgg","owner":"SoraCh. ときのそらチャンネル", "method":"youtube"},
         {"cid":"UCDqI2jOz0weumE8s7paEk6g","owner":"Roboco Ch. - ロボ子", "method":"youtube"},
         {"cid":"UC5CwaMl1eIgY8h02uZw7u8A","owner":"Suisei Channel", "method":"youtube"},
@@ -46,7 +45,7 @@
         {"cid":"UCFKOVgVbGmX65RxO3EtH3iw","owner":"Lamy Ch. 雪花ラミィ", "method":"youtube"},
         {"cid":"UCAWSyEs_Io8MtpY3m-zqILA","owner":"Nene Ch.桃鈴ねね", "method":"youtube"},
         {"cid":"UCUKD-uaobj9jiqB-VXt71mA","owner":"Botan Ch.獅白ぼたん", "method":"youtube"},
-        {"cid":"UC7YXqPO3eUnxbJ6rN0z2z1Q","owner":"DELUTAYA Δ.", "method":"youtube"},
+     
         {"cid":"UCK9V2B22uJYu3N7eR_BT9QA","owner":"Polka Ch. 尾丸ポルカ","method":"youtube"},
         {"cid":"UCoSrY_IQQVpmIRZ9Xf-y93g","owner":"Gawr Gura Ch. hololive-EN", "method":"youtube"},
         {"cid":"UCyl1z3jo3XHR1riLFKG5UAg","owner":"Watson Amelia Ch. hololive-EN", "method":"youtube"},
@@ -57,10 +56,16 @@
         {"cid":"UC727SQYUvx5pDDGQpTICNWg","owner":"Anya Melfissa Ch. hololive-ID", "method":"youtube"},
         {"cid":"UChgTyjG-pdNvxxhdsXfHQ5Q","owner":"Pavolia Reine Ch. hololive-ID", "method":"youtube"},
         {"cid":"UC7XCjKxBEct0uAukpQXNFPw","owner":"HACHI", "method":"youtube"},
-        {"cid":"UCFEd5V7VcxBPPcuMGpmvkQA","owner":"TobaRana Ch. 鳥羽樂奈", "method":"youtube"},
         {"cid":"UC_UqaRNrLcaL4fp2IAPV0OQ","owner":"No.Fifteen Ch. 十五號", "method":"youtube"},
         {"cid":"UC2yG-9ekUwTs8Q0yMSycMxA","owner":"Padko Ch. 平平子", "method":"youtube"},
-        {"cid":"UC8rcEBzJSleTkf_-agPM20g","owner":"IRyS Ch. hololive-EN", "method":"youtube"}
+
+        {"cid":"UC8rcEBzJSleTkf_-agPM20g","owner":"IRyS Ch. hololive-EN", "method":"youtube"},
+
+        {"cid":"UCsUj0dszADCGbF3gNrQEuSQ","owner":"Tsukumo Sana Ch. hololive-EN", "method":"youtube"},
+        {"cid":"UCmbs8T6MWqUHP1tIQvSgKrg","owner":"Ouro Kronii Ch. hololive-EN", "method":"youtube"},
+        {"cid":"UCO_aKKYxn4tvrqPjcTzZ6EQ","owner":"Ceres Fauna Ch. hololive-EN", "method":"youtube"},
+        {"cid":"UC3n5uGu18FoCy23ggWWp8tA","owner":"Nanashi Mumei Ch. hololive-EN", "method":"youtube"},
+        {"cid":"UCgmPnx-EEeOrZSg5Tiw7ZRQ","owner":"Hakos Baelz Ch. hololive-EN", "method":"youtube"}
     ]     
 }
 

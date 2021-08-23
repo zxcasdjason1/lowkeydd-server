@@ -99,7 +99,7 @@ func getTimeByStartTimeStr(str string) int {
 	num := re.FindAllString(str, -1)
 	if len(num) > 0 {
 		val, _ := strconv.Atoi(num[0])
-		log.Printf("[getTimeByStartTimeStr] val: %d\n", val*priority)
+		// log.Printf("[getTimeByStartTimeStr] val: %d\n", val*priority)
 		return val * priority
 	} else {
 		return 2147483647

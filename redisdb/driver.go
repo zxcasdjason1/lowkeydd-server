@@ -58,7 +58,7 @@ func (this *Driver) SelectDB(dbName string) {
 		dbindex = 0
 	}
 	if setting.DBIndex != dbindex {
-		log.Printf("[RedisBD] 切換資料庫目錄: %d \n", dbindex)
+		// log.Printf("[RedisBD] 切換資料庫目錄: %d \n", dbindex)
 		setting.DBIndex = dbindex
 		driver.client.Do("SELECT", dbindex)
 	}
@@ -99,14 +99,14 @@ func (this *Driver) Set(key string, val []byte, expiration time.Duration) {
 		panic(err)
 	}
 
-	log.Printf("[RedisBD] 保存數據: %s..............................寫入成功 ok\n", key)
+	// log.Printf("[RedisBD] 保存數據: %s..............................寫入成功 ok\n", key)
 }
 
 func (this *Driver) Get(key string) string {
 
 	val, err := this.client.Get(key).Result() // => GET key
 	if err != nil {
-		log.Printf("[RedisBD] 查無此數據: %s............................讀取失敗 fail\n", key)
+		// log.Printf("[RedisBD] 查無此數據: %s............................讀取失敗 fail\n", key)
 		return ""
 	}
 
