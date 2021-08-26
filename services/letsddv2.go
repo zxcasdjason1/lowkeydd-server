@@ -22,7 +22,7 @@ type Letsddv2Response struct {
 	Visit    VisitList     `json:"visit"`
 }
 
-func Letsddv2_all_Response(c *gin.Context, tags []string, visit *VisitList) {
+func Letsddv2_all_Response(c *gin.Context, tags []string, visit *VisitList, authMsg string) {
 
 	log.Printf("[Letsddv2_all_Response] tags: [all]")
 
@@ -30,14 +30,14 @@ func Letsddv2_all_Response(c *gin.Context, tags []string, visit *VisitList) {
 		return info.Status != "failure"
 	}); success {
 
-		GetLetsddv2Response(c, visit, channels, all)
+		GetLetsddv2Response(c, visit, channels, all, authMsg)
 	} else {
 
 		c.JSON(400, gin.H{"code": "error", "channels": [][]ChannelInfo{}, "group": visit.Group})
 	}
 }
 
-func Letsddv2_taged_Response(c *gin.Context, tags []string, visit *VisitList) {
+func Letsddv2_taged_Response(c *gin.Context, tags []string, visit *VisitList, authMsg string) {
 
 	log.Printf("[Letsddv2_taged_Response] tags: %v", tags)
 
@@ -49,7 +49,7 @@ func Letsddv2_taged_Response(c *gin.Context, tags []string, visit *VisitList) {
 		return tagMap[ch.Status]
 	}); success {
 
-		GetLetsddv2Response(c, visit, channels, all)
+		GetLetsddv2Response(c, visit, channels, all, authMsg)
 	} else {
 
 		c.JSON(400, gin.H{"code": "error", "channels": [][]ChannelInfo{}, "group": visit.Group})
@@ -61,10 +61,10 @@ func Letsddv2_auth_failure_Response(c *gin.Context, tags []string) {
 	log.Printf("[Letsddv2_auth_failure_Response] tags: %v", tags)
 
 	if tags[0] == "all" {
-		Letsddv2_all_Response(c, tags, nil)
+		Letsddv2_all_Response(c, tags, nil, "AUTH_FAILURE")
 		return
 	}
-	Letsddv2_taged_Response(c, tags, nil)
+	Letsddv2_taged_Response(c, tags, nil, "AUTH_FAILURE")
 
 }
 
@@ -73,10 +73,10 @@ func Letsddv2_auth_success_Response(c *gin.Context, tags []string, visit *VisitL
 	log.Printf("[Letsddv2_auth_success_Response] tags: %v", tags)
 
 	if tags[0] == "all" {
-		Letsddv2_all_Response(c, tags, visit)
+		Letsddv2_all_Response(c, tags, visit, "AUTH_PASS")
 		return
 	}
-	Letsddv2_taged_Response(c, tags, visit)
+	Letsddv2_taged_Response(c, tags, visit, "AUTH_PASS")
 
 }
 

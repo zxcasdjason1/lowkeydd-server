@@ -7,13 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetLetsddv2Response(c *gin.Context, visit *VisitList, channels []ChannelInfo, allChannels []ChannelInfo) {
+func GetLetsddv2Response(c *gin.Context, visit *VisitList, channels []ChannelInfo, allChannels []ChannelInfo, authMsg string) {
 
 	log.Printf("[Letsddv2_grouped_Response]\n")
 
 	if visit == nil || len(visit.Group) == 0 {
 		// log.Printf("[Letsddv2_grouped_Response] visit nill \n")
-		c.JSON(200, gin.H{"code": "success", "channels": [][]ChannelInfo{channels}, "group": []string{}})
+		c.JSON(200, gin.H{"code": "success", "channels": [][]ChannelInfo{channels}, "group": []string{}, "authMsg": authMsg})
 		return
 	}
 
@@ -74,5 +74,5 @@ func GetLetsddv2Response(c *gin.Context, visit *VisitList, channels []ChannelInf
 		newList = append(newList, item)
 	}
 
-	c.JSON(200, gin.H{"code": "success", "channels": result, "group": visit.Group, "list": newList})
+	c.JSON(200, gin.H{"code": "success", "channels": result, "group": visit.Group, "list": newList, "authMsg": authMsg})
 }
