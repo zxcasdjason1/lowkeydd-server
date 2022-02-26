@@ -11,6 +11,7 @@ import (
 	"lowkeydd-server/share"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 
 	"github.com/gin-gonic/gin"
@@ -23,8 +24,11 @@ func main() {
 	pgxdb.NewDriver()
 
 	//配置爬蟲
-	crawlers.NewCrawlers()
-	crawlers.GetInstance().UnChecked_Update()
+	serviceType := strings.ToUpper(os.Getenv("SERVICE_TYPE"))
+	if serviceType == "SERVER" {
+		crawlers.NewCrawlers()
+		crawlers.GetInstance().UnChecked_Update()
+	}
 
 	// 設定GIN路由器
 	router := gin.Default()
@@ -37,14 +41,17 @@ func main() {
 		c.JSON(200, gin.H{"status": "ok"})
 	})
 
-	// Crawler後臺控制
-	router.GET("/crawler/reload", services.CrawlerReload)
+	// Crawler僅以SERVER擔任工作，由後臺控制。
+	if serviceType == "SERVER" {
 
-	router.GET("/crawler/visitall", services.CrawlerVisitAll)
+		router.GET("/crawler/reload", services.CrawlerReload)
 
-	router.GET("/crawler/update", services.CrawlerUpdate)
+		router.GET("/crawler/visitall", services.CrawlerVisitAll)
 
-	router.GET("/crawler/:method/:cid", services.CrawlerVisit)
+		router.GET("/crawler/update", services.CrawlerUpdate)
+
+		router.GET("/crawler/:method/:cid", services.CrawlerVisit)
+	}
 
 	router.GET("/cookie/:key/:value", services.SetCookie)
 

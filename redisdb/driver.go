@@ -3,6 +3,7 @@ package redisdb
 import (
 	"log"
 	. "lowkeydd-server/share"
+	"os"
 	"sync"
 	"time"
 
@@ -71,6 +72,11 @@ func (this *Driver) Keys(p string) []string {
 func (this *Driver) Connect() {
 
 	JSONFileLoader("setting/redis.json", &setting)
+
+	if serviceIP := os.Getenv("SERVICE_IP"); serviceIP != "" {
+		setting.IP = serviceIP
+		log.Printf("[RedisBD] SERVICE_IP :> %s \n", serviceIP)
+	}
 
 	log.Println("[RedisBD] 創建資料庫驅動器")
 	ip := setting.IP           // localhost 為預設本地連線，若為遠端請自行輸入

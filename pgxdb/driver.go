@@ -44,6 +44,10 @@ var (
 func NewDriver() {
 
 	JSONFileLoader("setting/postgres.json", &setting)
+	if serviceIP := os.Getenv("SERVICE_IP"); serviceIP != "" {
+		setting.IP = serviceIP
+		log.Printf("[POSTGRES] SERVICE_IP :> %s \n", serviceIP)
+	}
 
 	// connent to psql database
 	pgxpool, err := pgxpool.Connect(context.Background(), GetEnv())
@@ -53,7 +57,7 @@ func NewDriver() {
 	}
 	defer pgxpool.Close()
 
-	log.Println("connection success")
+	log.Println("[POSTGRES] connection success")
 }
 
 func GetEnv() string {

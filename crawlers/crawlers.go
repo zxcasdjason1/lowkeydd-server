@@ -89,20 +89,20 @@ func (c *Crawlers) checked_Request(curr int64, cid string, method string) {
 
 // 訪問目標前，先檢查其更新狀態，再蒐集資訊後寫入到redis中。
 func (c *Crawlers) Checked_Visit(cid string, method string) {
-	log.Printf("[crawlers] Start to Visit: %v", cid)
+	log.Printf("[CRAWLERS] Start to Visit: %v", cid)
 
 	curr := time.Now().Unix()
 	c.wg.Add(1)
 	go c.checked_Request(curr, cid, method)
 	c.wg.Wait()
 
-	log.Printf("[crawlers] Time Complete...Visit is done ")
+	log.Printf("[CRAWLERS] Time Complete...Visit is done ")
 }
 
 // 根據訪問清單，訪問訪問多個目標後，再將蒐集資訊後寫入到redis中。
 func (c *Crawlers) UnChecked_VisitByDefaultList() {
 
-	log.Printf("[crawlers] Start to VisitAll")
+	log.Printf("[CRAWLERS] Start to VisitAll")
 
 	c.wg.Add(len(visit.List))
 	for _, item := range visit.List {
@@ -110,13 +110,13 @@ func (c *Crawlers) UnChecked_VisitByDefaultList() {
 	}
 	c.wg.Wait()
 
-	log.Printf("[crawlers] Time Complete...VisitAll is done ")
+	log.Printf("[CRAWLERS] Time Complete...VisitAll is done ")
 
 }
 
 func (c *Crawlers) Checked_VisitByDefaultList() {
 
-	log.Printf("[crawlers] Start to VisitAll")
+	log.Printf("[CRAWLERS] Start to VisitAll")
 
 	curr := time.Now().Unix()
 	c.wg.Add(len(visit.List))
@@ -125,13 +125,13 @@ func (c *Crawlers) Checked_VisitByDefaultList() {
 	}
 	c.wg.Wait()
 
-	log.Printf("[crawlers] Time Complete...VisitAll is done ")
+	log.Printf("[CRAWLERS] Time Complete...VisitAll is done ")
 
 }
 
 func (c *Crawlers) Checked_VisitByList(list []VisitItem) {
 
-	log.Printf("[crawlers] Start to VisitAll")
+	log.Printf("[CRAWLERS] Start to VisitAll")
 
 	curr := time.Now().Unix()
 	c.wg.Add(len(list))
@@ -140,7 +140,7 @@ func (c *Crawlers) Checked_VisitByList(list []VisitItem) {
 	}
 	c.wg.Wait()
 
-	log.Printf("[crawlers] Time Complete...VisitAll is done ")
+	log.Printf("[CRAWLERS] Time Complete...VisitAll is done ")
 
 }
 
@@ -149,7 +149,7 @@ func (c *Crawlers) UnChecked_Update() {
 	// 為當前Redis中所有的頻道資訊建立副本
 	channels, _ := redisdb.GetInstance().GetAllVisitChannels()
 
-	log.Println("[crawlers] 所有頻道資訊更新作業開始....")
+	log.Println("[CRAWLERS] 所有頻道資訊更新作業開始....")
 
 	curr := time.Now().Unix()
 	c.wg.Add(len(channels))
@@ -158,7 +158,7 @@ func (c *Crawlers) UnChecked_Update() {
 	}
 	c.wg.Wait()
 
-	log.Println("[crawlers] 所有頻道資訊更新作業結束....")
+	log.Println("[CRAWLERS] 所有頻道資訊更新作業結束....")
 }
 
 // 搜尋頻道資訊，搜尋結果一樣被保存在redis中
@@ -175,7 +175,7 @@ func (c *Crawlers) search(cid string, method string) ChannelInfo {
 
 func (c *Crawlers) GetSearchChannel(cid string, method string) ChannelInfo {
 
-	log.Printf("[crawlers] Start to get search channel: %v", cid)
+	log.Printf("[CRAWLERS] Start to get search channel: %v", cid)
 
 	result := ChannelInfo{}
 	curr := time.Now().Unix()
@@ -188,7 +188,7 @@ func (c *Crawlers) GetSearchChannel(cid string, method string) ChannelInfo {
 	} else {
 		result = c.search(cid, method)
 	}
-	// log.Printf("[crawlers] Time Complete...get search channel is done, \n%v ", result)
+	// log.Printf("[CRAWLERS] Time Complete...get search channel is done, \n%v ", result)
 	return result
 }
 

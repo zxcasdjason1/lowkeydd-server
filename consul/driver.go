@@ -1,8 +1,12 @@
 package consul
 
 import (
+	"fmt"
 	"log"
 	"lowkeydd-server/share"
+	"os"
+	"strconv"
+	"strings"
 	"sync"
 
 	consul_api "github.com/hashicorp/consul/api"
@@ -43,7 +47,35 @@ func GetInstance() *Driver {
 
 func NewDriver() {
 
-	share.JSONFileLoader("setting/consul.json", &setting)
+	serviceIP := os.Getenv("SERVICE_IP")
+	servicePort := os.Getenv("SERVICE_PORT")
+	serviceType := strings.ToUpper(os.Getenv("SERVICE_TYPE"))
+
+	if serviceType == "SERVER" {
+		share.JSONFileLoader("setting/consul_server.json", &setting)
+	} else {
+		share.JSONFileLoader("setting/consul_client.json", &setting)
+	}
+	// 如果有傳入 IP 跟 PORT 就會重設，沒有就使用原先json檔裡的設定。
+	if serviceIP != "" {
+		setting.Server.IP = serviceIP
+		setting.Services[0].Address = serviceIP
+		log.Printf("[Consul] SERVICE_IP :> %s \n", serviceIP)
+	}
+	if servicePort != "" {
+		// 設置該service的port，這是提供consul去檢查的資訊
+		if port, err := strconv.Atoi(servicePort); err != nil && port > 0 {
+			setting.Services[0].Port = port
+		}
+		// 設置該service的address
+		addr := fmt.Sprintf("%s:%s", setting.Server.IP, servicePort)
+		setting.Services[0].Address = addr
+		setting.Services[0].Checks[0].HTTP = fmt.Sprintf("http://%s/health", addr)
+		if serviceType == "SERVER" {
+			setting.Services[0].Checks[1].HTTP = fmt.Sprintf("http://%s/crawler/update/", addr)
+		}
+		log.Printf("[Consul] SERVICE_PORT :> %s \n", servicePort)
+	}
 
 	// setup driver
 	driver = &Driver{
