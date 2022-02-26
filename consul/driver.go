@@ -63,6 +63,11 @@ func NewDriver() {
 		log.Printf("[Consul] SERVICE_IP :> %s \n", serviceIP)
 	}
 	if servicePort != "" {
+
+		// 透過Port重新命名，設置新的名稱與ID
+		setting.Services[0].Name += servicePort
+		setting.Services[0].ID += servicePort
+
 		// 設置該service的port，這是提供consul去檢查的資訊
 		if port, err := strconv.Atoi(servicePort); err != nil && port > 0 {
 			setting.Services[0].Port = port

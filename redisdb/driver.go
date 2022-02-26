@@ -73,6 +73,7 @@ func (this *Driver) Connect() {
 
 	JSONFileLoader("setting/redis.json", &setting)
 
+	// 照理說應該跟 SERVICE_IP 區隔開比較好，但是目前service與Redis資料庫都在同一台機器裡。
 	if serviceIP := os.Getenv("SERVICE_IP"); serviceIP != "" {
 		setting.IP = serviceIP
 		log.Printf("[RedisBD] SERVICE_IP :> %s \n", serviceIP)
